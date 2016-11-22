@@ -84,7 +84,7 @@ namespace GodaddyWrapper
         /// <param name="request"></param>
         /// <param name="XShopperId"></param>
         /// <returns></returns>
-        public async Task RetrievePurchaseSchema(CartReplace request, string XShopperId = null)
+        public async Task ReplaceCart(CartReplace request, string XShopperId = null)
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
@@ -185,7 +185,7 @@ namespace GodaddyWrapper
             var client = GetBaseHttpClient();
             if (XPrivateLabelId != null)
                 client.DefaultRequestHeaders.Add("X-Private-Label-Id", XPrivateLabelId);
-            var response = await client.DeleteAsync($"cart/products/{request.pfid}/schema");
+            var response = await client.GetAsync($"cart/products/{request.pfid}/schema");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<JsonSchemaResponse>();
         }

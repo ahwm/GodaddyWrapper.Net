@@ -72,7 +72,7 @@ namespace GodaddyWrapper
         /// <param name="XShopperId"></param>
         /// <param name="XMarketId"></param>
         /// <returns></returns>
-        public async Task<SubscriptionResponse> RetrieveSubscriptionDetails(SubscriptionRetrieveDetail request, string XShopperId = null, string XMarketId = null)
+        public async Task<SubscriptionResponse> RetrieveSubscriptionDetails(SubscriptionDetailRetrieve request, string XShopperId = null, string XMarketId = null)
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();

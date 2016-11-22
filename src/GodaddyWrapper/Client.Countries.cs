@@ -32,7 +32,7 @@ namespace GodaddyWrapper
         /// <param name="request"></param>
         /// <param name="CountryKey"></param>
         /// <returns></returns>
-        public async Task<CountryResponse> RetrieveCountriesDetail(CountriesDetail request, string CountryKey)
+        public async Task<CountryResponse> RetrieveCountryDetail(CountryDetailRetrieve request, string CountryKey)
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();

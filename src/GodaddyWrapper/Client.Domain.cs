@@ -100,7 +100,7 @@ namespace GodaddyWrapper
             return await response.Content.ReadAsAsync<DomainAvailableResponse>();
         }
         /// <summary>
-        /// POST /v1/domains/purchase
+        /// Purchase and register the specified Domain
         /// </summary>
         /// <param name="request"></param>
         /// <param name="XShopperId"></param>
@@ -141,7 +141,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"domains/purchase/schema/{request.tid}");
+            var response = await client.GetAsync($"domains/purchase/schema/{request.tld}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<JsonPropertyResponse>();
         }
@@ -323,7 +323,7 @@ namespace GodaddyWrapper
         /// Retrieves a list of TLDs supported and enabled for sale
         /// </summary>
         /// <returns></returns>
-        public async Task<List<TldSummaryResponse>> TldSummary()
+        public async Task<List<TldSummaryResponse>> RetrieveTldSummary()
         {
             var client = GetBaseHttpClient();
             var response = await client.GetAsync("domains/tlds");

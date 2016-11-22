@@ -35,7 +35,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"cloud/sshkeys/{request.sshKeyId}");
+            var response = await client.DeleteAsync($"cloud/sshkeys/{request.sshKeyId}");
             return response.IsSuccessStatusCode;
         }
         /// <summary>

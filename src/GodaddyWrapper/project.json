@@ -1,6 +1,7 @@
 {
-  "version": "1.0.1.2-beta",
+  "version": "1.0.2-beta",
   "title": "GodaddyWrapper.Net",
+  "description": "GodaddyWrapper.NET is a .NET Core Wrapper for calling GoDaddy REST API.",
   "packOptions": {
     "projectUrl": "https://github.com/vip30/GodaddyWrapper.Net",
     "licenseUrl": "https://raw.githubusercontent.com/vip30/GodaddyWrapper.Net/master/LICENSE",

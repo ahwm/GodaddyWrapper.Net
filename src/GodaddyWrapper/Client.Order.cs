@@ -39,7 +39,7 @@ namespace GodaddyWrapper
         /// <param name="XShopperId"></param>
         /// <param name="XMarketId"></param>
         /// <returns></returns>
-        public async Task<OrderResponse> RetrieveSpecificOrder(OrderRetrieveDetail request, string XShopperId, string XMarketId)
+        public async Task<OrderResponse> RetrieveSpecificOrder(OrderDetailRetrieve request, string XShopperId, string XMarketId)
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
