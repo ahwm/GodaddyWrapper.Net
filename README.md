@@ -16,7 +16,7 @@ Usage
 var client = new Client("{key}", "{secret}");
 try
 {
-    var test = await client.CheckDomainAvailable(new GodaddyWrapper.Requests.DomainAvailable
+    var response = await client.CheckDomainAvailable(new DomainAvailable
     {
         domain = "google.com"
     });
