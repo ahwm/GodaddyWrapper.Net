@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0-beta",
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "Newtonsoft.Json": "9.0.1",
+    "System.ComponentModel.Annotations": "4.1.0",
+    "Microsoft.Net.Http": "2.2.22",
+    "Microsoft.AspNet.WebApi.Client": "5.2.3"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "dnxcore50",
+        "portable-net45+win8"
+      ]
+    }
+  },
+
+  "scripts": {
+    "postcompile": [
+      "dotnet pack --no-build --configuration %compile:Configuration%"
+    ]
+  }
+}
