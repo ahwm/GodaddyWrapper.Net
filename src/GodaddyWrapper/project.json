@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1.1-beta",
+  "version": "1.0.1.2-beta",
   "title": "GodaddyWrapper.Net",
   "packOptions": {
     "projectUrl": "https://github.com/vip30/GodaddyWrapper.Net",
@@ -26,10 +26,12 @@
       ]
     }
   },
-
   "scripts": {
     "postcompile": [
       "dotnet pack --no-build --configuration %compile:Configuration%"
     ]
+  },
+  "buildOptions": {
+    "xmlDoc": true
   }
 }

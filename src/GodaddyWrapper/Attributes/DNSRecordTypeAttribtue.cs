@@ -9,7 +9,7 @@ namespace GodaddyWrapper.Attributes
 {
     [AttributeUsage(AttributeTargets.Property |
 AttributeTargets.Field, AllowMultiple = false)]
-    sealed public class DNSRecordTypeAttribtue : ValidationAttribute
+    sealed internal class DNSRecordTypeAttribtue : ValidationAttribute
     {
         public List<string> ValidValue = new List<string> { "AA", "AAAA", "CNAME", "MX", "NS", "SOA", "SRV", "TXT" };
         public override bool IsValid(object value)
