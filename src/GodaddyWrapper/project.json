@@ -1,6 +1,15 @@
 {
-  "version": "1.0.0-beta",
-
+  "version": "1.0.1.1-beta",
+  "title": "GodaddyWrapper.Net",
+  "packOptions": {
+    "projectUrl": "https://github.com/vip30/GodaddyWrapper.Net",
+    "licenseUrl": "https://raw.githubusercontent.com/vip30/GodaddyWrapper.Net/master/LICENSE",
+    "owners": [ "vip30" ],
+    "tags": [ "Godaddy", "Wrapper", "API", "DotNet Core", "Rest" ],
+    "releaseNotes": "GodaddyWrapper.NET is a Godaddy API Wrapper. \n GitHub: https://github.com/vip30/GodaddyWrapper.Net"
+  },
+  "authors": [ "vip30" ],
+  "copyright": "Copyright ? 2015 - 2016 Vip30",
   "dependencies": {
     "NETStandard.Library": "1.6.0",
     "Newtonsoft.Json": "9.0.1",
@@ -8,7 +17,6 @@
     "Microsoft.Net.Http": "2.2.22",
     "Microsoft.AspNet.WebApi.Client": "5.2.3"
   },
-
   "frameworks": {
     "netcoreapp1.0": {
       "imports": [
