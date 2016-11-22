@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GodaddyWrapper.Base
 {
-    internal class GodaddyException : Exception
+    public class GodaddyException : Exception
     {
         public HttpStatusCode StatusCode { get; private set; }
         public ErrorResponse ErrorResponse { get; private set; }
