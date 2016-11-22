@@ -13,5 +13,19 @@ Usage
 -------------------
 
 ```cs
-
+var client = new Client("{key}", "{secret}");
+try
+{
+    var test = await client.CheckDomainAvailable(new GodaddyWrapper.Requests.DomainAvailable
+    {
+        domain = "google.com"
+    });
+}
+catch (GodaddyException ex) 
+{
+    //Godaddy Error Message from the Godaddy API
+    Console.WriteLine(ex.ErrorResponse.Message);
+    //Error Code
+    Console.WriteLine(ex.StatusCode);
+}
 
