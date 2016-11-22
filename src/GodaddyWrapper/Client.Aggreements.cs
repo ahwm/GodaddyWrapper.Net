@@ -17,8 +17,9 @@ namespace GodaddyWrapper
         /// <summary>
         /// Retrieve Legal Agreements for provided agreements keys
         /// </summary>
-        /// <param name="XShopperId"></param>
+        /// <param name="request"></param>
         /// <param name="XPrivateLabelId"></param>
+        /// <param name="XMarketId"></param>
         /// <returns></returns>
         public async Task<List<LegalAgreementResponse>> RetrieveAggreements(AggreementRetrieve request, string XPrivateLabelId = null, string XMarketId = null)
         {

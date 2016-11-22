@@ -17,7 +17,7 @@ namespace GodaddyWrapper
         /// Add the specified DNS Records to the specified Domain
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="Domain"></param>
+        /// <param name="domain"></param>
         /// <param name="XShopperId"></param>
         /// <returns></returns>
         public async Task<bool> AddDNSRecordsToDomain(List<DNSRecord> request,string domain, string XShopperId = null)
@@ -119,7 +119,7 @@ namespace GodaddyWrapper
         /// Purchase privacy for a specified domain
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="Domain"></param>
+        /// <param name="domain"></param>
         /// <param name="XShopperId"></param>
         /// <returns></returns>
         public async Task<DomainPurchaseResponse> PurchasePrivacy(PrivacyPurchase request,string domain, string XShopperId = null)
@@ -161,7 +161,7 @@ namespace GodaddyWrapper
         /// Renew the specified Domain
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="Domain"></param>
+        /// <param name="domain"></param>
         /// <param name="XShopperId"></param>
         /// <returns></returns>
         public async Task<DomainPurchaseResponse> RenewDomain(DomainRenew request,string domain, string XShopperId = null)
@@ -264,7 +264,7 @@ namespace GodaddyWrapper
         /// Retrieve details for the specified Domain
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="Domain"></param>
+        /// <param name="domain"></param>
         /// <param name="Type"></param>
         /// <param name="Name"></param>
         /// <param name="XShopperId"></param>

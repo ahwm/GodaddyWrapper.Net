@@ -16,8 +16,7 @@ namespace GodaddyWrapper
         /// <summary>
         /// Create a new abuse ticket
         /// </summary>
-        /// <param name="XShopperId"></param>
-        /// <param name="XPrivateLabelId"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
         public async Task<AbuseTicketIdResponse> CreateAbuseTicket(AbuseTicketCreate request)
         {
@@ -29,8 +28,7 @@ namespace GodaddyWrapper
         /// <summary>
         /// List all abuse tickets ids that match user provided filters
         /// </summary>
-        /// <param name="XShopperId"></param>
-        /// <param name="XPrivateLabelId"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
         public async Task<AbuseTicketListResponse> RetrieveAbuseTickets(AbuseTicketRetrieve request)
         {
@@ -43,8 +41,7 @@ namespace GodaddyWrapper
         /// <summary>
         /// Return the abuse ticket data for a given ticket id
         /// </summary>
-        /// <param name="XShopperId"></param>
-        /// <param name="XPrivateLabelId"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
         public async Task<AbuseTicketResponse> RetrieveAbuseTicketDetail(AbuseTicketDetailRetrieve request)
         {

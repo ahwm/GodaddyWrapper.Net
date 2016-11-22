@@ -17,8 +17,7 @@ namespace GodaddyWrapper
         /// <summary>
         /// Add expiry listings into GoDaddy Auction
         /// </summary>
-        /// <param name="XShopperId"></param>
-        /// <param name="XPrivateLabelId"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
         public async Task<AftermarketListingActionResponse> AddExpiryAuction(List<AftermarketListingExpiryCreate> request)
         {
@@ -31,8 +30,7 @@ namespace GodaddyWrapper
         /// <summary>
         /// Remove listings from GoDaddy Auction
         /// </summary>
-        /// <param name="XShopperId"></param>
-        /// <param name="XPrivateLabelId"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
         public async Task<ListingActionResponse> RemoveAuctionListings(AggreementRetrieve request)
         {
