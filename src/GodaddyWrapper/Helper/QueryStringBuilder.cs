@@ -10,7 +10,7 @@ namespace GodaddyWrapper.Helper
             foreach (var property in RequestObject.GetType().GetRuntimeProperties())
             {
                 if (property.GetValue(RequestObject) != null)
-                    url += $"{property.Name}={property.GetValue(RequestObject).ToString().ToLower()}&";
+                    url += $"{property.Name}={Newtonsoft.Json.JsonConvert.SerializeObject(property.GetValue(RequestObject))}&";
             }
             return url;
         }

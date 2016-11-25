@@ -1,5 +1,5 @@
 {
-  "version": "1.0.2-beta",
+  "version": "1.0.2.1-beta",
   "title": "GodaddyWrapper.Net",
   "description": "GodaddyWrapper.NET is a .NET Core Wrapper for calling GoDaddy REST API.",
   "packOptions": {
@@ -10,7 +10,7 @@
     "releaseNotes": "GodaddyWrapper.NET is a Godaddy API Wrapper. \n GitHub: https://github.com/vip30/GodaddyWrapper.Net"
   },
   "authors": [ "vip30" ],
-  "copyright": "Copyright ? 2015 - 2016 Vip30",
+  "copyright": "Copyright 2015 - 2016 Vip30",
   "dependencies": {
     "NETStandard.Library": "1.6.0",
     "Newtonsoft.Json": "9.0.1",
