@@ -12,8 +12,8 @@ namespace GodaddyWrapper.Helper
             {
                 if (property.GetValue(RequestObject) != null)
                 {
-                    if (IsSimple(property.GetType().GetTypeInfo()))
-                        url += $"{property.Name}={property.GetValue(RequestObject)}&";
+                    if (IsSimple(property.PropertyType.GetTypeInfo()))
+                        url += $"{property.Name}={property.GetValue(RequestObject).ToString().ToLower()}&";
                     else
                         url += $"{property.Name}={Newtonsoft.Json.JsonConvert.SerializeObject(property.GetValue(RequestObject))}&";
                 }
