@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Specialized;
 using System.Reflection;
 namespace GodaddyWrapper.Helper
 {
@@ -10,9 +11,22 @@ namespace GodaddyWrapper.Helper
             foreach (var property in RequestObject.GetType().GetRuntimeProperties())
             {
                 if (property.GetValue(RequestObject) != null)
-                    url += $"{property.Name}={Newtonsoft.Json.JsonConvert.SerializeObject(property.GetValue(RequestObject))}&";
+                {
+                    if (IsSimple(property.GetType().GetTypeInfo()))
+                        url += $"{property.Name}={property.GetValue(RequestObject)}&";
+                    else
+                        url += $"{property.Name}={Newtonsoft.Json.JsonConvert.SerializeObject(property.GetValue(RequestObject))}&";
+                }
             }
             return url;
+        }
+
+        static bool IsSimple(TypeInfo type)
+        {
+            return type.IsPrimitive
+              || type.IsEnum
+              || type.Equals(typeof(string))
+              || type.Equals(typeof(decimal));
         }
     }
 }
