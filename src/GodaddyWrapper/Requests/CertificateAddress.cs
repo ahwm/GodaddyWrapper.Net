@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GodaddyWrapper.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace GodaddyWrapper.Requests
     {
         public string address1 { get; set; }
         public string postalCode { get; set; }
+        [QueryStringToUpperAttribute]
         public string country { get; set; }
         public string address2 { get; set; }
         public string state { get; set; }

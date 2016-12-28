@@ -12,6 +12,7 @@ namespace GodaddyWrapper.Requests
         [Required]
         public string query { get; set; }
         [CountryAttribtue]
+        [QueryStringToUpperAttribute]
         public string country { get; set; }
         public string city { get; set; }
         public List<string> sources { get; set; }

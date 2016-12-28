@@ -24,6 +24,7 @@ namespace GodaddyWrapper.Requests
         [MaxLength(10)]
         public string postalCode { get; set; }
         [CountryAttribtue]
+        [QueryStringToUpperAttribute]
         public string country { get; set; }
     }
 }

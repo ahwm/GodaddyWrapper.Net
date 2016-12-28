@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GodaddyWrapper.Attributes;
+using System;
 using System.Collections.Specialized;
 using System.Reflection;
 namespace GodaddyWrapper.Helper
@@ -10,10 +11,17 @@ namespace GodaddyWrapper.Helper
             var url = "?";
             foreach (var property in RequestObject.GetType().GetRuntimeProperties())
             {
+
                 if (property.GetValue(RequestObject) != null)
                 {
                     if (IsSimple(property.PropertyType.GetTypeInfo()))
-                        url += $"{property.Name}={property.GetValue(RequestObject).ToString().ToLower()}&";
+                    {
+                        var queryStringToUpperAttribute = property.GetCustomAttribute(typeof(QueryStringToUpperAttribute)) as QueryStringToUpperAttribute;
+                        if (queryStringToUpperAttribute == null)
+                            url += $"{property.Name}={property.GetValue(RequestObject).ToString().ToLower()}&";
+                        else
+                            url += $"{property.Name}={property.GetValue(RequestObject).ToString().ToUpper()}&";
+                    }
                     else
                         url += $"{property.Name}={Newtonsoft.Json.JsonConvert.SerializeObject(property.GetValue(RequestObject))}&";
                 }
