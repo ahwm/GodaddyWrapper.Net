@@ -311,7 +311,7 @@ namespace GodaddyWrapper
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<List<DomainSuggestionResponse>> RetrieveSuggestDomain(DomainTransferIn request)
+        public async Task<List<DomainSuggestionResponse>> RetrieveSuggestDomain(DomainSuggest request)
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();

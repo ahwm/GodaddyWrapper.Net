@@ -1,5 +1,5 @@
 {
-  "version": "1.0.3.2-beta",
+  "version": "1.0.4-beta",
   "title": "GodaddyWrapper.Net",
   "description": "GodaddyWrapper.NET is a .NET Core Wrapper for calling GoDaddy REST API.",
   "packOptions": {
