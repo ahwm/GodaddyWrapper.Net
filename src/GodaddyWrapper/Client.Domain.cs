@@ -116,6 +116,22 @@ namespace GodaddyWrapper
             return await response.Content.ReadAsAsync<DomainPurchaseResponse>();
         }
         /// <summary>
+        /// Purchase and register the specified Domain without privacy (For the Tld which is not support privacy)
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="XShopperId"></param>
+        /// <returns></returns>
+        public async Task<DomainPurchaseResponse> PurchaseDomainWithoutPrivacy(DomainPurchaseWithoutPrivacy request, string XShopperId = null)
+        {
+            CheckRequestValid(request);
+            var client = GetBaseHttpClient();
+            if (XShopperId != null)
+                client.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
+            var response = await client.PostAsync("domains/purchase", request);
+            await CheckResponseMessageIsValid(response);
+            return await response.Content.ReadAsAsync<DomainPurchaseResponse>();
+        }
+        /// <summary>
         /// Purchase privacy for a specified domain
         /// </summary>
         /// <param name="request"></param>
@@ -151,6 +167,18 @@ namespace GodaddyWrapper
         /// <param name="request"></param>
         /// <returns></returns>
         public async Task<bool> PurchaseDomainValidate(DomainPurchase request)
+        {
+            CheckRequestValid(request);
+            var client = GetBaseHttpClient();
+            var response = await client.PostAsync("domains/purchase/validate", request);
+            return response.IsSuccessStatusCode;
+        }
+        /// <summary>
+        /// Validate the request body using the Domain Purchase Schema for the specified TLD (For the Tld which is not support privacy)
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public async Task<bool> PurchaseDomainValidateWithoutPrivacy(DomainPurchaseWithoutPrivacy request)
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
