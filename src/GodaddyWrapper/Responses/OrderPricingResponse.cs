@@ -7,7 +7,7 @@ namespace GodaddyWrapper.Responses
 {
     public class OrderPricingResponse
     {
-        public int Total { get; set; }
+        public decimal Total { get; set; }
         public int Subtotal { get; set; }
         public int List { get; set; }
         public int Savings { get; set; }

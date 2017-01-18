@@ -8,7 +8,7 @@ namespace GodaddyWrapper.Responses
 {
     public class CartFeeResponse
     {
-        public int Total { get; set; }
+        public decimal Total { get; set; }
         public int Icann { get; set; }
     }
 }

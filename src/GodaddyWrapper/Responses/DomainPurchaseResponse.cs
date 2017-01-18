@@ -9,7 +9,7 @@ namespace GodaddyWrapper.Responses
     {
         public int OrderId { get; set; }
         public int ItemCount { get; set; }
-        public int Total { get; set; }
+        public decimal Total { get; set; }
         public string Currency { get; set; }
     }
 }
