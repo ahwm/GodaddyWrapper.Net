@@ -1,4 +1,5 @@
 GodaddyWrapper.Net
+[![nuget](https://img.shields.io/nuget/vpre/GodaddyWrapper.svg)](https://www.nuget.org/packages/GodaddyWrapper)
 ======================
 
 A Brief Intro
@@ -16,7 +17,8 @@ Usage
 -------------------
 
 ```cs
-var client = new Client("{key}", "{secret}");
+var client = new Client("{key}", "{secret}", "https://api.godaddy.com/api/v1/"); 
+// Default is https://api.ote-godaddy.com/api/v1/ (Test link of Godaddy)
 try
 {
     var response = await client.CheckDomainAvailable(new DomainAvailable
@@ -32,3 +34,8 @@ catch (GodaddyException ex)
     Console.WriteLine(ex.StatusCode);
 }
 
+Remark
+-------------------
+As I only use the domain part (Suggested Domain, Buy Domain, CheckAvailable...etc)
+The other parts I have no way to test it so feel free to leave an issue if you catach bugs . 
+Please provide the info as much as you can.
