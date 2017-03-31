@@ -33,6 +33,7 @@ catch (GodaddyException ex)
     //Error Code
     Console.WriteLine(ex.StatusCode);
 }
+```
 
 Remark
 -------------------
