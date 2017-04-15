@@ -1,4 +1,5 @@
 ﻿using GodaddyWrapper.Attributes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Specialized;
 using System.Reflection;
@@ -23,7 +24,7 @@ namespace GodaddyWrapper.Helper
                             url += $"{property.Name}={property.GetValue(RequestObject).ToString().ToUpper()}&";
                     }
                     else
-                        url += $"{property.Name}={Newtonsoft.Json.JsonConvert.SerializeObject(property.GetValue(RequestObject))}&";
+                        url += $"{property.Name}={JsonConvert.SerializeObject(property.GetValue(RequestObject), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore })}&";
                 }
             }
             return url;
