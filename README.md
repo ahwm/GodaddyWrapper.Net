@@ -37,6 +37,6 @@ catch (GodaddyException ex)
 
 Remark
 -------------------
-As I only use the domain part (Suggested Domain, Buy Domain, CheckAvailable...etc)
-The other parts I have no way to test it so feel free to leave an issue if you catach bugs . 
+As I only use the domain part (Suggested Domain, Buy Domain, CheckAvailable...etc),
+the other parts I haven't test it so feel free to leave an issue if you find something wrongs.(Also welcome to make a pull request)
 Please provide the info as much as you can.
