@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>GodaddyWrapper.NET is a .NET Core Wrapper for calling GoDaddy REST API.</Description>
+    <Copyright>Copyright 2015 - 2017 Vip30</Copyright>
+    <AssemblyTitle>GodaddyWrapper.Net</AssemblyTitle>
+    <VersionPrefix>1.1.2-beta</VersionPrefix>
+    <Authors>vip30</Authors>
+    <TargetFrameworks>netcoreapp1.0;net45</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyName>GodaddyWrapper</AssemblyName>
+    <PackageId>GodaddyWrapper</PackageId>
+    <PackageTags>Godaddy;Wrapper;API;DotNet Core;Rest</PackageTags>
+    <PackageReleaseNotes>GodaddyWrapper.NET is a Godaddy API Wrapper. 
+ GitHub: https://github.com/vip30/GodaddyWrapper.Net</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/vip30/GodaddyWrapper.Net</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/vip30/GodaddyWrapper.Net/master/LICENSE</PackageLicenseUrl>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;dnxcore50;portable-net45+win8</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />
+  </ItemGroup>
+
+  <Target Name="PostcompileScript" AfterTargets="Build">
+    <Exec Command="dotnet pack --no-build --configuration $(Configuration)" />
+  </Target>
+
+</Project>
