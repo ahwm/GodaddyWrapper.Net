@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Description>GodaddyWrapper.NET is a .NET Core Wrapper for calling GoDaddy REST API.</Description>
