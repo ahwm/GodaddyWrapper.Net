@@ -39,7 +39,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync("domains/available", request);
+            var response = await client.PostAsync($"domains/available?checkType={request.checkType}", request.domains);
             await CheckResponseMessageIsValid(response); ;
             if (response.StatusCode.ToString() == "203")
                 return new DomainAvailableBulkResultResponse
