@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Description>GodaddyWrapper.NET is a .NET Core Wrapper for calling GoDaddy REST API.</Description>
@@ -6,7 +6,7 @@
     <AssemblyTitle>GodaddyWrapper.Net</AssemblyTitle>
     <VersionPrefix>1.1.2-beta</VersionPrefix>
     <Authors>vip30</Authors>
-    <TargetFrameworks>netcoreapp1.0;net45</TargetFrameworks>
+    <TargetFrameworks>netcoreapp1.0;net462</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>GodaddyWrapper</AssemblyName>
     <PackageId>GodaddyWrapper</PackageId>
