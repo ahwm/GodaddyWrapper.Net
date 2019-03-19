@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Description>GodaddyWrapper.NET is a .NET Core Wrapper for calling GoDaddy REST API.</Description>
@@ -6,7 +6,7 @@
     <AssemblyTitle>GodaddyWrapper.Net</AssemblyTitle>
     <VersionPrefix>1.1.2-beta</VersionPrefix>
     <Authors>vip30</Authors>
-    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <TargetFrameworks>netstandard1.3;net462</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>GodaddyWrapper</AssemblyName>
     <PackageId>GodaddyWrapper</PackageId>
@@ -30,5 +30,30 @@
   <Target Name="PostcompileScript" AfterTargets="Build">
     <Exec Command="dotnet pack --no-build --configuration $(Configuration)" />
   </Target>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.3'">
+    <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD1_3</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3'">
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net462'">
+    <DefineConstants>NET462;NETFULL</DefineConstants>
+  </PropertyGroup>
+
 
 </Project>

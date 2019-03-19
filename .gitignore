@@ -1,8 +1,5 @@
-/*.sln
-
-/*.suo
-
-
-Debug
-/src/GodaddyWrapper/.vs/GodaddyWrapper/v14/*.suo
+*.suo
+obj
+bin
 .vs
+*.user
