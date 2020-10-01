@@ -323,7 +323,7 @@ namespace GodaddyWrapper
             if (XShopperId != null)
                 client.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
             string urlPath = "domains/{domain}/records";
-            if (string.IsNullOrEmpty(Name)
+            if (string.IsNullOrEmpty(Name))
                 urlPath = $"domains/{domain}/records/{Type}";
             else
                 urlPath = $"domains/{domain}/records/{Type}/{Name}";
