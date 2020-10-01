@@ -1,0 +1,30 @@
+version: 1.0.{build}
+image: Visual Studio 2019
+
+before_build:
+ - cmd: nuget restore src\GodaddyWrapper.sln
+ 
+build:
+  verbosity: minimal
+
+artifacts:
+  - path: '\src\GodaddyWrapper\bin\Release\GodaddyWrapper*.*nupkg'
+    name: NuGet
+
+for:
+
+-
+ branches:
+   only:
+     - master
+     
+ configuration: Release
+
+ deploy:
+   provider: NuGet
+   api_key:
+     secure: nVErxJrUI4AStPan9b32g0YBTGMkjtMrehnItai8OYFy8EQNhDFWZNk5VReqC/pB
+   skip_symbols: false
+   artifact: /GodaddyWrapper*\.*nupkg/
+   on:
+     APPVEYOR_REPO_TAG: true
