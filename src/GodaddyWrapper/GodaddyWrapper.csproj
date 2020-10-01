@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>GodaddyWrapper.NET is a .NET Core Wrapper for calling GoDaddy REST API.</Description>
+    <Description>GodaddyWrapper.NET is a .NET Wrapper for calling GoDaddy REST API.</Description>
     <Copyright>Copyright 2015 - 2017 Vip30, 2018 - 2020 ahwm</Copyright>
     <AssemblyTitle>GodaddyWrapper.Net</AssemblyTitle>
     <VersionPrefix>1.1.3-beta</VersionPrefix>
@@ -11,18 +11,20 @@
     <AssemblyName>GodaddyWrapper</AssemblyName>
     <PackageId>GodaddyWrapper</PackageId>
     <PackageTags>Godaddy;Wrapper;API;DotNet Core;Rest</PackageTags>
-    <PackageReleaseNotes>GodaddyWrapper.NET is a Godaddy API Wrapper. 
- GitHub: https://github.com/vip30/GodaddyWrapper.Net</PackageReleaseNotes>
-    <PackageProjectUrl>https://github.com/vip30/GodaddyWrapper.Net</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/vip30/GodaddyWrapper.Net/master/LICENSE</PackageLicenseUrl>
-    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
-    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;dnxcore50;portable-net45+win8</PackageTargetFallback>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <PackageReleaseNotes>Moved to new ownership, now multi-targeted
+
+GoDaddyWrapper.NET is a Godaddy API Wrapper. 
+GitHub: https://github.com/ahwm/GodaddyWrapper.Net</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/ahwm/GodaddyWrapper.Net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ahwm/GodaddyWrapper.Net</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.1.0" />
   </ItemGroup>
