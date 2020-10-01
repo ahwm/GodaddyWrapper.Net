@@ -1,6 +1,7 @@
 # GodaddyWrapper.Net
 
 [![nuget](https://img.shields.io/nuget/vpre/GodaddyWrapper.svg)](https://www.nuget.org/packages/GodaddyWrapper)
+[![Build status](https://ci.appveyor.com/api/projects/status/utayqebihtewq6kq?svg=true)](https://ci.appveyor.com/project/ahwm/godaddywrapper-net)
 
 A Brief Intro
 -------------------
@@ -37,5 +38,4 @@ catch (GodaddyException ex)
 
 Remark
 -------------------
-As I only use the domain part (Suggested Domain, Buy Domain, CheckAvailable, etc.), I haven't tested the other parts of it so feel free to leave an issue if you find something wrongs. (Also welcome to make a pull request).
-Please provide as much info as you can.
+As I only use the domain part (Suggested Domain, Buy Domain, CheckAvailable, etc.), I haven't tested the other parts of it so feel free to leave an issue if you find something wrong (also welcome to make a pull request). Please provide as much info as you can.
