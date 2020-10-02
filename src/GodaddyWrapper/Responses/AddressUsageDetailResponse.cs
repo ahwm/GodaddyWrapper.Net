@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Responses
 {
     public class AddressUsageDetailResponse
     {
-        public List<UsageDetailItemResponse> dynamicIpv4 { get; set; }
+        public List<UsageDetailItemResponse> DynamicIpv4 { get; set; }
     }
 }

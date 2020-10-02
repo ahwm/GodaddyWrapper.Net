@@ -8,6 +8,6 @@ namespace GodaddyWrapper.Responses
     public class OrderListResponse
     {
         public List<OrderSummaryResponse> Orders { get; set; }
-        public PaginationResponse pagination { get; set; }
+        public PaginationResponse Pagination { get; set; }
     }
 }

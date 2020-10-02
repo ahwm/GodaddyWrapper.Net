@@ -7,8 +7,8 @@ namespace GodaddyWrapper.Responses
 {
     public class CertificateOrganizationResponse
     {
-        public string name { get; set; }
-        public CertificateAddressResponse address { get; set; }
+        public string Name { get; set; }
+        public CertificateAddressResponse Address { get; set; }
         public string Phone { get; set; }
         public string AssumedName { get; set; }
         public string RegistrationNumber { get; set; }

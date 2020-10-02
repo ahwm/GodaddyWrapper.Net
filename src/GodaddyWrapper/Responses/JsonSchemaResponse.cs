@@ -9,7 +9,7 @@ namespace GodaddyWrapper.Responses
     {
         public string Id { get; set; }
         public JsonPropertyResponse Properties { get; set; }
-        public List<string> required { get; set; }
+        public List<string> Required { get; set; }
         public JsonSchemaResponse Models { get; set; }
     }
 }

@@ -14,6 +14,6 @@ namespace GodaddyWrapper.Responses
         public int Discount { get; set; }
         public int Taxes { get; set; }
         public OrderFeeResponse Fees { get; set; }
-        public double id { get; set; }
+        public double Id { get; set; }
     }
 }
