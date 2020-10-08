@@ -22,7 +22,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"certificates/{request.certificateId}/cancel", request);
+            var response = await client.PostAsync($"certificates/{request.CertificateId}/cancel", request);
             await CheckResponseMessageIsValid(response);
             return;
         }
@@ -35,7 +35,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"certificates/{request.certificateId}/verifydomaincontrol", null);
+            var response = await client.PostAsync($"certificates/{request.CertificateId}/verifydomaincontrol", null);
             await CheckResponseMessageIsValid(response);
             return;
         }
@@ -64,7 +64,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"certificates/{request.certificateId}/download");
+            var response = await client.GetAsync($"certificates/{request.CertificateId}/download");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CertificateBundleResponse>();
         }
@@ -105,7 +105,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"certificates/{request.certificateId}");
+            var response = await client.GetAsync($"certificates/{request.CertificateId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<List<CertificateActionResponse>>();
         }
@@ -132,7 +132,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"certificates/{request.certificateId}");
+            var response = await client.GetAsync($"certificates/{request.CertificateId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CertificateIdentifierResponse>();
         }
@@ -173,7 +173,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.DeleteAsync($"certificates/{request.certificateId}/callback");
+            var response = await client.DeleteAsync($"certificates/{request.CertificateId}/callback");
             await CheckResponseMessageIsValid(response);
             return;
         }

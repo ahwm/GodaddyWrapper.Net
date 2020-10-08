@@ -46,7 +46,7 @@ namespace GodaddyWrapper
         public async Task<AbuseTicketResponse> RetrieveAbuseTicketDetail(AbuseTicketDetailRetrieve request)
         {
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"abuse/tickets/{request.ticketId}");
+            var response = await client.GetAsync($"abuse/tickets/{request.TicketId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AbuseTicketResponse>();
         }

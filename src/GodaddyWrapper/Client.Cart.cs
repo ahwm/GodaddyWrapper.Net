@@ -106,7 +106,7 @@ namespace GodaddyWrapper
             var client = GetBaseHttpClient();
             if (XPrivateLabelId != null)
                 client.DefaultRequestHeaders.Add("X-Private-Label-Id", XPrivateLabelId);
-            var response = await client.DeleteAsync($"cart/groups/{request.groupKey}");
+            var response = await client.DeleteAsync($"cart/groups/{request.GroupKey}");
             await CheckResponseMessageIsValid(response);
             return;
         }
@@ -125,7 +125,7 @@ namespace GodaddyWrapper
                 client.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
             if (XPrivateLabelId != null)
                 client.DefaultRequestHeaders.Add("X-Private-Label-Id", XPrivateLabelId);
-            var response = await client.DeleteAsync($"cart/items/{request.itemId}");
+            var response = await client.DeleteAsync($"cart/items/{request.ItemId}");
             await CheckResponseMessageIsValid(response);
             return;
         }
@@ -185,7 +185,7 @@ namespace GodaddyWrapper
             var client = GetBaseHttpClient();
             if (XPrivateLabelId != null)
                 client.DefaultRequestHeaders.Add("X-Private-Label-Id", XPrivateLabelId);
-            var response = await client.GetAsync($"cart/products/{request.pfid}/schema");
+            var response = await client.GetAsync($"cart/products/{request.Pfid}/schema");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<JsonSchemaResponse>();
         }
