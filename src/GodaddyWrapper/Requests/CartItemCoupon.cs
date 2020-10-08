@@ -7,7 +7,7 @@ namespace GodaddyWrapper.Requests
 {
     public class CartItemCoupon
     {
-        public string code { get; set; }
-        public string type { get; set; }
+        public string Code { get; set; }
+        public string Type { get; set; }
     }
 }

@@ -8,11 +8,11 @@ namespace GodaddyWrapper.Requests
 {
     public class AftermarketListingExpiryCreate
     {
-        public string domain { get; set; }
-        public string expiresAt { get; set; }
+        public string Domain { get; set; }
+        public string ExpiresAt { get; set; }
         [Range(1,int.MaxValue)]
-        public int losingRegistrarId { get; set; }
-        public int? pageViewsMonthly { get; set; }
-        public int? revenueMonthly { get; set; }
+        public int LosingRegistrarId { get; set; }
+        public int? PageViewsMonthly { get; set; }
+        public int? RevenueMonthly { get; set; }
     }
 }

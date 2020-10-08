@@ -7,11 +7,11 @@ namespace GodaddyWrapper.Requests
 {
     public class CartListingAdd
     {
-        public string listingId { get; set; }
-        public int? quantity { get; set; }
-        public double? periodCount { get; set; }
-        public DateTime? billOn { get; set; }
-        public CartItemCoupon coupon { get; set; }
-        public object metadata { get; set; }
+        public string ListingId { get; set; }
+        public int? Quantity { get; set; }
+        public double? PeriodCount { get; set; }
+        public DateTime? BillOn { get; set; }
+        public CartItemCoupon Coupon { get; set; }
+        public object Metadata { get; set; }
     }
 }

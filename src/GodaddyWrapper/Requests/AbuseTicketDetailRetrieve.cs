@@ -8,6 +8,6 @@ namespace GodaddyWrapper.Requests
 {
     public class AbuseTicketDetailRetrieve
     {
-        public string ticketId { get; set; }
+        public string TicketId { get; set; }
     }
 }

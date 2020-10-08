@@ -7,12 +7,12 @@ namespace GodaddyWrapper.Requests
 {
     public class CertificateContact
     {
-        public string nameFirst { get; set; }
-        public string nameLast { get; set; }
-        public string email { get; set; }
-        public string phone { get; set; }
-        public string jobTitle { get; set; }
-        public string suffix { get; set; }
-        public string nameMiddle { get; set; }
+        public string NameFirst { get; set; }
+        public string NameLast { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string JobTitle { get; set; }
+        public string Suffix { get; set; }
+        public string NameMiddle { get; set; }
     }
 }

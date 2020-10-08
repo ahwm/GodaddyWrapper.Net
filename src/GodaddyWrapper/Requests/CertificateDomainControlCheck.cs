@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CertificateDomainControlCheck
     {
-        public string certificateId { get; set; }
+        public string CertificateId { get; set; }
     }
 }

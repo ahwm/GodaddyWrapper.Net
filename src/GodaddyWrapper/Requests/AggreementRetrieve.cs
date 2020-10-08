@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Requests
 {
     public class AggreementRetrieve
     {
-        public List<string> keys { get; set; }
+        public List<string> Keys { get; set; }
     }
 }

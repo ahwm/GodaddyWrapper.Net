@@ -8,13 +8,13 @@ namespace GodaddyWrapper.Requests
 {
     public class AbuseTicketRetrieve
     {
-        public string type { get; set; }
-        public bool closed { get; set; }
-        public string sourceDomainOrIp { get; set; }
-        public string target { get; set; }
-        public DateTime createdStart { get; set; }
-        public DateTime createdEnd { get; set; }
-        public int limit { get; set; }
-        public int offset { get; set; }
+        public string Type { get; set; }
+        public bool Closed { get; set; }
+        public string SourceDomainOrIp { get; set; }
+        public string Target { get; set; }
+        public DateTime CreatedStart { get; set; }
+        public DateTime CreatedEnd { get; set; }
+        public int Limit { get; set; }
+        public int Offset { get; set; }
     }
 }

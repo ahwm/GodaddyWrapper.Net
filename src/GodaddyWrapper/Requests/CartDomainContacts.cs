@@ -8,11 +8,11 @@ namespace GodaddyWrapper.Requests
 {
     public class CartDomainContacts
     {
-        public string contactKey { get; set; }
-        public Contact registrant { get; set; }
-        public Contact admin { get; set; }
-        public Contact tech { get; set; }
-        public Contact billing { get; set; }
-        public Contact presence { get; set; }
+        public string ContactKey { get; set; }
+        public Contact Registrant { get; set; }
+        public Contact Admin { get; set; }
+        public Contact Tech { get; set; }
+        public Contact Billing { get; set; }
+        public Contact Presence { get; set; }
     }
 }

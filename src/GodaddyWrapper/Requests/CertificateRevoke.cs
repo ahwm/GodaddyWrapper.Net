@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CertificateRevoke
     {
-        public string reason { get; set; }
+        public string Reason { get; set; }
     }
 }

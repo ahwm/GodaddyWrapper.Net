@@ -7,7 +7,7 @@ namespace GodaddyWrapper.Requests
 {
     public class CartGroupUpdateBulk
     {
-        public string groupKey { get; set; }
-        public List<CartItemUpdateBulk> items { get; set; }
+        public string GroupKey { get; set; }
+        public List<CartItemUpdateBulk> Items { get; set; }
     }
 }

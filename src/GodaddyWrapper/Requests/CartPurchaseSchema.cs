@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CartPurchaseSchema
     {
-        public int pfid { get; set; }
+        public int Pfid { get; set; }
     }
 }

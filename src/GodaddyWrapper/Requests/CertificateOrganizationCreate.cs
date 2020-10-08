@@ -7,11 +7,11 @@ namespace GodaddyWrapper.Requests
 {
     public class CertificateOrganizationCreate
     {
-        public string name { get; set; }
-        public CertificateAddress address { get; set; }
-        public string phone { get; set; }
-        public string assumedName { get; set; }
-        public string registrationNumber { get; set; }
-        public string registrationAgent { get; set; }
+        public string Name { get; set; }
+        public CertificateAddress Address { get; set; }
+        public string Phone { get; set; }
+        public string AssumedName { get; set; }
+        public string RegistrationNumber { get; set; }
+        public string RegistrationAgent { get; set; }
     }
 }

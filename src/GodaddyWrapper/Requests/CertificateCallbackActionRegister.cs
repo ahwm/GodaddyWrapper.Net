@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CertificateCallbackActionRegister
     {
-        public string callbackUrl { get; set; }
+        public string CallbackUrl { get; set; }
     }
 }

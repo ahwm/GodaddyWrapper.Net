@@ -7,14 +7,14 @@ namespace GodaddyWrapper.Requests
 {
     public class CartItemUpdateBulk
     {
-        public int? itemId { get; set; }
-        public int? pfid { get; set; }
-        public int? subscriptionId { get; set; }
-        public int? quantity { get; set; }
-        public int? periodCount { get; set; }
-        public DateTime? billOn { get; set; }
-        public CartItemCoupon coupon { get; set; }
-        public object metadata { get; set; }
-        public TamperSignature signature { get; set; }
+        public int? ItemId { get; set; }
+        public int? Pfid { get; set; }
+        public int? SubscriptionId { get; set; }
+        public int? Quantity { get; set; }
+        public int? PeriodCount { get; set; }
+        public DateTime? BillOn { get; set; }
+        public CartItemCoupon Coupon { get; set; }
+        public object Metadata { get; set; }
+        public TamperSignature Signature { get; set; }
     }
 }

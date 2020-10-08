@@ -12,13 +12,11 @@ namespace GodaddyWrapper.Helper
             var url = "?";
             foreach (var property in RequestObject.GetType().GetRuntimeProperties())
             {
-
                 if (property.GetValue(RequestObject) != null)
                 {
                     if (IsSimple(property.PropertyType.GetTypeInfo()))
                     {
-                        var queryStringToUpperAttribute = property.GetCustomAttribute(typeof(QueryStringToUpperAttribute)) as QueryStringToUpperAttribute;
-                        if (queryStringToUpperAttribute == null)
+                        if (!(property.GetCustomAttribute(typeof(QueryStringToUpperAttribute)) is QueryStringToUpperAttribute))
                             url += $"{property.Name}={property.GetValue(RequestObject).ToString().ToLower()}&";
                         else
                             url += $"{property.Name}={property.GetValue(RequestObject).ToString().ToUpper()}&";

@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Requests
 {
     public class AuctionListingRemove
     {
-        public List<string> domains { get; set; }
+        public List<string> Domains { get; set; }
     }
 }

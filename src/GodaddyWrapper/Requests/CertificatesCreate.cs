@@ -7,16 +7,16 @@ namespace GodaddyWrapper.Requests
 {
     public class CertificatesCreate
     {
-        public string csr { get; set; }
-        public string productType { get; set; }
-        public int period { get; set; }
-        public CertificateContact contact { get; set; }
-        public string commonName { get; set; }
-        public List<string> subjectAlternativeNames { get; set; }
-        public string slotSize { get; set; }
-        public string callbackUrl { get; set; }
-        public string rootType { get; set; }
-        public bool intelVPro { get; set; }
-        public CertificateOrganizationCreate organization { get; set; }
+        public string Csr { get; set; }
+        public string ProductType { get; set; }
+        public int Period { get; set; }
+        public CertificateContact Contact { get; set; }
+        public string CommonName { get; set; }
+        public List<string> SubjectAlternativeNames { get; set; }
+        public string SlotSize { get; set; }
+        public string CallbackUrl { get; set; }
+        public string RootType { get; set; }
+        public bool IntelVPro { get; set; }
+        public CertificateOrganizationCreate Organization { get; set; }
     }
 }

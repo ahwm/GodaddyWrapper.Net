@@ -7,9 +7,9 @@ namespace GodaddyWrapper.Requests
 {
     public class CartItemTracking
     {
-        public string clientIp { get; set; }
-        public string itemTrackingCode { get; set; }
-        public string pathway { get; set; }
-        public CartAffiliate affiliate { get; set; }
+        public string ClientIp { get; set; }
+        public string ItemTrackingCode { get; set; }
+        public string Pathway { get; set; }
+        public CartAffiliate Affiliate { get; set; }
     }
 }

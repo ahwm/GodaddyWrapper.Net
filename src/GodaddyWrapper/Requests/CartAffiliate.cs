@@ -7,7 +7,7 @@ namespace GodaddyWrapper.Requests
 {
     public class CartAffiliate
     {
-        public string type { get; set; }
-        public string firstTouch { get; set; }
+        public string Type { get; set; }
+        public string FirstTouch { get; set; }
     }
 }

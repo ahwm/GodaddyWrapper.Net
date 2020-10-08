@@ -8,11 +8,11 @@ namespace GodaddyWrapper.Requests
 {
     public class CertificateRenew
     {
-        public List<string> subjectAlternativeNames { get; set; }
-        public int period { get; set; }
-        public string csr { get; set; }
-        public string rootType { get; set; }
-        public string callbackUrl { get; set; }
-        public string commonName { get; set; }
+        public List<string> SubjectAlternativeNames { get; set; }
+        public int Period { get; set; }
+        public string Csr { get; set; }
+        public string RootType { get; set; }
+        public string CallbackUrl { get; set; }
+        public string CommonName { get; set; }
     }
 }

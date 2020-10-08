@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CartRetrieve
     {
-        public List<string> includes { get; set; }
+        public List<string> Includes { get; set; }
     }
 }

@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CartItemListRemove
     {
-        public List<int> itemIds { get; set; }
+        public List<int> ItemIds { get; set; }
     }
 }

@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CartGroupRemove
     {
-        public string groupKey { get; set; }
+        public string GroupKey { get; set; }
     }
 }

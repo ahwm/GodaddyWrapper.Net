@@ -11,20 +11,20 @@ namespace GodaddyWrapper.Requests
     {
         [MinLength(1)]
         [MaxLength(41)]
-        public string address1 { get; set; }
+        public string Address1 { get; set; }
         [MaxLength(41)]
-        public string address2 { get; set; }
+        public string Address2 { get; set; }
         [MinLength(1)]
         [MaxLength(30)]
-        public string city { get; set; }
+        public string City { get; set; }
         [MinLength(1)]
         [MaxLength(30)]
-        public string state { get; set; }
+        public string State { get; set; }
         [MinLength(1)]
         [MaxLength(10)]
-        public string postalCode { get; set; }
+        public string PostalCode { get; set; }
         [CountryAttribtue]
         [QueryStringToUpperAttribute]
-        public string country { get; set; }
+        public string Country { get; set; }
     }
 }

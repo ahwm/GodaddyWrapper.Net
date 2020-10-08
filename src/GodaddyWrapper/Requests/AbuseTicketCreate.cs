@@ -8,12 +8,12 @@ namespace GodaddyWrapper.Requests
 {
     public class AbuseTicketCreate
     {
-        public string type { get; set; }
-        public string source { get; set; }
-        public string target { get; set; }
-        public string proxy { get; set; }
-        public string intentional { get; set; }
-        public string info { get; set; }
-        public string infoUrl { get; set; }
+        public string Type { get; set; }
+        public string Source { get; set; }
+        public string Target { get; set; }
+        public string Proxy { get; set; }
+        public string Intentional { get; set; }
+        public string Info { get; set; }
+        public string InfoUrl { get; set; }
     }
 }
