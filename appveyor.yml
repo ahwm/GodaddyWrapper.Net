@@ -25,6 +25,6 @@ for:
    api_key:
      secure: nVErxJrUI4AStPan9b32g0YBTGMkjtMrehnItai8OYFy8EQNhDFWZNk5VReqC/pB
    skip_symbols: false
-   artifact: /GodaddyWrapper*\.*nupkg/
+   artifact: /GodaddyWrapper*.*nupkg/
    on:
      APPVEYOR_REPO_TAG: true
