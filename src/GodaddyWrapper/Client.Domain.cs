@@ -278,7 +278,7 @@ namespace GodaddyWrapper
         /// <param name="request"></param>
         /// <param name="XShopperId"></param>
         /// <returns></returns>
-        public async Task<bool> RetrieveDomainList(DomainRetrieve request, string XShopperId = null)
+        public async Task<List<DomainRetrieveResponse>> RetrieveDomainList(DomainRetrieve request, string XShopperId = null)
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
@@ -286,7 +286,7 @@ namespace GodaddyWrapper
                 client.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
             var response = await client.GetAsync($"domains{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
-            return response.IsSuccessStatusCode;
+            return await response.Content.ReadAsAsync<List<DomainRetrieveResponse>>();
         }
         /// <summary>
         /// Retrieve details for the specified Domain
