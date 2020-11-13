@@ -11,7 +11,7 @@
     <AssemblyName>GodaddyWrapper</AssemblyName>
     <PackageId>GodaddyWrapper</PackageId>
     <PackageTags>Godaddy;Wrapper;API;DotNet Core;Rest</PackageTags>
-    <PackageReleaseNotes>Moved to new ownership, now multi-targeted
+    <PackageReleaseNotes>Dev experience improvements; fixed domain retrieve response
 
 GoDaddyWrapper.NET is a Godaddy API Wrapper. 
 GitHub: https://github.com/ahwm/GodaddyWrapper.Net</PackageReleaseNotes>
@@ -78,6 +78,8 @@ GitHub: https://github.com/ahwm/GodaddyWrapper.Net</PackageReleaseNotes>
       $(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb
     </AllowedOutputExtensionsInPackageBuildOutputFolder>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <Version>1.1.4-beta</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
 </Project>
