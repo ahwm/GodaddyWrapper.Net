@@ -1,7 +1,9 @@
 ﻿using GodaddyWrapper.Attributes;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Reflection;
 namespace GodaddyWrapper.Helper
 {
@@ -17,15 +19,17 @@ namespace GodaddyWrapper.Helper
                     if (IsSimple(property.PropertyType.GetTypeInfo()))
                     {
                         if (!(property.GetCustomAttribute(typeof(QueryStringToUpperAttribute)) is QueryStringToUpperAttribute))
-                            url += $"{property.Name}={property.GetValue(RequestObject).ToString().ToLower()}&";
+                            url += $"{ToFirstLetterLower(property.Name)}={property.GetValue(RequestObject).ToString().ToLower()}&";
                         else
-                            url += $"{property.Name}={property.GetValue(RequestObject).ToString().ToUpper()}&";
+                            url += $"{ToFirstLetterLower(property.Name)}={property.GetValue(RequestObject).ToString().ToUpper()}&";
                     }
+                    else if (IsList(property.PropertyType.GetTypeInfo()))
+                        url += $"{ToFirstLetterLower(property.Name)}={ConvertFromList(property.GetValue(RequestObject))}&";
                     else
-                        url += $"{property.Name}={JsonConvert.SerializeObject(property.GetValue(RequestObject), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore })}&";
+                        url += $"{ToFirstLetterLower(property.Name)}={JsonConvert.SerializeObject(property.GetValue(RequestObject), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore })}&";
                 }
             }
-            return url;
+            return url.Trim('&');
         }
 
         static bool IsSimple(TypeInfo type)
@@ -35,5 +39,23 @@ namespace GodaddyWrapper.Helper
               || type.Equals(typeof(string))
               || type.Equals(typeof(decimal));
         }
+
+        static bool IsList(TypeInfo type)
+        {
+            return type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(List<>)) && type.GenericTypeArguments.FirstOrDefault() == typeof(string);
+        }
+
+        static string ConvertFromList(object obj)
+        {
+            List<string> list = obj as List<string>;
+
+            //string arr = "";
+            //foreach (object i in list)
+            //    arr += $"{(arr.Length > 0 ? "," : "")}{i}";
+
+            return String.Join(",", list);
+        }
+
+        public static string ToFirstLetterLower(string text) { var charArray = text.ToCharArray(); charArray[0] = char.ToLower(charArray[0]); return new string(charArray); }
     }
 }

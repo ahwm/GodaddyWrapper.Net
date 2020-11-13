@@ -14,9 +14,9 @@ namespace GodaddyWrapper
 {
     public partial class Client
     {
-        private string _accessKey { get; set; }
-        private string _secretKey { get; set; }
-        private string _rootPath { get; set; } = "https://api.ote-godaddy.com/api/v1/";
+        private string AccessKey { get; }
+        private string SecretKey { get; }
+        private string RootPath { get; } = "https://api.ote-godaddy.com/v1/";
         /// <summary>
         /// Client for calling API
         /// </summary>
@@ -25,15 +25,15 @@ namespace GodaddyWrapper
         /// <param name="rootPath"></param>
         public Client(string accessKey, string secretKey, string rootPath = null)
         {
-            _accessKey = accessKey;
-            _secretKey = secretKey;
-            _rootPath = rootPath ?? _rootPath;
+            AccessKey = accessKey;
+            SecretKey = secretKey;
+            RootPath = rootPath ?? RootPath;
         }
 
         private HttpClient GetBaseHttpClient()
         {
             var client = new HttpClient();
-            client.BaseAddress = new Uri(_rootPath);
+            client.BaseAddress = new Uri(RootPath);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization = GetAuthenticationHeader();
@@ -42,7 +42,7 @@ namespace GodaddyWrapper
 
         private AuthenticationHeaderValue GetAuthenticationHeader()
         {
-            return new AuthenticationHeaderValue("sso-key", $"{_accessKey}:{_secretKey}");
+            return new AuthenticationHeaderValue("sso-key", $"{AccessKey}:{SecretKey}");
         }
 
         private async Task CheckResponseMessageIsValid(HttpResponseMessage response)

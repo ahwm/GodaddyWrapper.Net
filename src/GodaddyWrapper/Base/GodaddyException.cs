@@ -12,7 +12,7 @@ namespace GodaddyWrapper.Base
         public HttpStatusCode StatusCode { get; private set; }
         public ErrorResponse ErrorResponse { get; private set; }
 
-        public GodaddyException(HttpStatusCode statusCode, ErrorResponse errorResponse, string content) : base(content)
+        public GodaddyException(HttpStatusCode statusCode, ErrorResponse errorResponse, string content) : base(String.IsNullOrWhiteSpace(content) ? $"{errorResponse.Code}: {errorResponse.Message}" : content)
         {
             StatusCode = statusCode;
             ErrorResponse = errorResponse;

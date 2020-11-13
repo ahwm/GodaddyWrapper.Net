@@ -9,11 +9,11 @@ namespace GodaddyWrapper.Requests
 {
     public class DomainRetrieve
     {
-        public List<string> statuses { get; set; }
-        public List<string> statusGroups { get; set; }
-        public int limit { get; set; }
-        public string marker { get; set; }
-        public List<string> includes { get; set; }
-        public string modifiedDate { get; set; }
+        public List<string> Statuses { get; set; }
+        public List<string> StatusGroups { get; set; }
+        public int? Limit { get; set; }
+        public string Marker { get; set; }
+        public List<string> Includes { get; set; }
+        public string ModifiedDate { get; set; }
     }
 }
