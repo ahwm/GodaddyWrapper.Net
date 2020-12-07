@@ -1,7 +1,7 @@
 # GodaddyWrapper.Net
 
 [![nuget](https://img.shields.io/nuget/vpre/GodaddyWrapper.svg)](https://www.nuget.org/packages/GodaddyWrapper)
-[![Build status](https://ci.appveyor.com/api/projects/status/utayqebihtewq6kq?svg=true)](https://ci.appveyor.com/project/ahwm/godaddywrapper-net)
+[![Build status](https://ci.appveyor.com/api/projects/status/utayqebihtewq6kq/branch/master)](https://ci.appveyor.com/project/ahwm/godaddywrapper-net)
 
 A Brief Intro
 -------------------
