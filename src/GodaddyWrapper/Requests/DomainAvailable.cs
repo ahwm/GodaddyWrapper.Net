@@ -10,8 +10,8 @@ namespace GodaddyWrapper.Requests
     {
         //[RegularExpression(@"^[^.]{1,63}.[^.]{2,}$")]
         [Required]
-        public string domain { get; set; }
-        public string checkType { get; set; }
-        public bool forTransfer { get; set; }
+        public string Domain { get; set; }
+        public string CheckType { get; set; }
+        public bool ForTransfer { get; set; }
     }
 }

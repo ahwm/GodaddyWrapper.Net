@@ -10,11 +10,15 @@ namespace GodaddyWrapper.Requests
     public class DomainTransferIn
     {
         [Required]
-        public string authCode { get; set; }
+        public string AuthCode { get; set; }
+
         [Range(1, 10)]
-        public int? period { get; set; }
-        public bool? renewAuto { get; set; }
-        public bool? privacy { get; set; }
-        public Consent consent{ get; set; }
+        public int? Period { get; set; }
+
+        public bool? RenewAuto { get; set; }
+
+        public bool? Privacy { get; set; }
+
+        public Consent Consent{ get; set; }
     }
 }

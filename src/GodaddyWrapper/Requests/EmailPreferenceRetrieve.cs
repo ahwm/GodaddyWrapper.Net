@@ -7,14 +7,14 @@ namespace GodaddyWrapper.Requests
 {
     public class EmailPreferenceRetrieve
     {
-        public bool? backupCreated { get; set; }
-        public bool? serverCreated { get; set; }
-        public bool? snapshotCreated { get; set; }
-        public bool? addressChanged { get; set; }
-        public bool? serverStopped { get; set; }
-        public bool? snapshotDestroyed { get; set; }
-        public bool? serverStarted { get; set; }
-        public bool? enabled { get; set; }
-        public bool? serverDestroyed { get; set; }
+        public bool? BackupCreated { get; set; }
+        public bool? ServerCreated { get; set; }
+        public bool? SnapshotCreated { get; set; }
+        public bool? AddressChanged { get; set; }
+        public bool? ServerStopped { get; set; }
+        public bool? SnapshotDestroyed { get; set; }
+        public bool? ServerStarted { get; set; }
+        public bool? Enabled { get; set; }
+        public bool? ServerDestroyed { get; set; }
     }
 }

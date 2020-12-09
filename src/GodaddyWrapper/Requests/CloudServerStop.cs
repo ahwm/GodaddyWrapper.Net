@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudServerStop
     {
-        public string serverId { get; set; }
+        public string ServerId { get; set; }
     }
 }

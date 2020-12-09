@@ -7,10 +7,10 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudServerAddressesRetrieve
     {
-        public string address { get; set; }
-        public string status { get; set; }
-        public string type { get; set; }
-        public string limit { get; set; }
-        public string offset { get; set; }
+        public string Address { get; set; }
+        public string Status { get; set; }
+        public string Type { get; set; }
+        public string Limit { get; set; }
+        public string Offset { get; set; }
     }
 }

@@ -8,8 +8,8 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudApplicationInputFieldValidator
     {
-        public string type { get; set; }
-        public string regex { get; set; }
+        public string Type { get; set; }
+        public string Regex { get; set; }
 
     }
 }

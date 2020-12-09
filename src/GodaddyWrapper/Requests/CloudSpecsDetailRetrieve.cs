@@ -8,6 +8,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudSpecsDetailRetrieve
     {
-        public string specId { get; set; }
+        public string SpecId { get; set; }
     }
 }

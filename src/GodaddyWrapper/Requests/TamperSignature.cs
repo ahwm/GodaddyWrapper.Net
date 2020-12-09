@@ -7,7 +7,7 @@ namespace GodaddyWrapper.Requests
 {
     public class TamperSignature
     {
-        public string hash { get; set; }
-        public string content { get; set; }
+        public string Hash { get; set; }
+        public string Content { get; set; }
     }
 }

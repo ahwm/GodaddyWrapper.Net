@@ -7,7 +7,7 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudImagePublicationCreate
     {
-        public List<string> dataCenterIds { get; set; }
-        public string applicationId { get; set; }
+        public List<string> DataCenterIds { get; set; }
+        public string ApplicationId { get; set; }
     }
 }

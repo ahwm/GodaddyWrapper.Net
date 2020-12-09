@@ -8,6 +8,6 @@ namespace GodaddyWrapper.Requests
 {
     public class DomainDetailRetrieve
     {
-        public string query { get; set; }
+        public string Query { get; set; }
     }
 }

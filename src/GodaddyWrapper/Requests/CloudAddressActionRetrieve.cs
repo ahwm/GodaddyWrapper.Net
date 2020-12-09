@@ -7,8 +7,8 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudAddressActionRetrieve
     {
-        public string type { get; set; }
-        public string limit { get; set; }
-        public string offset { get; set; }
+        public string Type { get; set; }
+        public string Limit { get; set; }
+        public string Offset { get; set; }
     }
 }

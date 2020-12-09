@@ -45,7 +45,7 @@ namespace GodaddyWrapper
         public async Task<CloudApplicationResponse> RetrieveApplicationDetail(CloudApplicationDetailRetrieve request)
         {
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"cloud/applications/{request.applicationId}");
+            var response = await client.GetAsync($"cloud/applications/{request.ApplicationId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudApplicationResponse>();
         }

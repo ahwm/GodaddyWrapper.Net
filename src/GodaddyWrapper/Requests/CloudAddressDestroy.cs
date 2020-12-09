@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudAddressDestroy
     {
-        public string addressId { get; set; }
+        public string AddressId { get; set; }
     }
 }

@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudApplicationDetailRetrieve
     {
-        public string applicationId { get; set; }
+        public string ApplicationId { get; set; }
     }
 }

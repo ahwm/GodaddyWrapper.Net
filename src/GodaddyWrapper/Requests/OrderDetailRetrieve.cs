@@ -9,6 +9,6 @@ namespace GodaddyWrapper.Requests
     public class OrderDetailRetrieve
     {
         [Required]
-        public string orderId { get; set; }
+        public string OrderId { get; set; }
     }
 }

@@ -8,8 +8,8 @@ namespace GodaddyWrapper.Requests
 {
     public class DomainAgreements
     {
-        public List<string> tlds { get; set; }
-        public bool privacy { get; set; }
-        public bool forTransfer { get; set; }
+        public List<string> Tlds { get; set; }
+        public bool Privacy { get; set; }
+        public bool ForTransfer { get; set; }
     }
 }

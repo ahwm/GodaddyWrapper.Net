@@ -7,7 +7,7 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudImageActionDetailRetrieve
     {
-        public string imageId { get; set; }
-        public string imageActionId { get; set; }
+        public string ImageId { get; set; }
+        public string ImageActionId { get; set; }
     }
 }

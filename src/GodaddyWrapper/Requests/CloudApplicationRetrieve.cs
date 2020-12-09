@@ -7,11 +7,11 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudApplicationRetrieve
     {
-        public string category { get; set; }
-        public string imageId { get; set; }
-        public string status { get; set; }
-        public string limit { get; set; }
-        public string offset { get; set; }
+        public string Category { get; set; }
+        public string ImageId { get; set; }
+        public string Status { get; set; }
+        public string Limit { get; set; }
+        public string Offset { get; set; }
 
     }
 }

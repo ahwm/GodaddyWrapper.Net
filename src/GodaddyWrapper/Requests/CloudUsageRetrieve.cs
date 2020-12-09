@@ -9,7 +9,7 @@ namespace GodaddyWrapper.Requests
     public class CloudUsageRetrieve
     {
         [RegularExpression("^[A-Z][A-Z][A-Z]$")]
-        public string currency { get; set; }
-        public string market { get; set; }
+        public string Currency { get; set; }
+        public string Market { get; set; }
     }
 }

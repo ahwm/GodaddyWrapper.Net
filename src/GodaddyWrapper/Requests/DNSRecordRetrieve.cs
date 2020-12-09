@@ -10,9 +10,9 @@ namespace GodaddyWrapper.Requests
     {
         [Required]
         [Range(0, int.MaxValue)]
-        public int offset { get; set; }
+        public int Offset { get; set; }
         [Required]
         [Range(0, int.MaxValue)]
-        public int limit { get; set; }
+        public int Limit { get; set; }
     }
 }

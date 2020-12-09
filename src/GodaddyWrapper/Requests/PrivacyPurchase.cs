@@ -10,6 +10,6 @@ namespace GodaddyWrapper.Requests
     public class PrivacyPurchase
     {
         [Required]
-        public Consent consent { get; set; }
+        public Consent Consent { get; set; }
     }
 }

@@ -33,7 +33,7 @@ namespace GodaddyWrapper
         public async Task<CloudDataCenterResponse> RetrieveDataCentersDetail(CloudDataCenterDetailRetrieve request)
         {
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"cloud/datacenters/{request.dataCenterId}");
+            var response = await client.GetAsync($"cloud/datacenters/{request.DataCenterId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudDataCenterResponse>();
         }
@@ -58,7 +58,7 @@ namespace GodaddyWrapper
         public async Task<CloudZoneResponse> RetrieveDataCenterZoneDetail(CloudDataCenterZoneDetailRetrieve request)
         {
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"cloud/datacenters/{request.dataCenterId}/zones/{request.zoneId}");
+            var response = await client.GetAsync($"cloud/datacenters/{request.DataCenterId}/zones/{request.ZoneId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudZoneResponse>();
         }

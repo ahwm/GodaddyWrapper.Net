@@ -8,6 +8,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudSSHKeyDelete
     {
-        public string sshKeyId { get; set; }
+        public string SshKeyId { get; set; }
     }
 }

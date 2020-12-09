@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudAddressAttach
     {
-        public string serverId { get; set; }
+        public string ServerId { get; set; }
     }
 }

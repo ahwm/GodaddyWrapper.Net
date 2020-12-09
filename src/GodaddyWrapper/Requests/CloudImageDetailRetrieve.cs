@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudImageDetailRetrieve
     {
-        public string imageId { get; set; }
+        public string ImageId { get; set; }
     }
 }

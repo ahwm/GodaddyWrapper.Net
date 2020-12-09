@@ -9,15 +9,17 @@ namespace GodaddyWrapper.Requests
     public class OrderRetrieve
     {
         [RegularExpression("^[0-9]{4}-(?:0[0-9]{1}|1[0-2]{1})-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$")]
-        public string periodStart { get; set; }
+        public string PeriodStart { get; set; }
+
         [RegularExpression("^[0-9]{4}-(?:0[0-9]{1}|1[0-2]{1})-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$")]
-        public string periodEnd { get; set; }
-        public string domain { get; set; }
-        public int productGroupId { get; set; }
-        public int paymentProfileId { get; set; }
-        public string parentOrderId { get; set; }
-        public int offset { get; set; }
-        public int limit { get; set; }
-        public string sort { get; set; }
+        public string PeriodEnd { get; set; }
+
+        public string Domain { get; set; }
+        public int ProductGroupId { get; set; }
+        public int PaymentProfileId { get; set; }
+        public string ParentOrderId { get; set; }
+        public int Offset { get; set; }
+        public int Limit { get; set; }
+        public string Sort { get; set; }
     }
 }

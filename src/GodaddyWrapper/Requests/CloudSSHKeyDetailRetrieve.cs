@@ -8,6 +8,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudSSHKeyDetailRetrieve
     {
-        public string sshKeyId { get; set; }
+        public string SshKeyId { get; set; }
     }
 }

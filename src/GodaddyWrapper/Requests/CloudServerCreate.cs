@@ -9,27 +9,27 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudServerCreate
     {
-        public bool? backupsEnabled { get; set; }
-        public string sshKeyId { get; set; }
-        public List<string> volumes { get; set; }
-        public string dataCenterId { get; set; }
-        public List<string> addresses { get; set; }
+        public bool? BackupsEnabled { get; set; }
+        public string SshKeyId { get; set; }
+        public List<string> Volumes { get; set; }
+        public string DataCenterId { get; set; }
+        public List<string> Addresses { get; set; }
         [Required]
-        public string spec { get; set; }
-        public string description { get; set; }
-        public string zoneId { get; set; }
-        public string password { get; set; }
+        public string Spec { get; set; }
+        public string Description { get; set; }
+        public string ZoneId { get; set; }
+        public string Password { get; set; }
         [RegularExpression("^[a-zA-Z0-9]([-\\.]{0,1}[a-zA-Z0-9]+)*$")]
         [Required]
-        public string hostname { get; set; }
-        public string bootScript { get; set; }
+        public string Hostname { get; set; }
+        public string BootScript { get; set; }
         [RegularExpression("^[a-z_][a-z0-9_]{,31}$")]
         [MinLength(1)]
         [MaxLength(32)]
         [Required]
-        public string username { get; set; }
-        public string discount { get; set; }
+        public string Username { get; set; }
+        public string Discount { get; set; }
         [Required]
-        public string image { get; set; }
+        public string Image { get; set; }
     }
 }

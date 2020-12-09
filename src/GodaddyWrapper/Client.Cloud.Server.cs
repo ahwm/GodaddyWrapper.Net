@@ -35,7 +35,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"cloud/servers/{request.serverId}/destroy", null);
+            var response = await client.PostAsync($"cloud/servers/{request.ServerId}/destroy", null);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudServerActionResponse>();
         }
@@ -48,7 +48,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"cloud/servers/{request.serverId}/console");
+            var response = await client.GetAsync($"cloud/servers/{request.ServerId}/console");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudServerConsoleResponse>();
         }
@@ -61,7 +61,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"cloud/servers/{request.serverId}/address/{request.addressId}");
+            var response = await client.GetAsync($"cloud/servers/{request.ServerId}/address/{request.AddressId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudIpAddressResponse>();
         }
@@ -115,7 +115,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"cloud/servers/{request.serverId}/actions/{request.serverActionId}");
+            var response = await client.GetAsync($"cloud/servers/{request.ServerId}/actions/{request.ServerActionId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudServerActionResponse>();
         }
@@ -128,7 +128,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"cloud/servers/{request.serverId}");
+            var response = await client.GetAsync($"cloud/servers/{request.ServerId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudServerResponse>();
         }
@@ -141,7 +141,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"cloud/servers/{request.serverId}/volumes/{request.volumeId}");
+            var response = await client.GetAsync($"cloud/servers/{request.ServerId}/volumes/{request.VolumeId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudServerVolumeListResponse>();
         }
@@ -154,7 +154,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"cloud/servers/{request.serverId}/volumes");
+            var response = await client.GetAsync($"cloud/servers/{request.ServerId}/volumes");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudServerVolumeResponse>();
         }
@@ -167,7 +167,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"cloud/servers/{request.serverId}/start", null);
+            var response = await client.PostAsync($"cloud/servers/{request.ServerId}/start", null);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudServerActionResponse>();
         }
@@ -180,7 +180,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"cloud/servers/{request.serverId}/stop", null);
+            var response = await client.PostAsync($"cloud/servers/{request.ServerId}/stop", null);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudServerActionResponse>();
         }

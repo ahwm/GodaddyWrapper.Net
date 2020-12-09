@@ -8,11 +8,11 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudApplicationInputField
     {
-        public string type { get; set; }
-        public string name { get; set; }
+        public string Type { get; set; }
+        public string Name { get; set; }
         [JsonProperty("default")]
-        public string defaultVal { get; set; }
-        public List<CloudApplicationInputFieldValidator> validators { get; set; }
+        public string DefaultVal { get; set; }
+        public List<CloudApplicationInputFieldValidator> Validators { get; set; }
 
     }
 }

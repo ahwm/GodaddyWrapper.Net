@@ -46,7 +46,7 @@ namespace GodaddyWrapper
         public async Task<CloudAddressActionResponse> DestroyAddress(CloudAddressDestroy request)
         {
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"cloud/addresses/{request.addressId}/destroy", null);
+            var response = await client.PostAsync($"cloud/addresses/{request.AddressId}/destroy", null);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudAddressActionResponse>();
         }
@@ -58,7 +58,7 @@ namespace GodaddyWrapper
         public async Task<CloudAddressActionResponse> DetachAddress(CloudAddressDetach request)
         {
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"cloud/addresses/{request.addressId}/detach", null);
+            var response = await client.PostAsync($"cloud/addresses/{request.AddressId}/detach", null);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudAddressActionResponse>();
         }
@@ -83,7 +83,7 @@ namespace GodaddyWrapper
         public async Task<CloudAddressActionResponse> RetrieveAddressActionDetail(CloudAddressActionDetailRetrieve request)
         {
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"cloud/addresses/{request.addressId}/actions/{request.addressActionId}");
+            var response = await client.GetAsync($"cloud/addresses/{request.AddressId}/actions/{request.AddressActionId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudAddressActionResponse>();
         }
@@ -95,7 +95,7 @@ namespace GodaddyWrapper
         public async Task<CloudIpAddressResponse> RetrieveAddressDetail(CloudAddressDetailRetrieve request)
         {
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"cloud/addresses/{request.addressId}");
+            var response = await client.GetAsync($"cloud/addresses/{request.AddressId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudIpAddressResponse>();
         }

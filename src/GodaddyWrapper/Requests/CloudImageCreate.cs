@@ -7,10 +7,10 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudImageCreate
     {
-        public string version { get; set; }
-        public string sourceServerId { get; set; }
-        public string name { get; set; }
-        public string dataCenterId { get; set; }
-        public string sourceImageId { get; set; }
+        public string Version { get; set; }
+        public string SourceServerId { get; set; }
+        public string Name { get; set; }
+        public string DataCenterId { get; set; }
+        public string SourceImageId { get; set; }
     }
 }

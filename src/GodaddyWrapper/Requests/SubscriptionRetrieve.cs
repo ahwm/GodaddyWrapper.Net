@@ -9,10 +9,10 @@ namespace GodaddyWrapper.Requests
 {
     public class SubscriptionRetrieve
     {
-        public List<string> productGroupKeys { get; set; }
-        public List<string> includes { get; set; }
-        public int offset { get; set; }
-        public int limit { get; set; }
-        public string sort { get; set; }
+        public List<string> ProductGroupKeys { get; set; }
+        public List<string> Includes { get; set; }
+        public int Offset { get; set; }
+        public int Limit { get; set; }
+        public string Sort { get; set; }
     }
 }

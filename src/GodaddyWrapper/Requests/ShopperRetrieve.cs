@@ -9,6 +9,6 @@ namespace GodaddyWrapper.Requests
 {
     public class ShopperRetrieve
     {
-        public string shopperId { get; set; }
+        public string ShopperId { get; set; }
     }
 }

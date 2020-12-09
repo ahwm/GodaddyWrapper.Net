@@ -8,7 +8,7 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudSSHKeyCreate
     {
-        public string key { get; set; }
-        public int name { get; set; }
+        public string Key { get; set; }
+        public int Name { get; set; }
     }
 }

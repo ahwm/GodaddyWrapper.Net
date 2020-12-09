@@ -33,7 +33,7 @@ namespace GodaddyWrapper
         public async Task<CloudImageActionResponse> DestroyImage(CloudImageDestroy request)
         {
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"cloud/images/{request.imageId}/destroy", null);
+            var response = await client.PostAsync($"cloud/images/{request.ImageId}/destroy", null);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudImageActionResponse>();
         }
@@ -71,7 +71,7 @@ namespace GodaddyWrapper
         public async Task<CloudImageActionResponse> RetrieveImageActionDetail(CloudImageActionDetailRetrieve request)
         {
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"cloud/images/{request.imageId}/actions/{request.imageActionId}");
+            var response = await client.GetAsync($"cloud/images/{request.ImageId}/actions/{request.ImageActionId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudImageActionResponse>();
         }
@@ -83,7 +83,7 @@ namespace GodaddyWrapper
         public async Task<CloudImageResponse> RetrieveImageDetail(CloudImageDetailRetrieve request)
         {
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"cloud/images/{request.imageId}");
+            var response = await client.GetAsync($"cloud/images/{request.ImageId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudImageResponse>();
         }

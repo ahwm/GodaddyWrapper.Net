@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudImageDestroy
     {
-        public string imageId { get; set; }
+        public string ImageId { get; set; }
     }
 }

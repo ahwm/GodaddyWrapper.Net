@@ -8,9 +8,9 @@ namespace GodaddyWrapper.Requests
 {
     public class DomainContacts
     {
-        public Contact contactRegistrant { get; set; }
-        public Contact contactAdmin { get; set; }
-        public Contact contactTech { get; set; }
-        public Contact contactBilling { get; set; }
+        public Contact ContactRegistrant { get; set; }
+        public Contact ContactAdmin { get; set; }
+        public Contact ContactTech { get; set; }
+        public Contact ContactBilling { get; set; }
     }
 }

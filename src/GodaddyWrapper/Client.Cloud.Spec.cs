@@ -35,7 +35,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"cloud/specs/{request.specId}");
+            var response = await client.GetAsync($"cloud/specs/{request.SpecId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CloudSpecResponse>();
         }

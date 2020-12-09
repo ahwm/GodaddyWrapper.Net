@@ -7,14 +7,14 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudImageRetrieve
     {
-        public string dataCenterId { get; set; }
-        public string name { get; set; }
-        public string version { get; set; }
-        public string status { get; set; }
-        public string type { get; set; }
-        public string sourceServerId { get; set; }
-        public string sizeMb { get; set; }
-        public string limit { get; set; }
-        public string offset { get; set; }
+        public string DataCenterId { get; set; }
+        public string Name { get; set; }
+        public string Version { get; set; }
+        public string Status { get; set; }
+        public string Type { get; set; }
+        public string SourceServerId { get; set; }
+        public string SizeMb { get; set; }
+        public string Limit { get; set; }
+        public string Offset { get; set; }
     }
 }

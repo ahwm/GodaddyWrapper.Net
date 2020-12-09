@@ -7,7 +7,7 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudServerVolumeRetrieve
     {
-        public string serverId { get; set; }
-        public string volumeId { get; set; }
+        public string ServerId { get; set; }
+        public string VolumeId { get; set; }
     }
 }

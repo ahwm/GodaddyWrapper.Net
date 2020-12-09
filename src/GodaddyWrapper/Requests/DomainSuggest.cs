@@ -10,16 +10,24 @@ namespace GodaddyWrapper.Requests
     public class DomainSuggest
     {
         [Required]
-        public string query { get; set; }
+        public string Query { get; set; }
+
         [CountryAttribtue]
-        [QueryStringToUpperAttribute]
-        public string country { get; set; }
-        public string city { get; set; }
-        public List<string> sources { get; set; }
-        public List<string> tlds { get; set; }
-        public int? lengthMax { get; set; }
-        public int? lengthMin { get; set; }
-        public int? limit { get; set; }
-        public int? waitMs { get; set; }
+        [QueryStringToUpper]
+        public string Country { get; set; }
+
+        public string City { get; set; }
+
+        public List<string> Sources { get; set; }
+
+        public List<string> Tlds { get; set; }
+
+        public int? LengthMax { get; set; }
+
+        public int? LengthMin { get; set; }
+
+        public int? Limit { get; set; }
+
+        public int? WaitMs { get; set; }
     }
 }

@@ -10,11 +10,11 @@ namespace GodaddyWrapper.Requests
     public class SubaccountCreate
     {
         [EmailAddress]
-        public string email { get; set; }
-        public string password { get; set; }
-        public string nameFirst { get; set; }
-        public string nameLast { get; set; }
-        public int externalId { get; set; }
-        public string marketId { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string NameFirst { get; set; }
+        public string NameLast { get; set; }
+        public int ExternalId { get; set; }
+        public string MarketId { get; set; }
     }
 }

@@ -11,20 +11,28 @@ namespace GodaddyWrapper.Requests
     {
         [Required]
         [DNSRecordTypeAttribtue]
-        public string type { get; set; }
+        public string Type { get; set; }
+
         [Required]
-        public string name { get; set; }
+        public string Name { get; set; }
+
         [Required]
-        public string data { get; set; }
+        public string Data { get; set; }
+
         [Range(0, int.MaxValue)]
-        public int? priority { get; set; }
+        public int? Priority { get; set; }
+
         [Range(0, int.MaxValue)]
-        public int? ttl { get; set; }
-        public string service { get; set; }
-        public string protocol { get; set; }
+        public int? Ttl { get; set; }
+
+        public string Service { get; set; }
+
+        public string Protocol { get; set; }
+
         [Range(1, 65535)]
-        public int? port { get; set; }
+        public int? Port { get; set; }
+
         [Range(0, int.MaxValue)]
-        public int? weight { get; set; }
+        public int? Weight { get; set; }
     }
 }

@@ -9,6 +9,6 @@ namespace GodaddyWrapper.Requests
     public class DomainPurchaseSchema
     {
         [Required]
-        public string tld { get; set; }
+        public string Tld { get; set; }
     }
 }

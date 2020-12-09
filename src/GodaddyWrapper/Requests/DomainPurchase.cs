@@ -12,16 +12,25 @@ namespace GodaddyWrapper.Requests
         /// For internationalized domain names with non-ascii characters, the domain name is converted to punycode before format and pattern validation rules are checked
         /// </summary>
         [RegularExpression(@"^[^.]{1,63}.[^.]{2,}$")]
-        public string domain { get; set; }
-        public Consent consent { get; set; }
+        public string Domain { get; set; }
+
+        public Consent Consent { get; set; }
+
         [Range(1, 10)]
-        public int? period { get; set; } = 1;
-        public List<string> nameServers { get; set; }
-        public bool renewAuto { get; set; }
-        public bool privacy { get; set; }
-        public Contact contactRegistrant { get; set; }
-        public Contact contactAdmin { get; set; }
-        public Contact contactTech { get; set; }
-        public Contact contactBilling { get; set; }
+        public int? Period { get; set; } = 1;
+
+        public List<string> NameServers { get; set; }
+
+        public bool RenewAuto { get; set; }
+
+        public bool Privacy { get; set; }
+
+        public Contact ContactRegistrant { get; set; }
+
+        public Contact ContactAdmin { get; set; }
+
+        public Contact ContactTech { get; set; }
+
+        public Contact ContactBilling { get; set; }
     }
 }

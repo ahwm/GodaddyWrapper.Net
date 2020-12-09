@@ -7,6 +7,6 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudDataCenterDetailRetrieve
     {
-        public string dataCenterId { get; set; }
+        public string DataCenterId { get; set; }
     }
 }

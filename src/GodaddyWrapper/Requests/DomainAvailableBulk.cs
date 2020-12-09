@@ -8,7 +8,7 @@ namespace GodaddyWrapper.Requests
 {
     public class DomainAvailableBulk
     {
-        public List<string> domains { get; set; }
-        public string checkType { get; set; }
+        public List<string> Domains { get; set; }
+        public string CheckType { get; set; }
     }
 }

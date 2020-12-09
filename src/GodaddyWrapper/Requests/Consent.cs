@@ -11,14 +11,14 @@ namespace GodaddyWrapper.Requests
         /// <summary>
         /// Unique identifiers of the legal agreements to which the end-user has agreed, as returned from the/domains/agreements endpoint
         /// </summary>
-        public List<string> agreementKeys { get; set; }
+        public List<string> AgreementKeys { get; set; }
         /// <summary>
         /// Originating client IP address of the end-user's computer when they consented to these legal agreements
         /// </summary>
-        public string agreedBy { get; set; }
+        public string AgreedBy { get; set; }
         /// <summary>
         /// Timestamp indicating when the end-user consented to these legal agreements
         /// </summary>
-        public DateTime agreedAt { get; set; }
+        public DateTime AgreedAt { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudDataCenterZoneDetailRetrieve
     {
-        public string dataCenterId { get; set; }
-        public string zoneId { get; set; }
+        public string DataCenterId { get; set; }
+        public string ZoneId { get; set; }
     }
 }

@@ -316,17 +316,13 @@ namespace GodaddyWrapper
         /// <param name="Name"></param>
         /// <param name="XShopperId"></param>
         /// <returns></returns>
-        public async Task<List<DNSRecordResponse>> RetrieveDNSRecordsWithTypeAndName(DNSRecordRetrieve request,string domain, string Type, string Name, string XShopperId = null)
+        public async Task<List<DNSRecordResponse>> RetrieveDNSRecordsWithTypeAndName(DNSRecordRetrieve request, string domain, string Type, string Name, string XShopperId = null)
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
             if (XShopperId != null)
                 client.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            string urlPath = "domains/{domain}/records";
-            if (string.IsNullOrEmpty(Name))
-                urlPath = $"domains/{domain}/records/{Type}";
-            else
-                urlPath = $"domains/{domain}/records/{Type}/{Name}";
+            string urlPath = $"domains/{domain}/records/{Type}{(string.IsNullOrEmpty(Name) ? "" : $"/{Name}")}";
             var response = await client.GetAsync($"{urlPath}{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<List<DNSRecordResponse>>();

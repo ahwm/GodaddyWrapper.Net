@@ -10,6 +10,6 @@ namespace GodaddyWrapper.Requests
     public class VerifyRegistrantEmail
     {
         [Required]
-        public string domain { get; set; }
+        public string Domain { get; set; }
     }
 }

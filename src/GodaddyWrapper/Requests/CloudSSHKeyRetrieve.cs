@@ -8,8 +8,8 @@ namespace GodaddyWrapper.Requests
 {
     public class CloudSSHKeyRetrieve
     {
-        public string name { get; set; }
-        public int limit { get; set; }
-        public int offset { get; set; }
+        public string Name { get; set; }
+        public int Limit { get; set; }
+        public int Offset { get; set; }
     }
 }

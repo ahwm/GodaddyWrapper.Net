@@ -8,6 +8,6 @@ namespace GodaddyWrapper.Requests
 {
     public class DomainDelete
     {
-        public string domain { get; set; }
+        public string Domain { get; set; }
     }
 }
