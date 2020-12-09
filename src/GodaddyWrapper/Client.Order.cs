@@ -47,7 +47,7 @@ namespace GodaddyWrapper
                 client.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
             if (XMarketId != null)
                 client.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await client.GetAsync($"orders/{request.orderId}");
+            var response = await client.GetAsync($"orders/{request.OrderId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<OrderResponse>();
         }

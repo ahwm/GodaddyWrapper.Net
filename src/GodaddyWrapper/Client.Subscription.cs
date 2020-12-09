@@ -25,7 +25,7 @@ namespace GodaddyWrapper
             var client = GetBaseHttpClient();
             if (XShopperId != null)
                 client.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await client.DeleteAsync($"subscriptions/{request.subscriptionId}");
+            var response = await client.DeleteAsync($"subscriptions/{request.SubscriptionId}");
             await CheckResponseMessageIsValid(response);
             return response.IsSuccessStatusCode;
         }
@@ -80,7 +80,7 @@ namespace GodaddyWrapper
                 client.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
             if (XMarketId != null)
                 client.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await client.GetAsync($"subscriptions/{request.subscriptionId}");
+            var response = await client.GetAsync($"subscriptions/{request.SubscriptionId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<SubscriptionResponse>();
         }

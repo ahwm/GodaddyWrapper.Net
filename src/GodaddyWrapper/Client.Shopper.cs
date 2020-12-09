@@ -35,7 +35,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"shoppers/{request.shopperId}");
+            var response = await client.GetAsync($"shoppers/{request.ShopperId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<ShopperResponse>();
         }

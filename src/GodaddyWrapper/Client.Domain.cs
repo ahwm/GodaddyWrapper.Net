@@ -39,7 +39,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"domains/available?checkType={request.checkType}", request.domains);
+            var response = await client.PostAsync($"domains/available?checkType={request.CheckType}", request.Domains);
             await CheckResponseMessageIsValid(response); ;
             if (response.StatusCode.ToString() == "203")
                 return new DomainAvailableBulkResultResponse
@@ -66,7 +66,7 @@ namespace GodaddyWrapper
             var client = GetBaseHttpClient();
             if (XShopperId != null)
                 client.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await client.DeleteAsync($"domains/{request.domain}");
+            var response = await client.DeleteAsync($"domains/{request.Domain}");
             await CheckResponseMessageIsValid(response);
             return response.IsSuccessStatusCode;
         }
@@ -82,7 +82,7 @@ namespace GodaddyWrapper
             var client = GetBaseHttpClient();
             if (XShopperId != null)
                 client.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await client.DeleteAsync($"domains/{request.domain}/privacy");
+            var response = await client.DeleteAsync($"domains/{request.Domain}/privacy");
             await CheckResponseMessageIsValid(response);
             return response.IsSuccessStatusCode;
         }
@@ -157,7 +157,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"domains/purchase/schema/{request.tld}");
+            var response = await client.GetAsync($"domains/purchase/schema/{request.Tld}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<JsonPropertyResponse>();
         }
@@ -414,7 +414,7 @@ namespace GodaddyWrapper
             var client = GetBaseHttpClient();
             if (XShopperId != null)
                 client.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await client.PostAsync($"domains/{request.domain}/verifyregistrantemail", null);
+            var response = await client.PostAsync($"domains/{request.Domain}/verifyregistrantemail", null);
             await CheckResponseMessageIsValid(response);
             return response.IsSuccessStatusCode;
         }
