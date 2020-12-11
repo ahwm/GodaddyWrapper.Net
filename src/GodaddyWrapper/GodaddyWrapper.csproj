@@ -12,9 +12,7 @@
     <AssemblyName>GodaddyWrapper</AssemblyName>
     <PackageId>GodaddyWrapper</PackageId>
     <PackageTags>Godaddy;Wrapper;API;DotNet Core;Rest</PackageTags>
-    <PackageReleaseNotes>
-      Dev experience improvements; fixed domain retrieve response
-    </PackageReleaseNotes>
+    <PackageReleaseNotes>Cleaned up invalid requests that are no longer valid.</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/ahwm/GodaddyWrapper.Net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ahwm/GodaddyWrapper.Net</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
