@@ -10,10 +10,6 @@ GodaddyWrapper.NET is a .NET Wrapper for calling GoDaddy REST API.
 
 [Visit GoDaddy Rest API Docs](https://developer.godaddy.com/doc)
 
-Pre-release version in Nuget
-[Visit Nuget](https://www.nuget.org/packages/GodaddyWrapper/)
-
-
 Usage
 -------------------
 
