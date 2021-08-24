@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using GodaddyWrapper.Helper;
+using Newtonsoft.Json;
 
 namespace GodaddyWrapper
 {
@@ -22,7 +23,7 @@ namespace GodaddyWrapper
         public async Task<AftermarketListingActionResponse> AddExpiryAuction(List<AftermarketListingExpiryCreate> request)
         {
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"aftermarket/listings/expiry", request);
+            var response = await client.PostAsync($"aftermarket/listings/expiry", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AftermarketListingActionResponse>();
         }

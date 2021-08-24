@@ -9,14 +9,29 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using GodaddyWrapper.Helper;
 using GodaddyWrapper.Base;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace GodaddyWrapper
 {
-    public partial class Client
-    {
+public partial class Client
+{
         private string AccessKey { get; }
         private string SecretKey { get; }
         private string RootPath { get; } = "https://api.ote-godaddy.com/v1/";
+
+        readonly JsonSerializerSettings JsonSettings = new JsonSerializerSettings
+        {
+            ContractResolver = new DefaultContractResolver
+            {
+                NamingStrategy = new CamelCaseNamingStrategy
+                {
+                    OverrideSpecifiedNames = false
+                }
+            },
+            NullValueHandling = NullValueHandling.Ignore
+        };
+
         /// <summary>
         /// Client for calling API
         /// </summary>

@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using GodaddyWrapper.Helper;
+using Newtonsoft.Json;
 
 namespace GodaddyWrapper
 {
@@ -21,7 +22,7 @@ namespace GodaddyWrapper
         public async Task<AbuseTicketIdResponse> CreateAbuseTicket(AbuseTicketCreate request)
         {
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"abuse/tickets", request);
+            var response = await client.PostAsync($"abuse/tickets", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AbuseTicketIdResponse>();
         }

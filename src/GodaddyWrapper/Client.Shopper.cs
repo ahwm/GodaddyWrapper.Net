@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using GodaddyWrapper.Helper;
+using Newtonsoft.Json;
 
 namespace GodaddyWrapper
 {
@@ -22,7 +23,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"shoppers/subaccount",request);
+            var response = await client.PostAsync($"shoppers/subaccount", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<ShopperIdResponse>();
         }
@@ -49,7 +50,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"shoppers/{shopperId}", request);
+            var response = await client.PostAsync($"shoppers/{shopperId}", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<ShopperIdResponse>();
         }
