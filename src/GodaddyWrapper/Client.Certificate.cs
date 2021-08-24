@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using GodaddyWrapper.Helper;
+using Newtonsoft.Json;
 
 namespace GodaddyWrapper
 {
@@ -22,7 +23,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"certificates/{request.CertificateId}/cancel", request);
+            var response = await client.PostAsync($"certificates/{request.CertificateId}/cancel", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
             return;
         }
@@ -51,7 +52,7 @@ namespace GodaddyWrapper
             var client = GetBaseHttpClient();
             if (XMarketId != null)
                 client.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await client.PostAsync($"certificates", request);
+            var response = await client.PostAsync($"certificates", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CertificateIdentifierResponse>();
         }
@@ -78,7 +79,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"certificates/{certificateId}/reissue", request);
+            var response = await client.PostAsync($"certificates/{certificateId}/reissue", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
             return;
         }
@@ -92,7 +93,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"certificates/{certificateId}/renew", request);
+            var response = await client.PostAsync($"certificates/{certificateId}/renew", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
             return;
         }
@@ -160,7 +161,7 @@ namespace GodaddyWrapper
         {
             CheckRequestValid(request);
             var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"certificates/{certificateId}/revoke", request);
+            var response = await client.PostAsync($"certificates/{certificateId}/revoke", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
             return;
         }

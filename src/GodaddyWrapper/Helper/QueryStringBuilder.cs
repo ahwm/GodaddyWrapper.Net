@@ -1,5 +1,6 @@
 ﻿using GodaddyWrapper.Attributes;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -11,6 +12,17 @@ namespace GodaddyWrapper.Helper
     {
         public static string RequestObjectToQueryString(object RequestObject)
         {
+            var settings = new JsonSerializerSettings 
+            {
+                ContractResolver = new DefaultContractResolver
+                {
+                    NamingStrategy = new CamelCaseNamingStrategy
+                    {
+                        OverrideSpecifiedNames = false
+                    }
+                },
+                NullValueHandling = NullValueHandling.Ignore 
+            };
             var url = "?";
             foreach (var property in RequestObject.GetType().GetRuntimeProperties())
             {
@@ -26,7 +38,7 @@ namespace GodaddyWrapper.Helper
                     else if (IsList(property.PropertyType.GetTypeInfo()))
                         url += $"{ToFirstLetterLower(property.Name)}={ConvertFromList(property.GetValue(RequestObject))}&";
                     else
-                        url += $"{ToFirstLetterLower(property.Name)}={JsonConvert.SerializeObject(property.GetValue(RequestObject), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore })}&";
+                        url += $"{ToFirstLetterLower(property.Name)}={JsonConvert.SerializeObject(property.GetValue(RequestObject), settings)}&";
                 }
             }
             return url.Trim('&');
