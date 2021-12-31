@@ -2,12 +2,13 @@
 
   <PropertyGroup>
     <Description>GodaddyWrapper.NET is a .NET Wrapper for calling GoDaddy REST API.</Description>
-    <Copyright>Copyright 2015 - 2017 Vip30, 2018 - 2021 ahwm23</Copyright>
+    <Copyright>Copyright 2015 - 2017 Vip30, 2018 - 2022 ahwm23</Copyright>
     <AssemblyTitle>GodaddyWrapper.Net</AssemblyTitle>
     <Authors>vip30, ahwm23</Authors>
     <Version>1.2.4</Version>
+    <AssemblyVersion>2.0.0</AssemblyVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <TargetFrameworks>netstandard1.3;net462;netcoreapp2.1;netcoreapp3.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net462;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <AssemblyName>GodaddyWrapper</AssemblyName>
     <PackageId>GodaddyWrapper</PackageId>
@@ -27,23 +28,23 @@
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
   </ItemGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.3'">
-    <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD1_3</DefineConstants>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
+    <DefineConstants>NETSTANDARD;NETSTANDARD2_0</DefineConstants>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3'">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
   </ItemGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcore2.1'">
-    <DefineConstants>NETCORE;NETCORE2_1</DefineConstants>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net6.0'">
+    <DefineConstants>NET6</DefineConstants>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1'">
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
   </ItemGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcore3.1'">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1'">
     <DefineConstants>NETCORE;NETCORE3_1</DefineConstants>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1'">
