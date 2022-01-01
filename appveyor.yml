@@ -1,4 +1,4 @@
-version: 1.0.{build}
+version: 2.0.{build}
 image: Visual Studio 2022
 
 before_build:
@@ -8,7 +8,7 @@ build:
   verbosity: minimal
 
 artifacts:
-  - path: '\src\GodaddyWrapper\bin\Release\GodaddyWrapper*.*nupkg'
+  - path: '**\*.*nupkg'
     name: NuGet
 
 for:
@@ -25,4 +25,4 @@ for:
    api_key:
      secure: d6j0MYClUTLLg2QiYeQVhiU7akN9KHHt/OqOo+W+Hk2pVkH2mtp/KtsHU3etNT4k
    skip_symbols: false
-   artifact: /GodaddyWrapper*.*nupkg/
+   artifact: /*.*nupkg/
