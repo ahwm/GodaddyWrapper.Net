@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GodaddyWrapper.Requests
 {
-    public class AggreementRetrieve
+    public class AgreementRetrieve
     {
         public List<string> Keys { get; set; }
     }

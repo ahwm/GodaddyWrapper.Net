@@ -21,7 +21,7 @@ namespace GodaddyWrapper
         /// <param name="XPrivateLabelId"></param>
         /// <param name="XMarketId"></param>
         /// <returns></returns>
-        public async Task<List<LegalAgreementResponse>> RetrieveAggreements(AggreementRetrieve request, string XPrivateLabelId = null, string XMarketId = null)
+        public async Task<List<LegalAgreementResponse>> RetrieveAgreements(AgreementRetrieve request, string XPrivateLabelId = null, string XMarketId = null)
         {
             var client = GetBaseHttpClient();
 

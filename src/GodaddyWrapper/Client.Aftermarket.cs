@@ -33,7 +33,7 @@ namespace GodaddyWrapper
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<ListingActionResponse> RemoveAuctionListings(AggreementRetrieve request)
+        public async Task<ListingActionResponse> RemoveAuctionListings(AgreementRetrieve request)
         {
             var client = GetBaseHttpClient();
             var response = await client.DeleteAsync($"aftermarket/listings{QueryStringBuilder.RequestObjectToQueryString(request)}");
