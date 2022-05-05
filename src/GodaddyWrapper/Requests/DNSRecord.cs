@@ -10,7 +10,7 @@ namespace GodaddyWrapper.Requests
     public class DNSRecord
     {
         [Required]
-        [DNSRecordTypeAttribtue]
+        [DNSRecordType]
         public string Type { get; set; }
 
         [Required]

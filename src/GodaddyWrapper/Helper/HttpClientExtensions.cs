@@ -26,7 +26,6 @@ namespace GodaddyWrapper.Helper
             var request = new HttpRequestMessage(method, requestUri){
                 Content = new StringContent(jsonString, Encoding.UTF8, "application/json")
             };
-            HttpResponseMessage response = new HttpResponseMessage();
             return client.SendAsync(request);
         }
     }

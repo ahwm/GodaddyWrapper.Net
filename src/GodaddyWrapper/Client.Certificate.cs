@@ -25,7 +25,6 @@ namespace GodaddyWrapper
             var client = GetBaseHttpClient();
             var response = await client.PostAsync($"certificates/{request.CertificateId}/cancel", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
-            return;
         }
         /// <summary>
         /// Check Domain Control
@@ -38,7 +37,6 @@ namespace GodaddyWrapper
             var client = GetBaseHttpClient();
             var response = await client.PostAsync($"certificates/{request.CertificateId}/verifydomaincontrol", null);
             await CheckResponseMessageIsValid(response);
-            return;
         }
         /// <summary>
         /// Create a pending order for certificate
@@ -81,7 +79,6 @@ namespace GodaddyWrapper
             var client = GetBaseHttpClient();
             var response = await client.PostAsync($"certificates/{certificateId}/reissue", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
-            return;
         }
         /// <summary>
         /// Renew active certificate
@@ -95,7 +92,6 @@ namespace GodaddyWrapper
             var client = GetBaseHttpClient();
             var response = await client.PostAsync($"certificates/{certificateId}/renew", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
-            return;
         }
         /// <summary>
         /// Retrieve certificate detail
@@ -122,7 +118,6 @@ namespace GodaddyWrapper
             var client = GetBaseHttpClient();
             var response = await client.PutAsync($"certificates/{certificateId}/callback", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
-            return;
         }
         /// <summary>
         /// Retrieve certificate details
@@ -163,7 +158,6 @@ namespace GodaddyWrapper
             var client = GetBaseHttpClient();
             var response = await client.PostAsync($"certificates/{certificateId}/revoke", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
-            return;
         }
         /// <summary>
         /// Unregister system callback
@@ -176,7 +170,6 @@ namespace GodaddyWrapper
             var client = GetBaseHttpClient();
             var response = await client.DeleteAsync($"certificates/{request.CertificateId}/callback");
             await CheckResponseMessageIsValid(response);
-            return;
         }
     }
 }

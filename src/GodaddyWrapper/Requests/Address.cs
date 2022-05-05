@@ -23,8 +23,8 @@ namespace GodaddyWrapper.Requests
         [MinLength(1)]
         [MaxLength(10)]
         public string PostalCode { get; set; }
-        [CountryAttribtue]
-        [QueryStringToUpperAttribute]
+        [Country]
+        [QueryStringToUpper]
         public string Country { get; set; }
     }
 }
