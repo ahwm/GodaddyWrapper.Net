@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GodaddyWrapper.Requests
 {
-    public class DNSRecordCreateTypeName
+    public class DNSRecordCreateTypeName : DNSRecordCreateType
     {
 
     }
