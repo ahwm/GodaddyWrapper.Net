@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace GodaddyWrapper.Attributes
 {
-    [AttributeUsage(AttributeTargets.Property |
-AttributeTargets.Field, AllowMultiple = false)]
-    sealed internal class CountryAttribtue : ValidationAttribute
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
+    sealed internal class CountryAttribute : ValidationAttribute
     {
         public List<string> ValidValue = new List<string> { "AC", "AD", "AE", "AF", "AG", "AI", "AL", "AM",
             "AO", "AQ", "AR", "AS", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BM", "BN",

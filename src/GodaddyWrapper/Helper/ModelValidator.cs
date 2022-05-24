@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 namespace GodaddyWrapper.Helper
 {
-    internal class ModelValidator
+    internal static class ModelValidator
     {
         public static bool IsValid(object value, out List<ValidationResult> results)
         {

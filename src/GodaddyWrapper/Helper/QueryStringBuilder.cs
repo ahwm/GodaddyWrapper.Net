@@ -6,9 +6,11 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
+using System.Text;
+
 namespace GodaddyWrapper.Helper
 {
-    internal class QueryStringBuilder
+    internal static class QueryStringBuilder
     {
         public static string RequestObjectToQueryString(object RequestObject)
         {
@@ -23,7 +25,7 @@ namespace GodaddyWrapper.Helper
                 },
                 NullValueHandling = NullValueHandling.Ignore 
             };
-            var url = "?";
+            var url = new StringBuilder("?");
             foreach (var property in RequestObject.GetType().GetRuntimeProperties())
             {
                 if (property.GetValue(RequestObject) != null)
@@ -31,17 +33,17 @@ namespace GodaddyWrapper.Helper
                     if (IsSimple(property.PropertyType.GetTypeInfo()))
                     {
                         if (!(property.GetCustomAttribute(typeof(QueryStringToUpperAttribute)) is QueryStringToUpperAttribute))
-                            url += $"{ToFirstLetterLower(property.Name)}={property.GetValue(RequestObject).ToString().ToLower()}&";
+                            url.Append($"{ToFirstLetterLower(property.Name)}={property.GetValue(RequestObject).ToString().ToLower()}&");
                         else
-                            url += $"{ToFirstLetterLower(property.Name)}={property.GetValue(RequestObject).ToString().ToUpper()}&";
+                            url.Append($"{ToFirstLetterLower(property.Name)}={property.GetValue(RequestObject).ToString().ToUpper()}&");
                     }
                     else if (IsList(property.PropertyType.GetTypeInfo()))
-                        url += $"{ToFirstLetterLower(property.Name)}={ConvertFromList(property.GetValue(RequestObject))}&";
+                        url.Append($"{ToFirstLetterLower(property.Name)}={ConvertFromList(property.GetValue(RequestObject))}&");
                     else
-                        url += $"{ToFirstLetterLower(property.Name)}={JsonConvert.SerializeObject(property.GetValue(RequestObject), settings)}&";
+                        url.Append($"{ToFirstLetterLower(property.Name)}={JsonConvert.SerializeObject(property.GetValue(RequestObject), settings)}&");
                 }
             }
-            return url.Trim('&');
+            return url.ToString().Trim('&');
         }
 
         static bool IsSimple(TypeInfo type)
@@ -60,10 +62,6 @@ namespace GodaddyWrapper.Helper
         static string ConvertFromList(object obj)
         {
             List<string> list = obj as List<string>;
-
-            //string arr = "";
-            //foreach (object i in list)
-            //    arr += $"{(arr.Length > 0 ? "," : "")}{i}";
 
             return String.Join(",", list);
         }

@@ -60,20 +60,17 @@ public partial class Client
             return new AuthenticationHeaderValue("sso-key", $"{AccessKey}:{SecretKey}");
         }
 
-        private async Task CheckResponseMessageIsValid(HttpResponseMessage response)
+        private static async Task CheckResponseMessageIsValid(HttpResponseMessage response)
         {
             if (response.IsSuccessStatusCode)
                 return;
             throw new GodaddyException(response.StatusCode, await response.Content.ReadAsAsync<ErrorResponse>(), "");
         }
 
-        private bool CheckRequestValid(object Model)
+        private static void CheckRequestValid(object Model)
         {
             var results = new List<ValidationResult>();
-            var isValid = ModelValidator.IsValid(Model, out results);
-            if (isValid)
-                return isValid;
-            else
+            if (!ModelValidator.IsValid(Model, out results))
                 throw new Exception(string.Join("\n", results.Select(c => c.ErrorMessage)));
         }
 

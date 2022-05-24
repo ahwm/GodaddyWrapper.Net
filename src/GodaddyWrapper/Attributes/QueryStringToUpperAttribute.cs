@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace GodaddyWrapper.Attributes
 {
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
     sealed internal class QueryStringToUpperAttribute : Attribute
     {
     }

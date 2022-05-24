@@ -12,7 +12,7 @@ namespace GodaddyWrapper.Requests
         [Required]
         public string Query { get; set; }
 
-        [CountryAttribtue]
+        [Country]
         [QueryStringToUpper]
         public string Country { get; set; }
 

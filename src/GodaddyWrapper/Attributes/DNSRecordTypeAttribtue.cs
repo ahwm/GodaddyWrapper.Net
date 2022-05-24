@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace GodaddyWrapper.Attributes
 {
-    [AttributeUsage(AttributeTargets.Property |
-AttributeTargets.Field, AllowMultiple = false)]
-    sealed internal class DNSRecordTypeAttribtue : ValidationAttribute
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
+    sealed internal class DNSRecordTypeAttribute : ValidationAttribute
     {
         public List<string> ValidValue = new List<string> { "AA", "AAAA", "CNAME", "MX", "NS", "SOA", "SRV", "TXT" };
         public override bool IsValid(object value)
