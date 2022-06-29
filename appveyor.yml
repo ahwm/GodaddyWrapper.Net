@@ -23,6 +23,6 @@ for:
  deploy:
    provider: NuGet
    api_key:
-     secure: d6j0MYClUTLLg2QiYeQVhiU7akN9KHHt/OqOo+W+Hk2pVkH2mtp/KtsHU3etNT4k
+     secure: VNM5wnGi0PuiIXenGuDxuF+KvS30kSDa97hCQHkEE2DZ2s8bJC40DPJol7kEUQaS
    skip_symbols: false
    artifact: /GodaddyWrapper*.*nupkg/
