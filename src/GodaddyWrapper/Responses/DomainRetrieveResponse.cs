@@ -14,7 +14,7 @@ namespace GodaddyWrapper.Responses
         public bool ExposeWhois { get; set; }
         public bool HoldRegistrar { get; set; }
         public bool Locked { get; set; }
-        public string NameServers { get; set; }
+        public string[] NameServers { get; set; }
         public bool Privacy { get; set; }
         public bool RenewAuto { get; set; }
         public DateTime RenewDeadline { get; set; }
