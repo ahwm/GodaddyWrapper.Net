@@ -298,9 +298,8 @@ namespace GodaddyWrapper
         /// <param name="Name"></param>
         /// <param name="XShopperId"></param>
         /// <returns></returns>
-        public async Task<DomainDetailResponse> RetrieveDomainDetail(DomainDetailRetrieve request,string domain, string Type, string Name, string XShopperId = null)
+        public async Task<DomainDetailResponse> RetrieveDomainDetail(string domain, string XShopperId = null)
         {
-            CheckRequestValid(request);
             var client = GetBaseHttpClient();
             if (XShopperId != null)
                 client.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
