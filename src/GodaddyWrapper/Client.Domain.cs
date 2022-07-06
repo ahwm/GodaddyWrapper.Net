@@ -298,15 +298,14 @@ namespace GodaddyWrapper
         /// <param name="Name"></param>
         /// <param name="XShopperId"></param>
         /// <returns></returns>
-        public async Task<DomainDetailRetrieve> RetrieveDomainDetail(DomainDetailRetrieve request,string domain, string Type, string Name, string XShopperId = null)
+        public async Task<DomainDetailResponse> RetrieveDomainDetail(string domain, string XShopperId = null)
         {
-            CheckRequestValid(request);
             var client = GetBaseHttpClient();
             if (XShopperId != null)
                 client.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
             var response = await client.GetAsync($"domains/{domain}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<DomainDetailRetrieve>();
+            return await response.Content.ReadAsAsync<DomainDetailResponse>();
         }
         /// <summary>
         /// Retrieve DNS Records for the specified Domain, optionally with the specified Type and/or Name
