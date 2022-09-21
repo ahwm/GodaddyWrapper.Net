@@ -2,17 +2,17 @@
 
   <PropertyGroup>
     <Description>GodaddyWrapper.NET is a .NET Wrapper for calling GoDaddy REST API.</Description>
-    <Copyright>Copyright 2015 - 2017 Vip30, 2018 - 2021 ahwm23</Copyright>
+    <Copyright>Copyright 2015 - 2017 Vip30, 2018 - 2022 ahwm23</Copyright>
     <AssemblyTitle>GodaddyWrapper.Net</AssemblyTitle>
     <Authors>vip30, ahwm23</Authors>
-    <Version>1.3.1</Version>
+    <Version>1.3.2</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <TargetFrameworks>netstandard2.0;net462;netcoreapp3.1;net5.0</TargetFrameworks>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <AssemblyName>GodaddyWrapper</AssemblyName>
     <PackageId>GodaddyWrapper</PackageId>
     <PackageTags>Godaddy;Wrapper;API;DotNet Core;Rest</PackageTags>
-    <PackageReleaseNotes>Fixed response and removed unnecessary method parameters on RetrieveDomainDetail</PackageReleaseNotes>
+    <PackageReleaseNotes>Added RemoveDNSRecordWithTypeAndName</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/ahwm/GodaddyWrapper.Net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ahwm/GodaddyWrapper.Net</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
