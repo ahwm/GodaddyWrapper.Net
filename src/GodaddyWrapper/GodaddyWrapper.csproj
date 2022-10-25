@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3'">
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netcore2.1'">
@@ -40,7 +39,6 @@
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1'">
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netcore3.1'">
@@ -48,7 +46,6 @@
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1'">
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
