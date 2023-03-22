@@ -258,6 +258,23 @@ namespace GodaddyWrapper
             return response.IsSuccessStatusCode;
         }
         /// <summary>
+        /// Delete DNS Record for the specified Domain with the specified Type and Name
+        /// </summary>
+        /// <param name="domain"></param>
+        /// <param name="Type"></param>
+        /// <param name="Name"></param>
+        /// <param name="XShopperId"></param>
+        /// <returns></returns>
+        public async Task<bool> RemoveDNSRecordWithTypeAndName(string domain, string Type, string Name, string XShopperId = null)
+        {
+            var client = GetBaseHttpClient();
+            if ( XShopperId != null )
+                client.DefaultRequestHeaders.Add( "X-Shopper-Id", XShopperId );
+            var response = await client.DeleteAsync($"domains/{domain}/records/{Type}/{Name}");
+            await CheckResponseMessageIsValid( response );
+            return response.IsSuccessStatusCode;
+        }
+        /// <summary>
         /// Retrieve the legal agreement(s) required to purchase the specified TLD and add-ons
         /// </summary>
         /// <param name="request"></param>
