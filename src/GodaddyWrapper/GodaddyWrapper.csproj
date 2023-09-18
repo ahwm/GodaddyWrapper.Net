@@ -17,6 +17,7 @@
     <PackageProjectUrl>https://github.com/ahwm/GodaddyWrapper.Net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ahwm/GodaddyWrapper.Net</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
 	<ItemGroup>
