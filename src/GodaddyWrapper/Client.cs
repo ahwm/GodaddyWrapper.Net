@@ -11,14 +11,15 @@ using GodaddyWrapper.Helper;
 using GodaddyWrapper.Base;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+#if NETSTANDARD
+using Microsoft.Extensions.Options;
+#endif
 
 namespace GodaddyWrapper
 {
-public partial class Client
-{
-        private string AccessKey { get; }
-        private string SecretKey { get; }
-        private string RootPath { get; } = "https://api.ote-godaddy.com/v1/";
+    public partial class GoDaddyClient
+    {
+        private readonly HttpClient httpClient;
 
         readonly JsonSerializerSettings JsonSettings = new JsonSerializerSettings
         {
@@ -32,33 +33,30 @@ public partial class Client
             NullValueHandling = NullValueHandling.Ignore
         };
 
+#if !NETSTANDARD
+        private string ProductionEndpoint { get; } = "https://api.godaddy.com/v1/";
+        private string TestingEndpoint { get; } = "https://api.ote-godaddy.com/v1/";
+
         /// <summary>
         /// Client for calling API
         /// </summary>
-        /// <param name="accessKey"></param>
-        /// <param name="secretKey"></param>
-        /// <param name="rootPath"></param>
-        public Client(string accessKey, string secretKey, string rootPath = null)
+        /// <param name="options"></param>
+        public GoDaddyClient(GoDaddyClientOptions options)
         {
-            AccessKey = accessKey;
-            SecretKey = secretKey;
-            RootPath = rootPath ?? RootPath;
+            httpClient = new HttpClient
+            {
+                BaseAddress = new Uri(options.IsTesting ? TestingEndpoint : ProductionEndpoint)
+            };
+            httpClient.DefaultRequestHeaders.Accept.Clear();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("sso-key", $"{options.AccessKey}:{options.SecretKey}");            
         }
-
-        private HttpClient GetBaseHttpClient()
+#else
+        public GoDaddyClient(HttpClient _client)
         {
-            var client = new HttpClient();
-            client.BaseAddress = new Uri(RootPath);
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = GetAuthenticationHeader();
-            return client;
+            httpClient = _client;
         }
-
-        private AuthenticationHeaderValue GetAuthenticationHeader()
-        {
-            return new AuthenticationHeaderValue("sso-key", $"{AccessKey}:{SecretKey}");
-        }
+#endif
 
         private static async Task CheckResponseMessageIsValid(HttpResponseMessage response)
         {
@@ -73,6 +71,12 @@ public partial class Client
             if (!ModelValidator.IsValid(Model, out results))
                 throw new Exception(string.Join("\n", results.Select(c => c.ErrorMessage)));
         }
+    }
 
+    public sealed class GoDaddyClientOptions
+    {
+        public string AccessKey { get; set; }
+        public string SecretKey { get; set; }
+        public bool IsTesting { get; set; }
     }
 }

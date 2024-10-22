@@ -1,18 +1,13 @@
-﻿using GodaddyWrapper.Responses;
+﻿using GodaddyWrapper.Helper;
 using GodaddyWrapper.Requests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using GodaddyWrapper.Helper;
+using GodaddyWrapper.Responses;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GodaddyWrapper
 {
-    public partial class Client
+    public partial class GoDaddyClient
     {
 
         /// <summary>
@@ -22,8 +17,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<AftermarketListingActionResponse> AddExpiryAuction(List<AftermarketListingExpiryCreate> request)
         {
-            var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"aftermarket/listings/expiry", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsync($"aftermarket/listings/expiry", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AftermarketListingActionResponse>();
         }
@@ -35,8 +29,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<ListingActionResponse> RemoveAuctionListings(AgreementRetrieve request)
         {
-            var client = GetBaseHttpClient();
-            var response = await client.DeleteAsync($"aftermarket/listings{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.DeleteAsync($"aftermarket/listings{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<ListingActionResponse>();
         }

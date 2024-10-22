@@ -1,10 +1,8 @@
-﻿using GodaddyWrapper;
-using GodaddyWrapper.Base;
-using GodaddyWrapper.Requests;
+﻿using GodaddyWrapper.Requests;
 using Shouldly;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace GodaddyWrapper.Tests
@@ -14,31 +12,53 @@ namespace GodaddyWrapper.Tests
         private readonly string AccessKey;
         private readonly string ApiSecret;
 
+        private readonly GoDaddyClient client;
+
+#if NETCORE
+        public DomainTests(GoDaddyClient goDaddyClient)
+        {
+            client = goDaddyClient;
+        }
+#else
         public DomainTests()
         {
             AccessKey = Environment.GetEnvironmentVariable("GODADDY_ACCESS_KEY").Trim();
             ApiSecret = Environment.GetEnvironmentVariable("GODADDY_API_SECRET").Trim();
+            client = new GoDaddyClient(new GoDaddyClientOptions { AccessKey = AccessKey, SecretKey = ApiSecret, IsTesting = true });
         }
+#endif
 
         [Fact]
-        public async void DomainCheckTest()
+        public async Task DomainCheckTest()
         {
-            var client = new Client(AccessKey, ApiSecret, "https://api.ote-godaddy.com/api/v1/");
-            var response = await client.CheckDomainAvailable(new DomainAvailable
+            try
             {
-                Domain = "google.com"
-            });
+                var response = await client.CheckDomainAvailable(new DomainAvailable
+                {
+                    Domain = "google.com"
+                });
 
-            response.Available.ShouldBe(false);
+                response.Available.ShouldBe(false);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
         }
 
         [Fact]
-        public async void DomainListTest()
+        public async Task DomainListTest()
         {
-            var client = new Client(AccessKey, ApiSecret, "https://api.ote-godaddy.com/api/v1/");
-            var response = await client.RetrieveDomainList(new DomainRetrieve { Limit = 100 });
+            try
+            {
+                var response = await client.RetrieveDomainList(new DomainRetrieve { Limit = 100 });
 
-            response.Count.ShouldBe(0);
+                response.Count.ShouldBe(0);
+            }
+            catch (Exception) 
+            {
+                Assert.Fail();
+            }
         }
     }
 }

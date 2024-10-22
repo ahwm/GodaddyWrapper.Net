@@ -11,7 +11,7 @@ using GodaddyWrapper.Helper;
 
 namespace GodaddyWrapper
 {
-    public partial class Client
+    public partial class GoDaddyClient
     {
         /// <summary>
         /// Retrieves summary country information for the provided marketId and filters
@@ -21,8 +21,7 @@ namespace GodaddyWrapper
         public async Task<CountrySummaryResponse> RetrieveCountries(CountriesRetrieve request)
         {
             CheckRequestValid(request);
-            var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"countries{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.GetAsync($"countries{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CountrySummaryResponse>();
         }
@@ -35,8 +34,7 @@ namespace GodaddyWrapper
         public async Task<CountryResponse> RetrieveCountryDetail(CountryDetailRetrieve request, string CountryKey)
         {
             CheckRequestValid(request);
-            var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"countries/{CountryKey}{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.GetAsync($"countries/{CountryKey}{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CountryResponse>();
         }

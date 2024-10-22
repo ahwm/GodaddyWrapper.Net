@@ -1,17 +1,12 @@
-﻿using GodaddyWrapper.Responses;
+﻿using GodaddyWrapper.Helper;
 using GodaddyWrapper.Requests;
-using System;
+using GodaddyWrapper.Responses;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using GodaddyWrapper.Helper;
 
 namespace GodaddyWrapper
 {
-    public partial class Client
+    public partial class GoDaddyClient
     {
 
         /// <summary>
@@ -23,13 +18,11 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<List<LegalAgreementResponse>> RetrieveAgreements(AgreementRetrieve request, string XPrivateLabelId = null, string XMarketId = null)
         {
-            var client = GetBaseHttpClient();
-
             if (XPrivateLabelId != null)
-                client.DefaultRequestHeaders.Add("X-Private-Label-Id", XPrivateLabelId);
+                httpClient.DefaultRequestHeaders.Add("X-Private-Label-Id", XPrivateLabelId);
             if (XMarketId != null)
-                client.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await client.GetAsync($"aggreements{QueryStringBuilder.RequestObjectToQueryString(request)}");
+                httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
+            var response = await httpClient.GetAsync($"aggreements{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<List<LegalAgreementResponse>>();
         }
