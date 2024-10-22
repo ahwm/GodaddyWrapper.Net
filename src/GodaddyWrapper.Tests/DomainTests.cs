@@ -1,4 +1,8 @@
-﻿using System;
+﻿using GodaddyWrapper.Requests;
+using Shouldly;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace GodaddyWrapper.Tests
@@ -8,31 +12,53 @@ namespace GodaddyWrapper.Tests
         private readonly string AccessKey;
         private readonly string ApiSecret;
 
+        private readonly GoDaddyClient client;
+
+#if NETCORE
+        public DomainTests(GoDaddyClient goDaddyClient)
+        {
+            client = goDaddyClient;
+        }
+#else
         public DomainTests()
         {
             AccessKey = Environment.GetEnvironmentVariable("GODADDY_ACCESS_KEY").Trim();
             ApiSecret = Environment.GetEnvironmentVariable("GODADDY_API_SECRET").Trim();
+            client = new GoDaddyClient(new GoDaddyClientOptions { AccessKey = AccessKey, SecretKey = ApiSecret, IsTesting = true });
+        }
+#endif
+
+        [Fact]
+        public async Task DomainCheckTest()
+        {
+            try
+            {
+                var response = await client.CheckDomainAvailable(new DomainAvailable
+                {
+                    Domain = "google.com"
+                });
+
+                response.Available.ShouldBe(false);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
         }
 
         [Fact]
-        public async void DomainCheckTest()
+        public async Task DomainListTest()
         {
-            //var client = new GoDaddyClient(new HttpClient(), new GoDaddyClientOptions { AccessKey = AccessKey, SecretKey = ApiSecret, IsTesting = true });
-            //var response = await client.CheckDomainAvailable(new DomainAvailable
-            //{
-            //    Domain = "google.com"
-            //});
+            try
+            {
+                var response = await client.RetrieveDomainList(new DomainRetrieve { Limit = 100 });
 
-            //response.Available.ShouldBe(false);
-        }
-
-        [Fact]
-        public async void DomainListTest()
-        {
-            //var client = new GoDaddyClient(new HttpClient(), new GoDaddyClientOptions { AccessKey = AccessKey, SecretKey = ApiSecret, IsTesting = true });
-            //var response = await client.RetrieveDomainList(new DomainRetrieve { Limit = 100 });
-
-            //response.Count.ShouldBe(0);
+                response.Count.ShouldBe(0);
+            }
+            catch (Exception) 
+            {
+                Assert.Fail();
+            }
         }
     }
 }

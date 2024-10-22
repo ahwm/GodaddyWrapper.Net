@@ -19,9 +19,6 @@ namespace GodaddyWrapper
 {
     public partial class GoDaddyClient
     {
-        private string ProductionEndpoint { get; } = "https://api.godaddy.com/v1/";
-        private string TestingEndpoint { get; } = "https://api.ote-godaddy.com/v1/";
-
         private readonly HttpClient httpClient;
 
         readonly JsonSerializerSettings JsonSettings = new JsonSerializerSettings
@@ -37,6 +34,9 @@ namespace GodaddyWrapper
         };
 
 #if !NETSTANDARD
+        private string ProductionEndpoint { get; } = "https://api.godaddy.com/v1/";
+        private string TestingEndpoint { get; } = "https://api.ote-godaddy.com/v1/";
+
         /// <summary>
         /// Client for calling API
         /// </summary>
@@ -52,14 +52,9 @@ namespace GodaddyWrapper
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("sso-key", $"{options.AccessKey}:{options.SecretKey}");            
         }
 #else
-        public GoDaddyClient(HttpClient _client, IOptions<GoDaddyClientOptions> options)
+        public GoDaddyClient(HttpClient _client)
         {
-            var opts = options.Value;
             httpClient = _client;
-            httpClient.BaseAddress = new Uri(opts.IsTesting ? TestingEndpoint : ProductionEndpoint);
-            httpClient.DefaultRequestHeaders.Accept.Clear();
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("sso-key", $"{opts.AccessKey}:{opts.SecretKey}");
         }
 #endif
 
