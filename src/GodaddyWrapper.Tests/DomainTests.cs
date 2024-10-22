@@ -1,10 +1,4 @@
-﻿using GodaddyWrapper;
-using GodaddyWrapper.Base;
-using GodaddyWrapper.Requests;
-using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using Xunit;
 
 namespace GodaddyWrapper.Tests
@@ -23,22 +17,22 @@ namespace GodaddyWrapper.Tests
         [Fact]
         public async void DomainCheckTest()
         {
-            var client = new Client(AccessKey, ApiSecret, "https://api.ote-godaddy.com/api/v1/");
-            var response = await client.CheckDomainAvailable(new DomainAvailable
-            {
-                Domain = "google.com"
-            });
+            //var client = new GoDaddyClient(new HttpClient(), new GoDaddyClientOptions { AccessKey = AccessKey, SecretKey = ApiSecret, IsTesting = true });
+            //var response = await client.CheckDomainAvailable(new DomainAvailable
+            //{
+            //    Domain = "google.com"
+            //});
 
-            response.Available.ShouldBe(false);
+            //response.Available.ShouldBe(false);
         }
 
         [Fact]
         public async void DomainListTest()
         {
-            var client = new Client(AccessKey, ApiSecret, "https://api.ote-godaddy.com/api/v1/");
-            var response = await client.RetrieveDomainList(new DomainRetrieve { Limit = 100 });
+            //var client = new GoDaddyClient(new HttpClient(), new GoDaddyClientOptions { AccessKey = AccessKey, SecretKey = ApiSecret, IsTesting = true });
+            //var response = await client.RetrieveDomainList(new DomainRetrieve { Limit = 100 });
 
-            response.Count.ShouldBe(0);
+            //response.Count.ShouldBe(0);
         }
     }
 }

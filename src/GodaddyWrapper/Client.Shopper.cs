@@ -1,18 +1,12 @@
-﻿using GodaddyWrapper.Responses;
+﻿using GodaddyWrapper.Helper;
 using GodaddyWrapper.Requests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using GodaddyWrapper.Helper;
+using GodaddyWrapper.Responses;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace GodaddyWrapper
 {
-    public partial class Client
+    public partial class GoDaddyClient
     {
         /// <summary>
         /// Create a Subaccount owned by the authenticated Reseller
@@ -22,8 +16,7 @@ namespace GodaddyWrapper
         public async Task<ShopperIdResponse> CreateSubaccount(SubaccountCreate request)
         {
             CheckRequestValid(request);
-            var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"shoppers/subaccount", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsync($"shoppers/subaccount", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<ShopperIdResponse>();
         }
@@ -35,8 +28,7 @@ namespace GodaddyWrapper
         public async Task<ShopperResponse> RetrieveShopper(ShopperRetrieve request)
         {
             CheckRequestValid(request);
-            var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"shoppers/{request.ShopperId}");
+            var response = await httpClient.GetAsync($"shoppers/{request.ShopperId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<ShopperResponse>();
         }
@@ -49,12 +41,9 @@ namespace GodaddyWrapper
         public async Task<ShopperIdResponse> UpdateShopper(ShopperUpdate request, string shopperId)
         {
             CheckRequestValid(request);
-            var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"shoppers/{shopperId}", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsync($"shoppers/{shopperId}", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<ShopperIdResponse>();
         }
-
-
     }
 }

@@ -1,17 +1,11 @@
-﻿using GodaddyWrapper.Responses;
+﻿using GodaddyWrapper.Helper;
 using GodaddyWrapper.Requests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
+using GodaddyWrapper.Responses;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using GodaddyWrapper.Helper;
 
 namespace GodaddyWrapper
 {
-    public partial class Client
+    public partial class GoDaddyClient
     {
         /// <summary>
         /// Retrieve a list of orders for the authenticated shopper. Only one filter may be used at a time
@@ -23,12 +17,11 @@ namespace GodaddyWrapper
         public async Task<OrderListResponse> RetrieveOrderList(OrderRetrieve request, string XShopperId, string XMarketId)
         {
             CheckRequestValid(request);
-            var client = GetBaseHttpClient();
             if (XShopperId != null)
-                client.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
+                httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
             if (XMarketId != null)
-                client.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await client.GetAsync($"orders{QueryStringBuilder.RequestObjectToQueryString(request)}");
+                httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
+            var response = await httpClient.GetAsync($"orders{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<OrderListResponse>();
         }
@@ -42,12 +35,11 @@ namespace GodaddyWrapper
         public async Task<OrderResponse> RetrieveSpecificOrder(OrderDetailRetrieve request, string XShopperId, string XMarketId)
         {
             CheckRequestValid(request);
-            var client = GetBaseHttpClient();
             if (XShopperId != null)
-                client.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
+                httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
             if (XMarketId != null)
-                client.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await client.GetAsync($"orders/{request.OrderId}");
+                httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
+            var response = await httpClient.GetAsync($"orders/{request.OrderId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<OrderResponse>();
         }

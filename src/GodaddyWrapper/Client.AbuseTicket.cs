@@ -1,18 +1,12 @@
-﻿using GodaddyWrapper.Responses;
+﻿using GodaddyWrapper.Helper;
 using GodaddyWrapper.Requests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using GodaddyWrapper.Helper;
+using GodaddyWrapper.Responses;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace GodaddyWrapper
 {
-    public partial class Client
+    public partial class GoDaddyClient
     {
         /// <summary>
         /// Create a new abuse ticket
@@ -21,8 +15,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<AbuseTicketIdResponse> CreateAbuseTicket(AbuseTicketCreate request)
         {
-            var client = GetBaseHttpClient();
-            var response = await client.PostAsync($"abuse/tickets", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsync($"abuse/tickets", JsonConvert.SerializeObject(request, JsonSettings));
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AbuseTicketIdResponse>();
         }
@@ -33,8 +26,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<AbuseTicketListResponse> RetrieveAbuseTickets(AbuseTicketRetrieve request)
         {
-            var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"abuse/tickets{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.GetAsync($"abuse/tickets{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AbuseTicketListResponse>();
         }
@@ -46,11 +38,9 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<AbuseTicketResponse> RetrieveAbuseTicketDetail(AbuseTicketDetailRetrieve request)
         {
-            var client = GetBaseHttpClient();
-            var response = await client.GetAsync($"abuse/tickets/{request.TicketId}");
+            var response = await httpClient.GetAsync($"abuse/tickets/{request.TicketId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AbuseTicketResponse>();
         }
-
     }
 }
