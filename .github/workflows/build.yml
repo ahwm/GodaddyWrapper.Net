@@ -26,6 +26,10 @@ jobs:
           cd src
           dotnet build
       - name: Test
+        if: ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' }}
+        env:
+          GODADDY_API_SECRET: ${{ secrets.GODADDY_API_SECRET }}
+          GODADDY_ACCESS_KEY: ${{ secrets.GODADDY_ACCESS_KEY }}
         run: |
           cd src
           dotnet test --no-build --verbosity normal

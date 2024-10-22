@@ -11,10 +11,19 @@ namespace GodaddyWrapper.Tests
 {
     public class DomainTests
     {
+        private readonly string AccessKey;
+        private readonly string ApiSecret;
+
+        public DomainTests()
+        {
+            AccessKey = Environment.GetEnvironmentVariable("GODADDY_ACCESS_KEY").Trim();
+            ApiSecret = Environment.GetEnvironmentVariable("GODADDY_API_SECRET").Trim();
+        }
+
         [Fact]
         public async void DomainCheckTest()
         {
-            var client = new Client("3mM44UbhEZZWcL_HqbVN2G2MDcpugKnmaypKz", "TNAYNy9EPJLKq2Zf3KFHQp", "https://api.ote-godaddy.com/api/v1/");
+            var client = new Client(AccessKey, ApiSecret, "https://api.ote-godaddy.com/api/v1/");
             var response = await client.CheckDomainAvailable(new DomainAvailable
             {
                 Domain = "google.com"
@@ -26,7 +35,7 @@ namespace GodaddyWrapper.Tests
         [Fact]
         public async void DomainListTest()
         {
-            var client = new Client("3mM44UbhEZZWcL_HqbVN2G2MDcpugKnmaypKz", "TNAYNy9EPJLKq2Zf3KFHQp", "https://api.ote-godaddy.com/api/v1/");
+            var client = new Client(AccessKey, ApiSecret, "https://api.ote-godaddy.com/api/v1/");
             var response = await client.RetrieveDomainList(new DomainRetrieve { Limit = 100 });
 
             response.Count.ShouldBe(0);
