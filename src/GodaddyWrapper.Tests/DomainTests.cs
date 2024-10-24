@@ -9,8 +9,6 @@ namespace GodaddyWrapper.Tests
 {
     public class DomainTests
     {
-        private readonly string AccessKey;
-        private readonly string ApiSecret;
 
         private readonly GoDaddyClient client;
 
@@ -22,9 +20,9 @@ namespace GodaddyWrapper.Tests
 #else
         public DomainTests()
         {
-            AccessKey = Environment.GetEnvironmentVariable("GODADDY_ACCESS_KEY").Trim();
-            ApiSecret = Environment.GetEnvironmentVariable("GODADDY_API_SECRET").Trim();
-            client = new GoDaddyClient(new GoDaddyClientOptions { AccessKey = AccessKey, SecretKey = ApiSecret, IsTesting = true });
+            var accessKey = Environment.GetEnvironmentVariable("GODADDY_ACCESS_KEY").Trim();
+            var apiSecret = Environment.GetEnvironmentVariable("GODADDY_API_SECRET").Trim();
+            client = new GoDaddyClient(new GoDaddyClientOptions { AccessKey = accessKey, SecretKey = apiSecret, IsTesting = true });
         }
 #endif
 
