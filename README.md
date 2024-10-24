@@ -11,10 +11,16 @@ GodaddyWrapper.NET is a .NET Wrapper for calling GoDaddy REST API.
 
 ## Usage
 
-.NET Framework
+### .NET Framework
 
 ```cs
-var client = new GoDaddyClient(new GoDaddyClientOptions { AccessKey = "{key}", SecretKey = "{secret}", IsTesting = true /* false to use production */ });
+var options = new GoDaddyClientOptions 
+{
+    AccessKey = "{key}",
+    SecretKey = "{secret}",
+    IsTesting = true /* false to use production */
+};
+var client = new GoDaddyClient(options);
 
 try
 {
@@ -32,12 +38,15 @@ catch (GodaddyException ex)
 }
 ```
 
-.NET Core/.NET 5+
+### .NET Core/.NET 5+
 
 Program.cs / Startup.cs
 
 ```cs
-builder.Services.AddGoDaddy(configuration.GoDaddyAccessKey, configuration.GoDaddySecretKey, configuration.Sandbox);
+builder.Services.AddGoDaddy(
+    configuration.GoDaddyAccessKey,
+    configuration.GoDaddySecretKey,
+    configuration.Sandbox);
 ```
 
 Service Class (or controller)
@@ -68,7 +77,7 @@ catch (GodaddyException ex)
 - Various dependency updates
 - Eliminated new `HttpClient` instantiation for every API call
 
-**⚠️Breaking Changes**
+#### ⚠️Breaking Changes
 
 - Renamed `Client` to `GoDaddyClient`
 - Constructor now takes `GoDaddyClientOptions` object (.NET Framework 4.6.2+ only)
