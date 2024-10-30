@@ -72,7 +72,7 @@ catch (GodaddyException ex)
 
 ## Version History
 
-### 3.0.0-beta1
+### 3.0.0
 
 - Various dependency updates
 - Eliminated new `HttpClient` instantiation for every API call
