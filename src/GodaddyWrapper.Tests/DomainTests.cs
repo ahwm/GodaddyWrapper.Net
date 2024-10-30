@@ -38,8 +38,9 @@ namespace GodaddyWrapper.Tests
 
                 response.Available.ShouldBe(false);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 Assert.Fail();
             }
         }
@@ -53,8 +54,9 @@ namespace GodaddyWrapper.Tests
 
                 response.Count.ShouldBe(0);
             }
-            catch (Exception) 
+            catch (Exception ex) 
             {
+                Console.WriteLine(ex.ToString());
                 Assert.Fail();
             }
         }
