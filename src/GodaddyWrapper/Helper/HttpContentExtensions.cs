@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace GodaddyWrapper.Helper
@@ -13,12 +13,9 @@ namespace GodaddyWrapper.Helper
 	/// </summary>
 	internal static class HttpContentExtensions
     {
-        public static Task<T> ReadAsAsync<T>(this HttpContent client)
+        public static async Task<T> ReadAsAsync<T>(this HttpContent client, JsonSerializerOptions options)
         {
-            return client.ReadAsStringAsync().ContinueWith(data =>
-            {
-                return JsonConvert.DeserializeObject<T>(data.Result);
-            });
+            return await JsonSerializer.DeserializeAsync<T>(await client.ReadAsStreamAsync(), options);
         }
 
     }
