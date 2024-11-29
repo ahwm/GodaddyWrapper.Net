@@ -11,6 +11,7 @@ using GodaddyWrapper.Helper;
 using GodaddyWrapper.Base;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using GodaddyWrapper.Serialization;
 
 
 #if NETSTANDARD
@@ -22,12 +23,12 @@ namespace GodaddyWrapper
     public partial class GoDaddyClient
     {
         private readonly HttpClient httpClient;
+#if NET8_0_OR_GREATER
+        private readonly static JsonSerializerOptions JsonSettings = JsonContext.Default.Options;
+#else
+        private readonly static JsonSerializerOptions JsonSettings = JsonContext.Options;
 
-        private readonly static JsonSerializerOptions JsonSettings = new JsonSerializerOptions(JsonSerializerDefaults.Web)
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-        };
+#endif
 
 #if !NETSTANDARD
         private string ProductionEndpoint { get; } = "https://api.godaddy.com/v1/";

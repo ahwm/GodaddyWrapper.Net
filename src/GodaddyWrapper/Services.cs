@@ -1,4 +1,4 @@
-﻿#if NETSTANDARD
+﻿#if NETSTANDARD || NET8_0_OR_GREATER
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Net.Http.Headers;
 
 namespace GodaddyWrapper
 {
-#if NETSTANDARD
+#if NETSTANDARD || NET8_0_OR_GREATER
     public static class ServicesExtension
     {
         /// <summary>
