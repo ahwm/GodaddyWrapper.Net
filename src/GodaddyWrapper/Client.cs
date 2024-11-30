@@ -23,12 +23,7 @@ namespace GodaddyWrapper
     public partial class GoDaddyClient
     {
         private readonly HttpClient httpClient;
-#if NETSTANDARD
         private readonly static JsonSerializerOptions JsonSettings = JsonContext.Default.Options;
-#else
-        private readonly static JsonSerializerOptions JsonSettings = JsonContext.Options;
-
-#endif
 
 #if !NETSTANDARD
         private string ProductionEndpoint { get; } = "https://api.godaddy.com/v1/";
