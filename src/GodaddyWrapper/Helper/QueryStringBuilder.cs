@@ -1,30 +1,25 @@
 ﻿using GodaddyWrapper.Attributes;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace GodaddyWrapper.Helper
 {
     internal static class QueryStringBuilder
     {
+        private readonly static JsonSerializerOptions JsonSettings = new JsonSerializerOptions(JsonSerializerDefaults.Web)
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        };
+
         public static string RequestObjectToQueryString(object RequestObject)
         {
-            var settings = new JsonSerializerSettings 
-            {
-                ContractResolver = new DefaultContractResolver
-                {
-                    NamingStrategy = new CamelCaseNamingStrategy
-                    {
-                        OverrideSpecifiedNames = false
-                    }
-                },
-                NullValueHandling = NullValueHandling.Ignore 
-            };
             var url = new StringBuilder("?");
             foreach (var property in RequestObject.GetType().GetRuntimeProperties())
             {
@@ -40,7 +35,7 @@ namespace GodaddyWrapper.Helper
                     else if (IsList(property.PropertyType.GetTypeInfo()))
                         url.Append($"{ToFirstLetterLower(property.Name)}={ConvertFromList(property.GetValue(RequestObject))}&");
                     else
-                        url.Append($"{ToFirstLetterLower(property.Name)}={JsonConvert.SerializeObject(property.GetValue(RequestObject), settings)}&");
+                        url.Append($"{ToFirstLetterLower(property.Name)}={JsonSerializer.Serialize(property.GetValue(RequestObject), JsonSettings)}&");
                 }
             }
             return url.ToString().Trim('&');

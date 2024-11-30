@@ -1,8 +1,8 @@
 ﻿using GodaddyWrapper.Helper;
 using GodaddyWrapper.Requests;
 using GodaddyWrapper.Responses;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace GodaddyWrapper
@@ -21,7 +21,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             if (XShopperId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await httpClient.PatchAsync($"domains/{domain}/records", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PatchAsJsonAsync($"domains/{domain}/records", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
             return response.IsSuccessStatusCode;
         }
@@ -33,19 +33,19 @@ namespace GodaddyWrapper
         public async Task<DomainAvailableBulkResultResponse> BulkCheckDomainAvailable(Requests.DomainAvailableBulk request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsync($"domains/available?checkType={request.CheckType}", JsonConvert.SerializeObject(request.Domains, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync($"domains/available?checkType={request.CheckType}", request.Domains, JsonSettings);
             await CheckResponseMessageIsValid(response);
             if (response.StatusCode.ToString() == "203")
                 return new DomainAvailableBulkResultResponse
                 {
                     IsFullySuccessed = false,
-                    BulkMixedDomain = await response.Content.ReadAsAsync<DomainAvailableBulkMixedResponse>()
+                    BulkMixedDomain = await response.Content.ReadAsAsync<DomainAvailableBulkMixedResponse>(JsonSettings)
                 };
             else
                 return new DomainAvailableBulkResultResponse
                 {
                     IsFullySuccessed = true,
-                    BulkDomain = await response.Content.ReadAsAsync<Responses.DomainAvailableBulkResponse>()
+                    BulkDomain = await response.Content.ReadAsAsync<Responses.DomainAvailableBulkResponse>(JsonSettings)
                 };
         }
         /// <summary>
@@ -88,7 +88,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             var response = await httpClient.GetAsync($"domains/available{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<DomainAvailableResponse>();
+            return await response.Content.ReadAsAsync<DomainAvailableResponse>(JsonSettings);
         }
         /// <summary>
         /// Purchase and register the specified Domain
@@ -101,9 +101,9 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             if (XShopperId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await httpClient.PostAsync("domains/purchase", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync("domains/purchase", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<DomainPurchaseResponse>();
+            return await response.Content.ReadAsAsync<DomainPurchaseResponse>(JsonSettings);
         }
         /// <summary>
         /// Purchase and register the specified Domain without privacy (For the Tld which is not support privacy)
@@ -116,9 +116,9 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             if (XShopperId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await httpClient.PostAsync("domains/purchase", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync("domains/purchase", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<DomainPurchaseResponse>();
+            return await response.Content.ReadAsAsync<DomainPurchaseResponse>(JsonSettings);
         }
         /// <summary>
         /// Purchase privacy for a specified domain
@@ -132,9 +132,9 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             if (XShopperId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await httpClient.PostAsync($"domains/{domain}/privacy/purchase", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync($"domains/{domain}/privacy/purchase", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<DomainPurchaseResponse>();
+            return await response.Content.ReadAsAsync<DomainPurchaseResponse>(JsonSettings);
         }
         /// <summary>
         /// Retrieve the schema to be submitted when registering a Domain for the specified TLD
@@ -146,7 +146,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             var response = await httpClient.GetAsync($"domains/purchase/schema/{request.Tld}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<JsonPropertyResponse>();
+            return await response.Content.ReadAsAsync<JsonPropertyResponse>(JsonSettings);
         }
         /// <summary>
         /// Validate the request body using the Domain Purchase Schema for the specified TLD
@@ -156,7 +156,7 @@ namespace GodaddyWrapper
         public async Task<bool> PurchaseDomainValidate(DomainPurchase request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsync("domains/purchase/validate", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync("domains/purchase/validate", request, JsonSettings);
             return response.IsSuccessStatusCode;
         }
         /// <summary>
@@ -167,7 +167,7 @@ namespace GodaddyWrapper
         public async Task<bool> PurchaseDomainValidateWithoutPrivacy(DomainPurchaseWithoutPrivacy request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsync("domains/purchase/validate", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync("domains/purchase/validate", request, JsonSettings);
             return response.IsSuccessStatusCode;
         }
         /// <summary>
@@ -182,9 +182,9 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             if (XShopperId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await httpClient.PostAsync($"domains/{domain}/renew", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync($"domains/{domain}/renew", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<DomainPurchaseResponse>();
+            return await response.Content.ReadAsAsync<DomainPurchaseResponse>(JsonSettings);
         }
         /// <summary>
         /// Replace all DNS Records for the specified Domain
@@ -198,7 +198,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             if (XShopperId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await httpClient.PutAsync($"domains/{domain}/records", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PutAsJsonAsync($"domains/{domain}/records", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
             return response.IsSuccessStatusCode;
         }
@@ -215,7 +215,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             if (XShopperId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await httpClient.PutAsync($"domains/{domain}/records/{Type}", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PutAsJsonAsync($"domains/{domain}/records/{Type}", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
             return response.IsSuccessStatusCode;
         }
@@ -233,7 +233,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             if (XShopperId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await httpClient.PutAsync($"domains/{domain}/records/{Type}/{Name}", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PutAsJsonAsync($"domains/{domain}/records/{Type}/{Name}", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
             return response.IsSuccessStatusCode;
         }
@@ -266,7 +266,7 @@ namespace GodaddyWrapper
                 httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
             var response = await httpClient.GetAsync($"domains/agreements{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<List<LegalAgreementResponse>>();
+            return await response.Content.ReadAsAsync<List<LegalAgreementResponse>>(JsonSettings);
         }
         /// <summary>
         /// Retrieve a list of Domains for the specified Shopper
@@ -281,7 +281,7 @@ namespace GodaddyWrapper
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
             var response = await httpClient.GetAsync($"domains{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<List<DomainRetrieveResponse>>();
+            return await response.Content.ReadAsAsync<List<DomainRetrieveResponse>>(JsonSettings);
         }
         /// <summary>
         /// Retrieve details for the specified Domain
@@ -298,7 +298,7 @@ namespace GodaddyWrapper
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
             var response = await httpClient.GetAsync($"domains/{domain}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<DomainDetailResponse>();
+            return await response.Content.ReadAsAsync<DomainDetailResponse>(JsonSettings);
         }
         /// <summary>
         /// Retrieve DNS Records for the specified Domain, optionally with the specified Type and/or Name
@@ -317,7 +317,7 @@ namespace GodaddyWrapper
             string urlPath = $"domains/{domain}/records/{Type}{(string.IsNullOrEmpty(Name) ? "" : $"/{Name}")}";
             var response = await httpClient.GetAsync($"{urlPath}{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<List<DNSRecordResponse>>();
+            return await response.Content.ReadAsAsync<List<DNSRecordResponse>>(JsonSettings);
         }
         /// <summary>
         /// Suggest alternate Domain names based on a seed Domain, a set of keywords, or the shopper's purchase history
@@ -329,7 +329,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             var response = await httpClient.GetAsync($"domains/suggest{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<List<DomainSuggestionResponse>>();
+            return await response.Content.ReadAsAsync<List<DomainSuggestionResponse>>(JsonSettings);
         }
         /// <summary>
         /// Retrieves a list of TLDs supported and enabled for sale
@@ -339,7 +339,7 @@ namespace GodaddyWrapper
         {
             var response = await httpClient.GetAsync("domains/tlds");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<List<TldSummaryResponse>>();
+            return await response.Content.ReadAsAsync<List<TldSummaryResponse>>(JsonSettings);
         }
         /// <summary>
         /// Purchase and start or restart transfer process
@@ -353,9 +353,9 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             if (XShopperId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await httpClient.PostAsync($"domains/{domain}/transfer", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync($"domains/{domain}/transfer", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<DomainTransferIn>();
+            return await response.Content.ReadAsAsync<DomainTransferIn>(JsonSettings);
         }
         /// <summary>
         /// Update details for the specified Domain
@@ -369,7 +369,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             if (XShopperId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await httpClient.PatchAsync($"domains/{domain}", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PatchAsJsonAsync($"domains/{domain}", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
             return response.IsSuccessStatusCode;
         }
@@ -385,7 +385,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             if (XShopperId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await httpClient.PatchAsync($"domains/{domain}/contacts", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PatchAsJsonAsync($"domains/{domain}/contacts", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
             return response.IsSuccessStatusCode;
         }

@@ -24,7 +24,7 @@ namespace GodaddyWrapper
                 httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
             var response = await httpClient.GetAsync($"aggreements{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<List<LegalAgreementResponse>>();
+            return await response.Content.ReadAsAsync<List<LegalAgreementResponse>>(JsonSettings);
         }
 
     }

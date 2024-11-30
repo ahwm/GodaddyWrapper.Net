@@ -1,8 +1,8 @@
 ﻿using GodaddyWrapper.Helper;
 using GodaddyWrapper.Requests;
 using GodaddyWrapper.Responses;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace GodaddyWrapper
@@ -17,9 +17,9 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<AftermarketListingActionResponse> AddExpiryAuction(List<AftermarketListingExpiryCreate> request)
         {
-            var response = await httpClient.PostAsync($"aftermarket/listings/expiry", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync($"aftermarket/listings/expiry", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<AftermarketListingActionResponse>();
+            return await response.Content.ReadAsAsync<AftermarketListingActionResponse>(JsonSettings);
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace GodaddyWrapper
         {
             var response = await httpClient.DeleteAsync($"aftermarket/listings{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<ListingActionResponse>();
+            return await response.Content.ReadAsAsync<ListingActionResponse>(JsonSettings);
         }
 
     }

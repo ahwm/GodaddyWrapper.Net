@@ -23,7 +23,7 @@ namespace GodaddyWrapper
                 httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
             var response = await httpClient.GetAsync($"orders{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<OrderListResponse>();
+            return await response.Content.ReadAsAsync<OrderListResponse>(JsonSettings);
         }
         /// <summary>
         /// Retrieve details for specified order
@@ -41,7 +41,7 @@ namespace GodaddyWrapper
                 httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
             var response = await httpClient.GetAsync($"orders/{request.OrderId}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<OrderResponse>();
+            return await response.Content.ReadAsAsync<OrderResponse>(JsonSettings);
         }
     }
 }

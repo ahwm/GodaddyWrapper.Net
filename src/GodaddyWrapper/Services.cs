@@ -1,4 +1,4 @@
-﻿#if NETSTANDARD
+﻿#if NETSTANDARD || NET8_0_OR_GREATER
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;

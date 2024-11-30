@@ -1,13 +1,7 @@
-﻿using GodaddyWrapper.Responses;
+﻿using GodaddyWrapper.Helper;
 using GodaddyWrapper.Requests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
+using GodaddyWrapper.Responses;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using GodaddyWrapper.Helper;
 
 namespace GodaddyWrapper
 {
@@ -23,7 +17,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             var response = await httpClient.GetAsync($"countries{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<CountrySummaryResponse>();
+            return await response.Content.ReadAsAsync<CountrySummaryResponse>(JsonSettings);
         }
         /// <summary>
         /// Retrieves country and summary state information for provided countryKey
@@ -36,7 +30,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             var response = await httpClient.GetAsync($"countries/{CountryKey}{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<CountryResponse>();
+            return await response.Content.ReadAsAsync<CountryResponse>(JsonSettings);
         }
     }
 }

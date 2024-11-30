@@ -39,7 +39,7 @@ namespace GodaddyWrapper
                 httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
             var response = await httpClient.GetAsync($"subscriptions{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<SubscriptionListResponse>();
+            return await response.Content.ReadAsAsync<SubscriptionListResponse>(JsonSettings);
         }
         /// <summary>
         /// Retrieve a list of ProductGroups for the specified Shopper
@@ -55,7 +55,7 @@ namespace GodaddyWrapper
                 httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
             var response = await httpClient.GetAsync($"subscriptions/productgroups");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<List<ProductGroupResponse>>();
+            return await response.Content.ReadAsAsync<List<ProductGroupResponse>>(JsonSettings);
         }
         /// <summary>
         /// Retrieve details for the specified Subscription
@@ -73,7 +73,7 @@ namespace GodaddyWrapper
                 httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
             var response = await httpClient.GetAsync($"subscriptions/{request.SubscriptionId}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<SubscriptionResponse>();
+            return await response.Content.ReadAsAsync<SubscriptionResponse>(JsonSettings);
         }
     }
 }

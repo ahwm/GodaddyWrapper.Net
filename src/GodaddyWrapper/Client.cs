@@ -9,8 +9,11 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using GodaddyWrapper.Helper;
 using GodaddyWrapper.Base;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using GodaddyWrapper.Serialization;
+
+
 #if NETSTANDARD
 using Microsoft.Extensions.Options;
 #endif
@@ -20,18 +23,7 @@ namespace GodaddyWrapper
     public partial class GoDaddyClient
     {
         private readonly HttpClient httpClient;
-
-        readonly JsonSerializerSettings JsonSettings = new JsonSerializerSettings
-        {
-            ContractResolver = new DefaultContractResolver
-            {
-                NamingStrategy = new CamelCaseNamingStrategy
-                {
-                    OverrideSpecifiedNames = false
-                }
-            },
-            NullValueHandling = NullValueHandling.Ignore
-        };
+        private readonly static JsonSerializerOptions JsonSettings = JsonContext.Default.Options;
 
 #if !NETSTANDARD
         private string ProductionEndpoint { get; } = "https://api.godaddy.com/v1/";
@@ -62,7 +54,7 @@ namespace GodaddyWrapper
         {
             if (response.IsSuccessStatusCode)
                 return;
-            throw new GodaddyException(response.StatusCode, await response.Content.ReadAsAsync<ErrorResponse>(), "");
+            throw new GodaddyException(response.StatusCode, await response.Content.ReadAsAsync<ErrorResponse>(JsonSettings), "");
         }
 
         private static void CheckRequestValid(object Model)

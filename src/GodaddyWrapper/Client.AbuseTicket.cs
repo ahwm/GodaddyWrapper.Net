@@ -1,7 +1,7 @@
 ﻿using GodaddyWrapper.Helper;
 using GodaddyWrapper.Requests;
 using GodaddyWrapper.Responses;
-using Newtonsoft.Json;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace GodaddyWrapper
@@ -15,9 +15,9 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<AbuseTicketIdResponse> CreateAbuseTicket(AbuseTicketCreate request)
         {
-            var response = await httpClient.PostAsync($"abuse/tickets", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync($"abuse/tickets", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<AbuseTicketIdResponse>();
+            return await response.Content.ReadAsAsync<AbuseTicketIdResponse>(JsonSettings);
         }
         /// <summary>
         /// List all abuse tickets ids that match user provided filters
@@ -28,7 +28,7 @@ namespace GodaddyWrapper
         {
             var response = await httpClient.GetAsync($"abuse/tickets{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<AbuseTicketListResponse>();
+            return await response.Content.ReadAsAsync<AbuseTicketListResponse>(JsonSettings);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace GodaddyWrapper
         {
             var response = await httpClient.GetAsync($"abuse/tickets/{request.TicketId}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<AbuseTicketResponse>();
+            return await response.Content.ReadAsAsync<AbuseTicketResponse>(JsonSettings);
         }
     }
 }

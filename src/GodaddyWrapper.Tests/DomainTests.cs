@@ -29,36 +29,20 @@ namespace GodaddyWrapper.Tests
         [Fact]
         public async Task DomainCheckTest()
         {
-            try
+            var response = await client.CheckDomainAvailable(new DomainAvailable
             {
-                var response = await client.CheckDomainAvailable(new DomainAvailable
-                {
-                    Domain = "google.com"
-                });
+                Domain = "google.com"
+            });
 
-                response.Available.ShouldBe(false);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-                Assert.Fail();
-            }
+            response.Available.ShouldBe(false);
         }
 
         [Fact]
         public async Task DomainListTest()
         {
-            try
-            {
-                var response = await client.RetrieveDomainList(new DomainRetrieve { Limit = 100 });
+            var response = await client.RetrieveDomainList(new DomainRetrieve { Limit = 100 });
 
-                response.Count.ShouldBe(0);
-            }
-            catch (Exception ex) 
-            {
-                Console.WriteLine(ex.ToString());
-                Assert.Fail();
-            }
+            response.Count.ShouldBe(0);
         }
     }
 }
