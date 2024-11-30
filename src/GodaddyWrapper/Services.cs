@@ -8,7 +8,7 @@ using System.Net.Http.Headers;
 
 namespace GodaddyWrapper
 {
-#if NETSTANDARD || NET8_0_OR_GREATER
+#if NETSTANDARD
     public static class ServicesExtension
     {
         /// <summary>

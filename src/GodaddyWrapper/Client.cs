@@ -23,7 +23,7 @@ namespace GodaddyWrapper
     public partial class GoDaddyClient
     {
         private readonly HttpClient httpClient;
-#if NET8_0_OR_GREATER
+#if NETSTANDARD
         private readonly static JsonSerializerOptions JsonSettings = JsonContext.Default.Options;
 #else
         private readonly static JsonSerializerOptions JsonSettings = JsonContext.Options;

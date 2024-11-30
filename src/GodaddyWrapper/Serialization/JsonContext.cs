@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace GodaddyWrapper.Serialization
 {
-#if NET8_0_OR_GREATER
+#if NETSTANDARD
 
     [JsonSourceGenerationOptions(GenerationMode = JsonSourceGenerationMode.Metadata,
         PropertyNameCaseInsensitive = true,
