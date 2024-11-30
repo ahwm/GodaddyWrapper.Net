@@ -28,8 +28,8 @@ namespace GodaddyWrapper.Tests
             const string namespaceName = "GodaddyWrapper.Requests";
             HashSet<string> missingTypes = new HashSet<string>();
             Assembly assembly = typeof(GoDaddyClient).Assembly;
-            var types = assembly.GetTypes().Where(x => x.Namespace == namespaceName).ToList();
 
+            //Check all the types in the client
             typeof(GoDaddyClient).GetMethods()
                 .ToList()
                 .ForEach(method =>
@@ -73,7 +73,19 @@ namespace GodaddyWrapper.Tests
                         }
                     }
                 });
-            if(missingTypes.Count > 0)
+
+            //Check the types in the namespace
+            var types = assembly.GetTypes().Where(x => x.Namespace == namespaceName).ToList();
+            foreach (var t in types)
+            {
+                bool found = JsonContext.Default.Options.TryGetTypeInfo(t, out _);
+                if (!found)
+                {
+                    _ = missingTypes.Add($"[JsonSerializable(typeof({t.Name}))]");
+                }
+            }
+
+            if (missingTypes.Count > 0)
             {
                 _output.WriteLine($"Add the following attributes to the {nameof(JsonContext)} class:");
                 foreach (var item in missingTypes)
@@ -90,8 +102,8 @@ namespace GodaddyWrapper.Tests
             const string namespaceName = "GodaddyWrapper.Responses";
             HashSet<string> missingTypes = new HashSet<string>();
             Assembly assembly = typeof(GoDaddyClient).Assembly;
-            var types = assembly.GetTypes().Where(x => x.Namespace == namespaceName).ToList();
 
+            //Check all the types in the client
             typeof(GoDaddyClient).GetMethods()
                 .ToList()
                 .ForEach(method =>
@@ -139,6 +151,18 @@ namespace GodaddyWrapper.Tests
                         }
                     }
                 });
+
+            //Check the types in the namespace
+            var types = assembly.GetTypes().Where(x => x.Namespace == namespaceName).ToList();
+            foreach (var t in types)
+            {
+                bool found = JsonContext.Default.Options.TryGetTypeInfo(t, out _);
+                if (!found)
+                {
+                    _ = missingTypes.Add($"[JsonSerializable(typeof({t.Name}))]");
+                }
+            }
+
             if (missingTypes.Count > 0)
             {
                 _output.WriteLine($"Add the following attributes to the {nameof(JsonContext)} class:");
