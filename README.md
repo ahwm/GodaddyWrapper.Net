@@ -72,6 +72,10 @@ catch (GodaddyException ex)
 
 ## Version History
 
+### 3.1.0
+
+- JSON Updates ([#48](https://github.com/ahwm/GodaddyWrapper.Net/pull/48) by [@dlmelendez](https://github.com/dlmelendez))
+
 ### 3.0.0
 
 - Various dependency updates
