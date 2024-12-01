@@ -1,14 +1,12 @@
-﻿#if NETSTANDARD
+﻿#if NETSTANDARD 
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-#endif
 
 namespace GodaddyWrapper
 {
-#if NETSTANDARD
     public static class ServicesExtension
     {
         /// <summary>
@@ -32,5 +30,5 @@ namespace GodaddyWrapper
             return services;
         }
     }
-#endif
 }
+#endif

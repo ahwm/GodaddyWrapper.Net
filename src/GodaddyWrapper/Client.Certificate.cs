@@ -1,9 +1,8 @@
 ﻿using GodaddyWrapper.Helper;
 using GodaddyWrapper.Requests;
 using GodaddyWrapper.Responses;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace GodaddyWrapper
@@ -18,7 +17,7 @@ namespace GodaddyWrapper
         public async Task CancelCertificate(CertificateCancel request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsync($"certificates/{request.CertificateId}/cancel", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync($"certificates/{request.CertificateId}/cancel", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
         }
         /// <summary>
@@ -43,9 +42,9 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             if (XMarketId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await httpClient.PostAsync($"certificates", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync($"certificates", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<CertificateIdentifierResponse>();
+            return await response.Content.ReadAsAsync<CertificateIdentifierResponse>(JsonSettings);
         }
         /// <summary>
         /// Download certificate
@@ -57,7 +56,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             var response = await httpClient.GetAsync($"certificates/{request.CertificateId}/download");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<CertificateBundleResponse>();
+            return await response.Content.ReadAsAsync<CertificateBundleResponse>(JsonSettings);
         }
         /// <summary>
         /// Reissue active certificate
@@ -68,7 +67,7 @@ namespace GodaddyWrapper
         public async Task ReissueActiveCertificate(CertificateReissue request, string certificateId)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsync($"certificates/{certificateId}/reissue", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync($"certificates/{certificateId}/reissue", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
         }
         /// <summary>
@@ -80,7 +79,7 @@ namespace GodaddyWrapper
         public async Task RenewActiveCertificate(CertificateRenew request, string certificateId)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsync($"certificates/{certificateId}/renew", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync($"certificates/{certificateId}/renew", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
         }
         /// <summary>
@@ -93,7 +92,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             var response = await httpClient.GetAsync($"certificates/{request.CertificateId}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<List<CertificateActionResponse>>();
+            return await response.Content.ReadAsAsync<List<CertificateActionResponse>>(JsonSettings);
         }
         /// <summary>
         /// Register of certificate action callback
@@ -104,7 +103,7 @@ namespace GodaddyWrapper
         public async Task RegisterCertificateAction(CertificateCallbackActionRegister request, string certificateId)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PutAsync($"certificates/{certificateId}/callback", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PutAsJsonAsync($"certificates/{certificateId}/callback", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
         }
         /// <summary>
@@ -117,7 +116,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             var response = await httpClient.GetAsync($"certificates/{request.CertificateId}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<CertificateIdentifierResponse>();
+            return await response.Content.ReadAsAsync<CertificateIdentifierResponse>(JsonSettings);
         }
         /// <summary>
         /// Get Site seal
@@ -130,7 +129,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             var response = await httpClient.GetAsync($"certificates/{certificateId}/siteseal");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<CertificateSiteSealResponse>();
+            return await response.Content.ReadAsAsync<CertificateSiteSealResponse>(JsonSettings);
         }
         /// <summary>
         /// Revoke active certificate
@@ -141,7 +140,7 @@ namespace GodaddyWrapper
         public async Task RevokeActiveCertificate(CertificateRevoke request, string certificateId)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsync($"certificates/{certificateId}/revoke", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync($"certificates/{certificateId}/revoke", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
         }
         /// <summary>

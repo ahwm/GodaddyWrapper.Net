@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace GodaddyWrapper.Requests
@@ -18,7 +18,7 @@ namespace GodaddyWrapper.Requests
         public string CallbackUrl { get; set; }
         public string RootType { get; set; }
 
-        [JsonProperty(PropertyName = "intelVPro")]
+        [JsonPropertyName("intelVPro")]
         public bool IntelVPro { get; set; }
         public CertificateOrganizationCreate Organization { get; set; }
     }

@@ -1,7 +1,7 @@
 ﻿using GodaddyWrapper.Helper;
 using GodaddyWrapper.Requests;
 using GodaddyWrapper.Responses;
-using Newtonsoft.Json;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace GodaddyWrapper
@@ -16,9 +16,9 @@ namespace GodaddyWrapper
         public async Task<ShopperIdResponse> CreateSubaccount(SubaccountCreate request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsync($"shoppers/subaccount", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync($"shoppers/subaccount", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<ShopperIdResponse>();
+            return await response.Content.ReadAsAsync<ShopperIdResponse>(JsonSettings);
         }
         /// <summary>
         /// Get details for the specified Shopper
@@ -30,7 +30,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             var response = await httpClient.GetAsync($"shoppers/{request.ShopperId}");
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<ShopperResponse>();
+            return await response.Content.ReadAsAsync<ShopperResponse>(JsonSettings);
         }
         /// <summary>
         /// Update details for the specified Shopper
@@ -41,9 +41,9 @@ namespace GodaddyWrapper
         public async Task<ShopperIdResponse> UpdateShopper(ShopperUpdate request, string shopperId)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsync($"shoppers/{shopperId}", JsonConvert.SerializeObject(request, JsonSettings));
+            var response = await httpClient.PostAsJsonAsync($"shoppers/{shopperId}", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
-            return await response.Content.ReadAsAsync<ShopperIdResponse>();
+            return await response.Content.ReadAsAsync<ShopperIdResponse>(JsonSettings);
         }
     }
 }
