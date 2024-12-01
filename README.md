@@ -56,7 +56,7 @@ public class GoDaddyDomainService(GoDaddyClient goDaddyClient)
 
 try
 {
-    var response = await client.CheckDomainAvailable(new DomainAvailable
+    var response = await goDaddyClient.CheckDomainAvailable(new DomainAvailable
     {
         domain = "google.com"
     });
