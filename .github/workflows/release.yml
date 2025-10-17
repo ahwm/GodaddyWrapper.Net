@@ -7,6 +7,7 @@ jobs:
   build:
     permissions:
       id-token: write  # enable GitHub OIDC token issuance for this job
+      contents: write
     runs-on: windows-latest
     timeout-minutes: 15
     steps:
