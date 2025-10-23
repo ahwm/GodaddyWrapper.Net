@@ -5,8 +5,8 @@
     <Copyright>Copyright 2015 - 2017 Vip30, 2018 - 2025 ahwm23</Copyright>
     <AssemblyTitle>GodaddyWrapper.Net</AssemblyTitle>
     <Authors>vip30, ahwm23</Authors>
-    <Version>3.2.0</Version>
-    <AssemblyVersion>3.2.0</AssemblyVersion>
+    <Version>3.3.0</Version>
+    <AssemblyVersion>3.3.0</AssemblyVersion>
     <LangVersion>13.0</LangVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
@@ -14,7 +14,7 @@
     <AssemblyName>GodaddyWrapper</AssemblyName>
     <PackageId>GodaddyWrapper</PackageId>
     <PackageTags>Godaddy;Wrapper;API;DotNet Core;Rest</PackageTags>
-    <PackageReleaseNotes>.NET version updates; rearchitected to allow single use HttpClient and dependency injection</PackageReleaseNotes>
+    <PackageReleaseNotes>Domain Update request failed due to wrong type on NameServers property</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/ahwm/GodaddyWrapper.Net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ahwm/GodaddyWrapper.Net</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
