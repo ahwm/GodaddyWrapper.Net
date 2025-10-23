@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net462;net6.0;net8.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
+    <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net6.0' OR '$(TargetFramework)' == 'net8.0'">
