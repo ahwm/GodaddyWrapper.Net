@@ -9,7 +9,7 @@ namespace GodaddyWrapper.Requests
     public class DomainUpdate
     {
         public bool Locked { get; set; }
-        public List<object> NameServers { get; set; }
+        public List<string> NameServers { get; set; }
         public bool RenewAuto { get; set; }
         public string SubaccountId { get; set; }
     }
