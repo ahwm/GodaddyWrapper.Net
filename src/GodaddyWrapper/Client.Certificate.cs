@@ -17,7 +17,7 @@ namespace GodaddyWrapper
         public async Task CancelCertificate(CertificateCancel request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsJsonAsync($"certificates/{request.CertificateId}/cancel", request, JsonSettings);
+            var response = await httpClient.PostAsJsonAsync($"{V1_BASE}certificates/{request.CertificateId}/cancel", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
         }
         /// <summary>
@@ -28,7 +28,7 @@ namespace GodaddyWrapper
         public async Task CheckDomainControl(CertificateDomainControlCheck request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsync($"certificates/{request.CertificateId}/verifydomaincontrol", null);
+            var response = await httpClient.PostAsync($"{V1_BASE}certificates/{request.CertificateId}/verifydomaincontrol", null);
             await CheckResponseMessageIsValid(response);
         }
         /// <summary>
@@ -42,7 +42,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             if (XMarketId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await httpClient.PostAsJsonAsync($"certificates", request, JsonSettings);
+            var response = await httpClient.PostAsJsonAsync($"{V1_BASE}certificates", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CertificateIdentifierResponse>(JsonSettings);
         }
@@ -54,7 +54,7 @@ namespace GodaddyWrapper
         public async Task<CertificateBundleResponse> DownloadCertificate(CertificateDownload request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.GetAsync($"certificates/{request.CertificateId}/download");
+            var response = await httpClient.GetAsync($"{V1_BASE}certificates/{request.CertificateId}/download");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CertificateBundleResponse>(JsonSettings);
         }
@@ -67,7 +67,7 @@ namespace GodaddyWrapper
         public async Task ReissueActiveCertificate(CertificateReissue request, string certificateId)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsJsonAsync($"certificates/{certificateId}/reissue", request, JsonSettings);
+            var response = await httpClient.PostAsJsonAsync($"{V1_BASE}certificates/{certificateId}/reissue", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
         }
         /// <summary>
@@ -79,7 +79,7 @@ namespace GodaddyWrapper
         public async Task RenewActiveCertificate(CertificateRenew request, string certificateId)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsJsonAsync($"certificates/{certificateId}/renew", request, JsonSettings);
+            var response = await httpClient.PostAsJsonAsync($"{V1_BASE}certificates/{certificateId}/renew", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
         }
         /// <summary>
@@ -90,7 +90,7 @@ namespace GodaddyWrapper
         public async Task<List<CertificateActionResponse>> RetrieveCertificateAction(CertificateActionRetrieve request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.GetAsync($"certificates/{request.CertificateId}");
+            var response = await httpClient.GetAsync($"{V1_BASE}certificates/{request.CertificateId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<List<CertificateActionResponse>>(JsonSettings);
         }
@@ -103,7 +103,7 @@ namespace GodaddyWrapper
         public async Task RegisterCertificateAction(CertificateCallbackActionRegister request, string certificateId)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PutAsJsonAsync($"certificates/{certificateId}/callback", request, JsonSettings);
+            var response = await httpClient.PutAsJsonAsync($"{V1_BASE}certificates/{certificateId}/callback", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
         }
         /// <summary>
@@ -114,7 +114,7 @@ namespace GodaddyWrapper
         public async Task<CertificateIdentifierResponse> RetrieveCertificateDetail(CertificateDetailRetrieve request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.GetAsync($"certificates/{request.CertificateId}");
+            var response = await httpClient.GetAsync($"{V1_BASE}certificates/{request.CertificateId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CertificateIdentifierResponse>(JsonSettings);
         }
@@ -127,7 +127,7 @@ namespace GodaddyWrapper
         public async Task<CertificateSiteSealResponse> RetrieveSiteSeal(CertificateSiteSealRetrieve request, string certificateId)
         {
             CheckRequestValid(request);
-            var response = await httpClient.GetAsync($"certificates/{certificateId}/siteseal");
+            var response = await httpClient.GetAsync($"{V1_BASE}certificates/{certificateId}/siteseal");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CertificateSiteSealResponse>(JsonSettings);
         }
@@ -140,7 +140,7 @@ namespace GodaddyWrapper
         public async Task RevokeActiveCertificate(CertificateRevoke request, string certificateId)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsJsonAsync($"certificates/{certificateId}/revoke", request, JsonSettings);
+            var response = await httpClient.PostAsJsonAsync($"{V1_BASE}certificates/{certificateId}/revoke", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
         }
         /// <summary>
@@ -151,7 +151,7 @@ namespace GodaddyWrapper
         public async Task UnregisterCertificateCallback(CertificateCallbackUnregister request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.DeleteAsync($"certificates/{request.CertificateId}/callback");
+            var response = await httpClient.DeleteAsync($"{V1_BASE}certificates/{request.CertificateId}/callback");
             await CheckResponseMessageIsValid(response);
         }
     }

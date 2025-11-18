@@ -53,8 +53,17 @@ namespace GodaddyWrapper.Serialization
     [JsonSerializable(typeof(DomainUpdate))]
     [JsonSerializable(typeof(DomainContacts))]
     [JsonSerializable(typeof(VerifyRegistrantEmail))]
-    [JsonSerializable(typeof(OrderRetrieve))]
     [JsonSerializable(typeof(OrderDetailRetrieve))]
+    // V2 Requests
+    [JsonSerializable(typeof(DomainUpdateV2))]
+    [JsonSerializable(typeof(DomainPurchaseV2))]
+    [JsonSerializable(typeof(DomainRenewV2))]
+    [JsonSerializable(typeof(DomainContactsV2))]
+    [JsonSerializable(typeof(DomainTransferV2))]
+    [JsonSerializable(typeof(DomainPurchaseConsent))]
+    [JsonSerializable(typeof(DomainPurchaseContactsV2))]
+    [JsonSerializable(typeof(AddressV2))]
+    [JsonSerializable(typeof(OrderRetrieve))]
     [JsonSerializable(typeof(SubaccountCreate))]
     [JsonSerializable(typeof(ShopperRetrieve))]
     [JsonSerializable(typeof(ShopperUpdate))]
@@ -152,6 +161,12 @@ namespace GodaddyWrapper.Serialization
     [JsonSerializable(typeof(TldSummaryResponse))]
     [JsonSerializable(typeof(UsageDetailItemResponse))]
     [JsonSerializable(typeof(UsageSummaryResponse))]
+    // V2 Responses
+    [JsonSerializable(typeof(DomainListV2Response))]
+    [JsonSerializable(typeof(DomainSummaryV2Response))]
+    [JsonSerializable(typeof(DomainAvailabilityV2Response))]
+    [JsonSerializable(typeof(DomainPurchaseV2Response))]
+    [JsonSerializable(typeof(DomainTransferV2Response))]
     internal partial class JsonContext : JsonSerializerContext
     {
     }

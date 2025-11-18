@@ -26,8 +26,8 @@ namespace GodaddyWrapper
         private readonly static JsonSerializerOptions JsonSettings = JsonContext.Default.Options;
 
 #if !NETSTANDARD
-        private string ProductionEndpoint { get; } = "https://api.godaddy.com/v1/";
-        private string TestingEndpoint { get; } = "https://api.ote-godaddy.com/v1/";
+        private string ProductionEndpoint { get; } = "https://api.godaddy.com/";
+        private string TestingEndpoint { get; } = "https://api.ote-godaddy.com/";
 
         /// <summary>
         /// Client for calling API

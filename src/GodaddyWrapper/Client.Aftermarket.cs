@@ -17,7 +17,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<AftermarketListingActionResponse> AddExpiryAuction(List<AftermarketListingExpiryCreate> request)
         {
-            var response = await httpClient.PostAsJsonAsync($"aftermarket/listings/expiry", request, JsonSettings);
+            var response = await httpClient.PostAsJsonAsync($"{V1_BASE}aftermarket/listings/expiry", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AftermarketListingActionResponse>(JsonSettings);
         }
@@ -29,7 +29,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<ListingActionResponse> RemoveAuctionListings(AgreementRetrieve request)
         {
-            var response = await httpClient.DeleteAsync($"aftermarket/listings{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.DeleteAsync($"{V1_BASE}aftermarket/listings{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<ListingActionResponse>(JsonSettings);
         }
