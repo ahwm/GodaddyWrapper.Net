@@ -1,16 +1,16 @@
 ﻿using GodaddyWrapper.Responses;
-using GodaddyWrapper.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+#if !NETSTANDARD
 using System.Net.Http.Headers;
+#endif
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using GodaddyWrapper.Helper;
 using GodaddyWrapper.Base;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using GodaddyWrapper.Serialization;
 
 

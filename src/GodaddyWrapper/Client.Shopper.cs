@@ -16,7 +16,7 @@ namespace GodaddyWrapper
         public async Task<ShopperIdResponse> CreateSubaccount(SubaccountCreate request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsJsonAsync($"shoppers/subaccount", request, JsonSettings);
+            var response = await httpClient.PostAsJsonAsync($"{V1_BASE}shoppers/subaccount", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<ShopperIdResponse>(JsonSettings);
         }
@@ -28,7 +28,7 @@ namespace GodaddyWrapper
         public async Task<ShopperResponse> RetrieveShopper(ShopperRetrieve request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.GetAsync($"shoppers/{request.ShopperId}");
+            var response = await httpClient.GetAsync($"{V1_BASE}shoppers/{request.ShopperId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<ShopperResponse>(JsonSettings);
         }
@@ -41,7 +41,7 @@ namespace GodaddyWrapper
         public async Task<ShopperIdResponse> UpdateShopper(ShopperUpdate request, string shopperId)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsJsonAsync($"shoppers/{shopperId}", request, JsonSettings);
+            var response = await httpClient.PostAsJsonAsync($"{V1_BASE}shoppers/{shopperId}", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<ShopperIdResponse>(JsonSettings);
         }
