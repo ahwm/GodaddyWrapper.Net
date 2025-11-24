@@ -61,6 +61,19 @@ namespace GodaddyWrapper.Helper
             return String.Join(",", list);
         }
 
+        public static string DictionaryToQueryString(Dictionary<string, string> parameters)
+        {
+            if (parameters == null || parameters.Count == 0)
+                return string.Empty;
+
+            var query = new StringBuilder("?");
+            foreach (var kvp in parameters)
+            {
+                query.Append($"{kvp.Key}={Uri.EscapeDataString(kvp.Value)}&");
+            }
+            return query.ToString().TrimEnd('&');
+        }
+
         public static string ToFirstLetterLower(string text) { var charArray = text.ToCharArray(); charArray[0] = char.ToLower(charArray[0]); return new string(charArray); }
     }
 }
