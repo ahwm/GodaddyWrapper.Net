@@ -15,7 +15,7 @@ namespace GodaddyWrapper
         public async Task<CountrySummaryResponse> RetrieveCountries(CountriesRetrieve request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.GetAsync($"countries{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.GetAsync($"{V1_BASE}countries{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CountrySummaryResponse>(JsonSettings);
         }
@@ -28,7 +28,7 @@ namespace GodaddyWrapper
         public async Task<CountryResponse> RetrieveCountryDetail(CountryDetailRetrieve request, string CountryKey)
         {
             CheckRequestValid(request);
-            var response = await httpClient.GetAsync($"countries/{CountryKey}{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.GetAsync($"{V1_BASE}countries/{CountryKey}{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CountryResponse>(JsonSettings);
         }
