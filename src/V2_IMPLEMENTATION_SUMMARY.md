@@ -103,6 +103,14 @@ All existing v1 methods remain unchanged and functional:
 
 ## Usage Examples
 
+### Getting Customer ID
+Before using v2 domain endpoints, you need to retrieve the customer ID:
+```csharp
+var client = new GoDaddyClient(options);
+var shopper = await client.RetrieveShopper(new ShopperRetrieve { ShopperId = "12345" }, includes: "customerId");
+string customerId = shopper.CustomerId; // UUID like "295e3bc3-a3b9-4d95-aae5-edf41a994d13"
+```
+
 ### Using v1 API (existing code):
 ```csharp
 var client = new GoDaddyClient(options);
@@ -112,17 +120,25 @@ var domain = await client.CheckDomainAvailable(new DomainAvailable { domain = "e
 ### Using v2 API (new methods):
 ```csharp
 var client = new GoDaddyClient(options);
+
+// First, get the customer ID
+var shopper = await client.RetrieveShopper(new ShopperRetrieve { ShopperId = "12345" }, includes: "customerId");
+string customerId = shopper.CustomerId;
+
+// Now use v2 endpoints
 var availability = await client.CheckDomainAvailabilityV2("example.com");
-var domains = await client.ListDomainsV2(statuses: "ACTIVE", limit: 100);
+var domains = await client.ListDomainsV2(customerId, statuses: "ACTIVE", limit: 100);
+var domainDetails = await client.GetDomainV2(customerId, "example.com");
 ```
 
 ## Key Differences: v1 vs v2
 
 ### Domain Endpoints
-- **v2** uses `/v2/customers/{customerId}/domains/` structure
+- **v2** uses `/v2/customers/{customerId}/domains/` structure and requires customerId parameter
 - **v2** supports enhanced filtering with `includes` parameter
 - **v2** has improved pagination with markers
 - **v2** includes consent tracking for purchases
+- **customerId** is a UUID that must be retrieved via `RetrieveShopper` with `includes="customerId"`
 
 ### Response Enhancements
 - More detailed status information
@@ -148,6 +164,7 @@ All code has been validated:
 
 ## Notes
 
-- The v2 endpoints use placeholder `{customerId}` in paths - this should be replaced with actual customer ID in production use
+- All v2 domain endpoints require a `customerId` (UUID) parameter
+- The `customerId` can be retrieved by calling `RetrieveShopper` with `includes="customerId"` parameter
 - Some v2 endpoints may require additional authentication or permissions
 - Consult GoDaddy API documentation for specific v2 endpoint requirements
