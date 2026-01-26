@@ -24,11 +24,15 @@ namespace GodaddyWrapper
         /// Get details for the specified Shopper
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="includes">Optional comma-separated list of additional fields (e.g., "customerId")</param>
         /// <returns></returns>
-        public async Task<ShopperResponse> RetrieveShopper(ShopperRetrieve request)
+        public async Task<ShopperResponse> RetrieveShopper(ShopperRetrieve request, string includes = null)
         {
             CheckRequestValid(request);
-            var response = await httpClient.GetAsync($"{V1_BASE}shoppers/{request.ShopperId}");
+            var url = $"{V1_BASE}shoppers/{request.ShopperId}";
+            if (!string.IsNullOrEmpty(includes))
+                url += $"?includes={includes}";
+            var response = await httpClient.GetAsync(url);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<ShopperResponse>(JsonSettings);
         }
