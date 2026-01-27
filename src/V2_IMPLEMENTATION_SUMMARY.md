@@ -149,10 +149,10 @@ var domainDetails = await client.GetDomainV2(customerId, "example.com");
 ## Testing
 
 All code has been validated:
-- ? Build successful across all target frameworks (.NET 4.6.2, .NET Standard 2.0, .NET 6, .NET 8, .NET 10)
-- ? No compilation errors
-- ? Existing v1 methods remain functional
-- ? New v2 methods available
+- [x] Build successful across all target frameworks (.NET 4.6.2, .NET Standard 2.0, .NET 6, .NET 8, .NET 10)
+- [x] No compilation errors
+- [x] Existing v1 methods remain functional
+- [x] New v2 methods available
 
 ## Next Steps
 
