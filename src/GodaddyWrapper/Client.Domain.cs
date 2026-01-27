@@ -9,7 +9,6 @@ namespace GodaddyWrapper
 {
     public partial class GoDaddyClient
     {
-        private const string V1_BASE = "v1/";
 
         /// <summary>
         /// Add the specified DNS Records to the specified Domain

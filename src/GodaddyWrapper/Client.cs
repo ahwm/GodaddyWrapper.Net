@@ -22,6 +22,9 @@ namespace GodaddyWrapper
 {
     public partial class GoDaddyClient
     {
+        private const string V1_BASE = "v1/";
+        private const string V2_BASE = "v2/";
+
         private readonly HttpClient httpClient;
         private readonly static JsonSerializerOptions JsonSettings = JsonContext.Default.Options;
 
