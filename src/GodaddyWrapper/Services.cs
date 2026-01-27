@@ -8,7 +8,7 @@ namespace GodaddyWrapper
     public static class ServicesExtension
     {
         /// <summary>
-        /// Add GoDaddy API client with v1 endpoints
+        /// Add GoDaddy API client
         /// </summary>
         /// <param name="services"></param>
         /// <param name="accessKey"></param>

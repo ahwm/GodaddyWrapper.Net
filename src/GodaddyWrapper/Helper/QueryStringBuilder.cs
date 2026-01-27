@@ -69,7 +69,8 @@ namespace GodaddyWrapper.Helper
             var query = new StringBuilder("?");
             foreach (var kvp in parameters)
             {
-                query.Append($"{kvp.Key}={Uri.EscapeDataString(kvp.Value)}&");
+                if (kvp.Value != null)
+                    query.Append($"{kvp.Key}={Uri.EscapeDataString(kvp.Value)}&");
             }
             return query.ToString().TrimEnd('&');
         }
