@@ -13,7 +13,6 @@ namespace GodaddyWrapper
     /// </summary>
     public partial class GoDaddyClient
     {
-        private const string V2_BASE = "v2/";
 
         /// <summary>
         /// Get domain details for a specific domain (v2)
