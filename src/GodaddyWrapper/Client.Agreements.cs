@@ -22,7 +22,7 @@ namespace GodaddyWrapper
                 httpClient.DefaultRequestHeaders.Add("X-Private-Label-Id", XPrivateLabelId);
             if (XMarketId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await httpClient.GetAsync($"{V1_BASE}aggreements{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.GetAsync($"{V1_BASE}agreements{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<List<LegalAgreementResponse>>(JsonSettings);
         }

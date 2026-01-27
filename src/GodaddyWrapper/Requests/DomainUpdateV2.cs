@@ -32,10 +32,5 @@ namespace GodaddyWrapper.Requests
         /// Whether or not privacy protection is enabled
         /// </summary>
         public bool? PrivacyEnabled { get; set; }
-
-        /// <summary>
-        /// Whether or not the domain is set to auto-renew
-        /// </summary>
-        public bool? AutoRenewEnabled { get; set; }
     }
 }
