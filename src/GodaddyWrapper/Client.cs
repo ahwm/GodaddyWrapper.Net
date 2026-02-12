@@ -1,16 +1,16 @@
 ﻿using GodaddyWrapper.Responses;
-using GodaddyWrapper.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+#if !NETSTANDARD
 using System.Net.Http.Headers;
+#endif
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using GodaddyWrapper.Helper;
 using GodaddyWrapper.Base;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using GodaddyWrapper.Serialization;
 
 
@@ -22,12 +22,15 @@ namespace GodaddyWrapper
 {
     public partial class GoDaddyClient
     {
+        private const string V1_BASE = "v1/";
+        private const string V2_BASE = "v2/";
+
         private readonly HttpClient httpClient;
         private readonly static JsonSerializerOptions JsonSettings = JsonContext.Default.Options;
 
 #if !NETSTANDARD
-        private string ProductionEndpoint { get; } = "https://api.godaddy.com/v1/";
-        private string TestingEndpoint { get; } = "https://api.ote-godaddy.com/v1/";
+        private string ProductionEndpoint { get; } = "https://api.godaddy.com/";
+        private string TestingEndpoint { get; } = "https://api.ote-godaddy.com/";
 
         /// <summary>
         /// Client for calling API

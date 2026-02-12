@@ -1,8 +1,6 @@
 ﻿#if NETSTANDARD 
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Linq;
-using System.Net.Http;
 using System.Net.Http.Headers;
 
 namespace GodaddyWrapper
@@ -10,7 +8,7 @@ namespace GodaddyWrapper
     public static class ServicesExtension
     {
         /// <summary>
-        /// 
+        /// Add GoDaddy API client
         /// </summary>
         /// <param name="services"></param>
         /// <param name="accessKey"></param>
@@ -21,7 +19,7 @@ namespace GodaddyWrapper
         {
             services.AddHttpClient<GoDaddyClient>(client =>
             {
-                client.BaseAddress = new Uri(testing ? "https://api.ote-godaddy.com/v1/" : "https://api.godaddy.com/v1/");
+                client.BaseAddress = new Uri(testing ? "https://api.ote-godaddy.com/" : "https://api.godaddy.com/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("sso-key", $"{accessKey}:{secretKey}");

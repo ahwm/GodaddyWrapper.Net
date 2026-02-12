@@ -19,7 +19,7 @@ namespace GodaddyWrapper
             CheckRequestValid(request);
             if (XShopperId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await httpClient.DeleteAsync($"subscriptions/{request.SubscriptionId}");
+            var response = await httpClient.DeleteAsync($"{V1_BASE}subscriptions/{request.SubscriptionId}");
             await CheckResponseMessageIsValid(response);
             return response.IsSuccessStatusCode;
         }
@@ -37,7 +37,7 @@ namespace GodaddyWrapper
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
             if (XMarketId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await httpClient.GetAsync($"subscriptions{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.GetAsync($"{V1_BASE}subscriptions{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<SubscriptionListResponse>(JsonSettings);
         }
@@ -53,7 +53,7 @@ namespace GodaddyWrapper
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
             if (XMarketId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await httpClient.GetAsync($"subscriptions/productgroups");
+            var response = await httpClient.GetAsync($"{V1_BASE}subscriptions/productgroups");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<List<ProductGroupResponse>>(JsonSettings);
         }
@@ -71,7 +71,7 @@ namespace GodaddyWrapper
                 httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
             if (XMarketId != null)
                 httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await httpClient.GetAsync($"subscriptions/{request.SubscriptionId}");
+            var response = await httpClient.GetAsync($"{V1_BASE}subscriptions/{request.SubscriptionId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<SubscriptionResponse>(JsonSettings);
         }
