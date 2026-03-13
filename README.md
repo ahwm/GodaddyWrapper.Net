@@ -72,6 +72,10 @@ catch (GodaddyException ex)
 
 ## Version History
 
+### 3.4.0
+
+- Updated dependencies
+
 ### 3.3.0
 
 - Fixed NameServers property on DomainUpdate request
@@ -101,6 +105,8 @@ catch (GodaddyException ex)
 - Updated support to .NET Standard 2.0
 - Added support for .NET 6
 
-## Remark
+## Notes
 
 As I have only used the domain features (Suggested Domain, Buy Domain, CheckAvailable, etc.), I haven't tested the other parts of it so feel free to leave an issue if you find something wrong (also welcome to make a pull request). Please provide as much info as you can.
+
+APIs that require a ShopperId require an [API Reseller plan](https://www.godaddy.com/help/what-is-an-api-reseller-plan-5939) and [Good as Gold account](https://www.godaddy.com/help/what-is-good-as-gold-3359)
