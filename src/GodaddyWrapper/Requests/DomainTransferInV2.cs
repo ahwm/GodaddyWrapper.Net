@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace GodaddyWrapper.Requests
 {
     public class DomainTransferInV2

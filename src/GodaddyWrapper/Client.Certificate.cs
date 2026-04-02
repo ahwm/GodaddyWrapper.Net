@@ -2,6 +2,7 @@
 using GodaddyWrapper.Requests;
 using GodaddyWrapper.Responses;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
@@ -40,9 +41,8 @@ namespace GodaddyWrapper
         public async Task<CertificateIdentifierResponse> CreateCertificate(CertificatesCreate request, string XMarketId = null)
         {
             CheckRequestValid(request);
-            if (XMarketId != null)
-                httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await httpClient.PostAsJsonAsync($"certificates", request, JsonSettings);
+            using var httpRequest = CreateJsonRequest(HttpMethod.Post, "certificates", request);
+            var response = await SendRequestAsync(httpRequest, xMarketId: XMarketId);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CertificateIdentifierResponse>(JsonSettings);
         }

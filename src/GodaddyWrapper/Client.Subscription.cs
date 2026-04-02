@@ -2,6 +2,7 @@
 using GodaddyWrapper.Requests;
 using GodaddyWrapper.Responses;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace GodaddyWrapper
@@ -17,9 +18,8 @@ namespace GodaddyWrapper
         public async Task<bool> CancelSubscription(SubscriptionDelete request, string XShopperId = null)
         {
             CheckRequestValid(request);
-            if (XShopperId != null)
-                httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            var response = await httpClient.DeleteAsync($"subscriptions/{request.SubscriptionId}");
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Delete, $"subscriptions/{request.SubscriptionId}");
+            var response = await SendRequestAsync(httpRequest, xShopperId: XShopperId);
             await CheckResponseMessageIsValid(response);
             return response.IsSuccessStatusCode;
         }
@@ -33,11 +33,8 @@ namespace GodaddyWrapper
         public async Task<SubscriptionListResponse> RetrieveSubscriptions(SubscriptionRetrieve request, string XShopperId = null, string XMarketId = null)
         {
             CheckRequestValid(request);
-            if (XShopperId != null)
-                httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            if (XMarketId != null)
-                httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await httpClient.GetAsync($"subscriptions{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Get, $"subscriptions{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await SendRequestAsync(httpRequest, xShopperId: XShopperId, xMarketId: XMarketId);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<SubscriptionListResponse>(JsonSettings);
         }
@@ -49,11 +46,8 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<List<ProductGroupResponse>> RetrieveSubscriptionProductGroups(string XShopperId = null, string XMarketId = null)
         {
-            if (XShopperId != null)
-                httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            if (XMarketId != null)
-                httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await httpClient.GetAsync($"subscriptions/productgroups");
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Get, "subscriptions/productgroups");
+            var response = await SendRequestAsync(httpRequest, xShopperId: XShopperId, xMarketId: XMarketId);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<List<ProductGroupResponse>>(JsonSettings);
         }
@@ -67,11 +61,8 @@ namespace GodaddyWrapper
         public async Task<SubscriptionResponse> RetrieveSubscriptionDetails(SubscriptionDetailRetrieve request, string XShopperId = null, string XMarketId = null)
         {
             CheckRequestValid(request);
-            if (XShopperId != null)
-                httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            if (XMarketId != null)
-                httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await httpClient.GetAsync($"subscriptions/{request.SubscriptionId}");
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Get, $"subscriptions/{request.SubscriptionId}");
+            var response = await SendRequestAsync(httpRequest, xShopperId: XShopperId, xMarketId: XMarketId);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<SubscriptionResponse>(JsonSettings);
         }

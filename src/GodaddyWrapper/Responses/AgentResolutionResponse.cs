@@ -1,3 +1,4 @@
+using GodaddyWrapper.Models;
 using System.Collections.Generic;
 
 namespace GodaddyWrapper.Responses

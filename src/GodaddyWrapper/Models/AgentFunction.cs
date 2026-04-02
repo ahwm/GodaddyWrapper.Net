@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace GodaddyWrapper.Responses
+namespace GodaddyWrapper.Models
 {
     public class AgentFunction
     {

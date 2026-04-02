@@ -1,4 +1,4 @@
-namespace GodaddyWrapper.Responses
+namespace GodaddyWrapper.Models
 {
     public class AgentLink
     {

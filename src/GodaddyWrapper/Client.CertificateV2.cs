@@ -2,7 +2,10 @@ using GodaddyWrapper.Helper;
 using GodaddyWrapper.Requests;
 using GodaddyWrapper.Responses;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace GodaddyWrapper
@@ -31,9 +34,18 @@ namespace GodaddyWrapper
         public async Task<SubscriptionCertificateIdentifierResponse> CreateSubscriptionCertificate(SubscriptionCertificateCreate request, string xMarketId = null)
         {
             CheckRequestValid(request);
-            if (xMarketId != null)
-                httpClient.DefaultRequestHeaders.Add("X-Market-Id", xMarketId);
-            var response = await httpClient.PostAsJsonAsync($"../v2/certificates", request, JsonSettings);
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Post, "../v2/certificates")
+            {
+                Content = new StringContent(
+                JsonSerializer.Serialize(request, JsonSettings),
+                Encoding.UTF8,
+                "application/json")
+            };
+
+            if (!string.IsNullOrWhiteSpace(xMarketId))
+                httpRequest.Headers.TryAddWithoutValidation("X-Market-Id", xMarketId);
+
+            var response = await httpClient.SendAsync(httpRequest);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<SubscriptionCertificateIdentifierResponse>(JsonSettings);
         }

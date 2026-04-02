@@ -1,4 +1,4 @@
-using GodaddyWrapper.Responses;
+using GodaddyWrapper.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 

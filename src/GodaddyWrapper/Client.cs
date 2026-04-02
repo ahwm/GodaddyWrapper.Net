@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using GodaddyWrapper.Helper;
 using GodaddyWrapper.Base;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using GodaddyWrapper.Serialization;
@@ -49,6 +50,28 @@ namespace GodaddyWrapper
             httpClient = _client;
         }
 #endif
+
+        private static void TryAddHeader(HttpRequestMessage request, string headerName, string headerValue)
+        {
+            if (!string.IsNullOrWhiteSpace(headerValue))
+                request.Headers.TryAddWithoutValidation(headerName, headerValue);
+        }
+
+        private static HttpRequestMessage CreateJsonRequest<TRequest>(HttpMethod method, string requestUri, TRequest payload)
+        {
+            return new HttpRequestMessage(method, requestUri)
+            {
+                Content = new StringContent(JsonSerializer.Serialize(payload, JsonSettings), Encoding.UTF8, "application/json")
+            };
+        }
+
+        private async Task<HttpResponseMessage> SendRequestAsync(HttpRequestMessage request, string xShopperId = null, string xMarketId = null, string xPrivateLabelId = null)
+        {
+            TryAddHeader(request, "X-Shopper-Id", xShopperId);
+            TryAddHeader(request, "X-Market-Id", xMarketId);
+            TryAddHeader(request, "X-Private-Label-Id", xPrivateLabelId);
+            return await httpClient.SendAsync(request);
+        }
 
         private static async Task CheckResponseMessageIsValid(HttpResponseMessage response)
         {

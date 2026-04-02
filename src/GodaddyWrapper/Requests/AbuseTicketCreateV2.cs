@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace GodaddyWrapper.Requests
 {
@@ -12,6 +13,7 @@ namespace GodaddyWrapper.Requests
         [Required]
         public string Type { get; set; }
         public string Proxy { get; set; }
-        public string Useragent { get; set; }
+        [JsonPropertyName("useragent")]
+        public string UserAgent { get; set; }
     }
 }

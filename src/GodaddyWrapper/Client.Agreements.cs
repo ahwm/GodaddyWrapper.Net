@@ -2,6 +2,7 @@
 using GodaddyWrapper.Requests;
 using GodaddyWrapper.Responses;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace GodaddyWrapper
@@ -18,11 +19,8 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<List<LegalAgreementResponse>> RetrieveAgreements(AgreementRetrieve request, string XPrivateLabelId = null, string XMarketId = null)
         {
-            if (XPrivateLabelId != null)
-                httpClient.DefaultRequestHeaders.Add("X-Private-Label-Id", XPrivateLabelId);
-            if (XMarketId != null)
-                httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await httpClient.GetAsync($"aggreements{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Get, $"aggreements{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await SendRequestAsync(httpRequest, xMarketId: XMarketId, xPrivateLabelId: XPrivateLabelId);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<List<LegalAgreementResponse>>(JsonSettings);
         }

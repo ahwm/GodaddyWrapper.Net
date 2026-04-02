@@ -1,4 +1,5 @@
-﻿using GodaddyWrapper.Requests;
+﻿using GodaddyWrapper.Models;
+using GodaddyWrapper.Requests;
 using GodaddyWrapper.Responses;
 using System.Collections.Generic;
 using System.Text.Json;

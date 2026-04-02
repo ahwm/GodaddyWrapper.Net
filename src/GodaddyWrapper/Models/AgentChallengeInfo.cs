@@ -1,6 +1,6 @@
 using System;
 
-namespace GodaddyWrapper.Responses
+namespace GodaddyWrapper.Models
 {
     public class AgentChallengeInfo
     {
