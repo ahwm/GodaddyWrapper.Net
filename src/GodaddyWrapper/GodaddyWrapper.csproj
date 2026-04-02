@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <Description>GodaddyWrapper.NET is a .NET Wrapper for calling GoDaddy REST API.</Description>
-    <Copyright>Copyright 2015 - 2017 Vip30, 2018 - 2025 ahwm23</Copyright>
+    <Copyright>Copyright 2015 - 2017 Vip30, 2018 - 2026 ahwm23</Copyright>
     <AssemblyTitle>GodaddyWrapper.Net</AssemblyTitle>
     <Authors>vip30, ahwm23</Authors>
-    <Version>3.4.0</Version>
-    <AssemblyVersion>3.4.0</AssemblyVersion>
+    <Version>4.0.0-beta1</Version>
+    <AssemblyVersion>4.0.0</AssemblyVersion>
     <LangVersion>13.0</LangVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
@@ -14,7 +14,7 @@
     <AssemblyName>GodaddyWrapper</AssemblyName>
     <PackageId>GodaddyWrapper</PackageId>
     <PackageTags>Godaddy;Wrapper;API;DotNet Core;Rest</PackageTags>
-    <PackageReleaseNotes>Dependency updates</PackageReleaseNotes>
+    <PackageReleaseNotes>Added GoDaddy V2 API support, added ANS API support</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/ahwm/GodaddyWrapper.Net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ahwm/GodaddyWrapper.Net</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>

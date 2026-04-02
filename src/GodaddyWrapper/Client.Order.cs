@@ -1,6 +1,7 @@
 ﻿using GodaddyWrapper.Helper;
 using GodaddyWrapper.Requests;
 using GodaddyWrapper.Responses;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace GodaddyWrapper
@@ -17,11 +18,8 @@ namespace GodaddyWrapper
         public async Task<OrderListResponse> RetrieveOrderList(OrderRetrieve request, string XShopperId, string XMarketId)
         {
             CheckRequestValid(request);
-            if (XShopperId != null)
-                httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            if (XMarketId != null)
-                httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await httpClient.GetAsync($"orders{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Get, $"orders{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await SendRequestAsync(httpRequest, xShopperId: XShopperId, xMarketId: XMarketId);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<OrderListResponse>(JsonSettings);
         }
@@ -35,11 +33,8 @@ namespace GodaddyWrapper
         public async Task<OrderResponse> RetrieveSpecificOrder(OrderDetailRetrieve request, string XShopperId, string XMarketId)
         {
             CheckRequestValid(request);
-            if (XShopperId != null)
-                httpClient.DefaultRequestHeaders.Add("X-Shopper-Id", XShopperId);
-            if (XMarketId != null)
-                httpClient.DefaultRequestHeaders.Add("X-Market-Id", XMarketId);
-            var response = await httpClient.GetAsync($"orders/{request.OrderId}");
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Get, $"orders/{request.OrderId}");
+            var response = await SendRequestAsync(httpRequest, xShopperId: XShopperId, xMarketId: XMarketId);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<OrderResponse>(JsonSettings);
         }
