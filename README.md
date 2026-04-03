@@ -72,6 +72,12 @@ catch (GodaddyException ex)
 
 ## Version History
 
+### 4.0.0 (currently beta)
+
+- GoDaddy V2 APIs
+- GoDaddy ANS API
+- Dependency updates
+
 ### 3.4.0
 
 - Updated dependencies
