@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Description>GodaddyWrapper.NET is a .NET Wrapper for calling GoDaddy REST API.</Description>
-    <Copyright>Copyright 2015 - 2017 Vip30, 2018 - 2026 ahwm23</Copyright>
+    <Copyright>Copyright 2015 - 2017 Vip30, 2018 - $([System.DateTime]::Now.ToString('yyyy')) ahwm23</Copyright>
     <AssemblyTitle>GodaddyWrapper.Net</AssemblyTitle>
     <Authors>vip30, ahwm23</Authors>
     <Version>4.0.0</Version>
