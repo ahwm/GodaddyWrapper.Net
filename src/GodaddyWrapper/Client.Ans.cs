@@ -16,7 +16,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<AgentSearchResponse> SearchAgents(AgentSearch request)
         {
-            var response = await httpClient.GetAsync($"agents{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.GetAsync($"v1/agents{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AgentSearchResponse>(JsonSettings);
         }
@@ -29,7 +29,7 @@ namespace GodaddyWrapper
         public async Task<AgentRegistrationPendingResponse> RegisterAgent(AgentRegister request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsJsonAsync($"agents/register", request, JsonSettings);
+            var response = await httpClient.PostAsJsonAsync($"v1/agents/register", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AgentRegistrationPendingResponse>(JsonSettings);
         }
@@ -42,7 +42,7 @@ namespace GodaddyWrapper
         public async Task<AgentResolutionResponse> ResolveAgent(AgentCapabilityRequest request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsJsonAsync($"agents/resolution", request, JsonSettings);
+            var response = await httpClient.PostAsJsonAsync($"v1/agents/resolution", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AgentResolutionResponse>(JsonSettings);
         }
@@ -54,7 +54,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<AgentDetailsResponse> GetAgent(string agentId)
         {
-            var response = await httpClient.GetAsync($"agents/{agentId}");
+            var response = await httpClient.GetAsync($"v1/agents/{agentId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AgentDetailsResponse>(JsonSettings);
         }
@@ -68,7 +68,7 @@ namespace GodaddyWrapper
         public async Task<AgentRevocationResponse> RevokeAgent(string agentId, AgentRevoke request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsJsonAsync($"agents/{agentId}/revoke", request, JsonSettings);
+            var response = await httpClient.PostAsJsonAsync($"v1/agents/{agentId}/revoke", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AgentRevocationResponse>(JsonSettings);
         }
@@ -80,7 +80,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<AgentStatusResponse> VerifyAgentAcme(string agentId)
         {
-            var response = await httpClient.PostAsync($"agents/{agentId}/verify-acme", null);
+            var response = await httpClient.PostAsync($"v1/agents/{agentId}/verify-acme", null);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AgentStatusResponse>(JsonSettings);
         }
@@ -92,7 +92,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<AgentStatusResponse> VerifyAgentDns(string agentId)
         {
-            var response = await httpClient.PostAsync($"agents/{agentId}/verify-dns", null);
+            var response = await httpClient.PostAsync($"v1/agents/{agentId}/verify-dns", null);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AgentStatusResponse>(JsonSettings);
         }
@@ -104,7 +104,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<List<AgentCertificateResponse>> GetAgentIdentityCertificates(string agentId)
         {
-            var response = await httpClient.GetAsync($"agents/{agentId}/certificates/identity");
+            var response = await httpClient.GetAsync($"v1/agents/{agentId}/certificates/identity");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<List<AgentCertificateResponse>>(JsonSettings);
         }
@@ -118,7 +118,7 @@ namespace GodaddyWrapper
         public async Task<AgentCsrSubmissionResponse> SubmitAgentIdentityCsr(string agentId, AgentCsrSubmit request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsJsonAsync($"agents/{agentId}/certificates/identity", request, JsonSettings);
+            var response = await httpClient.PostAsJsonAsync($"v1/agents/{agentId}/certificates/identity", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AgentCsrSubmissionResponse>(JsonSettings);
         }
@@ -130,7 +130,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<List<AgentCertificateResponse>> GetAgentServerCertificates(string agentId)
         {
-            var response = await httpClient.GetAsync($"agents/{agentId}/certificates/server");
+            var response = await httpClient.GetAsync($"v1/agents/{agentId}/certificates/server");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<List<AgentCertificateResponse>>(JsonSettings);
         }
@@ -144,7 +144,7 @@ namespace GodaddyWrapper
         public async Task<AgentCsrSubmissionResponse> SubmitAgentServerCsr(string agentId, AgentCsrSubmit request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsJsonAsync($"agents/{agentId}/certificates/server", request, JsonSettings);
+            var response = await httpClient.PostAsJsonAsync($"v1/agents/{agentId}/certificates/server", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AgentCsrSubmissionResponse>(JsonSettings);
         }
@@ -157,7 +157,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<AgentCsrStatusResponse> GetAgentCsrStatus(string agentId, string csrId)
         {
-            var response = await httpClient.GetAsync($"agents/{agentId}/csrs/{csrId}/status");
+            var response = await httpClient.GetAsync($"v1/agents/{agentId}/csrs/{csrId}/status");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AgentCsrStatusResponse>(JsonSettings);
         }
@@ -169,7 +169,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<AgentEventPageResponse> GetAgentEvents(AgentEventsRetrieve request)
         {
-            var response = await httpClient.GetAsync($"agents/events{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.GetAsync($"v1/agents/events{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AgentEventPageResponse>(JsonSettings);
         }

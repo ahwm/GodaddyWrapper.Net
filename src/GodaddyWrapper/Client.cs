@@ -14,42 +14,54 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using GodaddyWrapper.Serialization;
 
-
-#if NETSTANDARD
-using Microsoft.Extensions.Options;
-#endif
-
 namespace GodaddyWrapper
 {
-    public partial class GoDaddyClient
+    public partial class GoDaddyClient : IGoDaddyClient
     {
+        private const string ProductionEndpoint = "https://api.godaddy.com/";
+
         private readonly HttpClient httpClient;
         private readonly static JsonSerializerOptions JsonSettings = JsonContext.Default.Options;
 
-#if !NETSTANDARD
-        private string ProductionEndpoint { get; } = "https://api.godaddy.com/v1/";
-        private string TestingEndpoint { get; } = "https://api.ote-godaddy.com/v1/";
+        /// <summary>
+        /// Primary constructor used by the typed <c>HttpClient</c> registered through
+        /// <see cref="ServicesExtension.AddGoDaddy(Microsoft.Extensions.DependencyInjection.IServiceCollection, string)"/>.
+        /// The base address and Bearer authentication are supplied by the HttpClient factory and
+        /// <see cref="BearerTokenHandler"/>.
+        /// </summary>
+        /// <param name="client">The configured HttpClient.</param>
+        public GoDaddyClient(HttpClient client)
+        {
+            httpClient = client;
+        }
 
         /// <summary>
-        /// Client for calling API
+        /// Convenience constructor for non-DI usage. Creates and owns an <c>HttpClient</c> pointed at the
+        /// GoDaddy production endpoint and authenticated with the supplied Personal Access Token.
         /// </summary>
-        /// <param name="options"></param>
+        /// <param name="options">Client options containing the Personal Access Token.</param>
         public GoDaddyClient(GoDaddyClientOptions options)
         {
+            if (options == null || string.IsNullOrWhiteSpace(options.PersonalAccessToken))
+                throw new ArgumentException("A GoDaddy Personal Access Token is required.", nameof(options));
+
             httpClient = new HttpClient
             {
-                BaseAddress = new Uri(options.IsTesting ? TestingEndpoint : ProductionEndpoint)
+                BaseAddress = new Uri(ProductionEndpoint)
             };
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("sso-key", $"{options.AccessKey}:{options.SecretKey}");            
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", options.PersonalAccessToken);
         }
-#else
-        public GoDaddyClient(HttpClient _client)
+
+        /// <summary>
+        /// Convenience constructor for non-DI usage taking a Personal Access Token directly.
+        /// </summary>
+        /// <param name="personalAccessToken">The GoDaddy Personal Access Token.</param>
+        public GoDaddyClient(string personalAccessToken)
+            : this(new GoDaddyClientOptions { PersonalAccessToken = personalAccessToken })
         {
-            httpClient = _client;
         }
-#endif
 
         private static void TryAddHeader(HttpRequestMessage request, string headerName, string headerValue)
         {
@@ -63,6 +75,19 @@ namespace GodaddyWrapper
             {
                 Content = new StringContent(JsonSerializer.Serialize(payload, JsonSettings), Encoding.UTF8, "application/json")
             };
+        }
+
+        /// <summary>
+        /// Builds a JSON request carrying an <c>Idempotency-Key</c> header, used by v3 write operations.
+        /// When <paramref name="idempotencyKey"/> is null or empty a fresh key is generated so retries of a
+        /// single call are safe; callers needing cross-retry idempotency should supply their own stable key.
+        /// </summary>
+        private static HttpRequestMessage CreateJsonRequest<TRequest>(HttpMethod method, string requestUri, TRequest payload, string idempotencyKey)
+        {
+            var request = CreateJsonRequest(method, requestUri, payload);
+            var key = string.IsNullOrWhiteSpace(idempotencyKey) ? Guid.NewGuid().ToString("N") : idempotencyKey;
+            request.Headers.TryAddWithoutValidation("Idempotency-Key", key);
+            return request;
         }
 
         private async Task<HttpResponseMessage> SendRequestAsync(HttpRequestMessage request, string xShopperId = null, string xMarketId = null, string xPrivateLabelId = null)
@@ -84,14 +109,19 @@ namespace GodaddyWrapper
         {
             var results = new List<ValidationResult>();
             if (!ModelValidator.IsValid(Model, out results))
-                throw new Exception(string.Join("\n", results.Select(c => c.ErrorMessage)));
+                throw new GodaddyValidationException(results);
         }
     }
 
+    /// <summary>
+    /// Configuration for <see cref="GoDaddyClient"/>. Authentication uses a GoDaddy
+    /// Personal Access Token (PAT) sent as an <c>Authorization: Bearer</c> header.
+    /// </summary>
     public sealed class GoDaddyClientOptions
     {
-        public string AccessKey { get; set; }
-        public string SecretKey { get; set; }
-        public bool IsTesting { get; set; }
+        /// <summary>
+        /// The GoDaddy Personal Access Token. Required.
+        /// </summary>
+        public string PersonalAccessToken { get; set; }
     }
 }

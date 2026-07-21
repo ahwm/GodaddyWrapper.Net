@@ -5,8 +5,8 @@
     <Copyright>Copyright 2015 - 2017 Vip30, 2018 - $([System.DateTime]::Now.ToString('yyyy')) ahwm23</Copyright>
     <AssemblyTitle>GodaddyWrapper.Net</AssemblyTitle>
     <Authors>vip30, ahwm23</Authors>
-    <Version>4.0.0</Version>
-    <AssemblyVersion>4.0.0</AssemblyVersion>
+    <Version>5.0.0</Version>
+    <AssemblyVersion>5.0.0</AssemblyVersion>
     <LangVersion>13.0</LangVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
@@ -14,7 +14,7 @@
     <AssemblyName>GodaddyWrapper</AssemblyName>
     <PackageId>GodaddyWrapper</PackageId>
     <PackageTags>Godaddy;Wrapper;API;DotNet Core;Rest</PackageTags>
-    <PackageReleaseNotes>Added GoDaddy V2 API support, added ANS API support</PackageReleaseNotes>
+    <PackageReleaseNotes>v5.0.0 (breaking): switched to GoDaddy Personal Access Token (Bearer) authentication and removed the legacy sso-key key/secret model; adopted the Domains v3 API (availability, suggestions, quote-then-register, domain read, nameservers, zone-based DNS, async operation polling) as the primary domains surface, with v1/v2 retained where v3 has no equivalent; unified dependency injection across net462 and netstandard2.0; production endpoint only (removed the OTE test endpoint); added an IGoDaddyClient interface.</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/ahwm/GodaddyWrapper.Net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ahwm/GodaddyWrapper.Net</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -33,15 +33,14 @@
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="System.Net.Http.Json" Version="10.0.6" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.6" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.6" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.6" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
     <DefineConstants>NETSTANDARD;NETSTANDARD2_0</DefineConstants>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.6" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.6" />
-  </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
     <Reference Include="mscorlib" />

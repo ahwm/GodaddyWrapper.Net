@@ -1,4 +1,4 @@
-﻿using GodaddyWrapper;
+using GodaddyWrapper;
 #if NETCORE
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -11,10 +11,10 @@ namespace GodaddyWrapper.Tests
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            //string AccessKey = Environment.GetEnvironmentVariable("GODADDY_ACCESS_KEY").Trim();
-            //string ApiSecret = Environment.GetEnvironmentVariable("GODADDY_API_SECRET").Trim();
-            //services.AddGoDaddy(AccessKey, ApiSecret, true);
-            //services.AddTransient<IDomainService, OpenSRSDomainService>();
+            // Registers IGoDaddyClient/GoDaddyClient with a dummy PAT so the DI wiring is exercised
+            // on both the net462 and net8.0 test targets. Replace with a real PAT (e.g. from the
+            // GODADDY_PAT environment variable) to run live integration tests.
+            services.AddGoDaddy("dummy-pat-for-tests");
         }
     }
 #endif

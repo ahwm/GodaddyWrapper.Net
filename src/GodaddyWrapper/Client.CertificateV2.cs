@@ -20,7 +20,7 @@ namespace GodaddyWrapper
         public async Task<List<CertificateResponse>> GetCertificatesByEntitlement(CertificatesByEntitlementRetrieve request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.GetAsync($"../v2/certificates{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.GetAsync($"v2/certificates{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<List<CertificateResponse>>(JsonSettings);
         }
@@ -34,7 +34,7 @@ namespace GodaddyWrapper
         public async Task<SubscriptionCertificateIdentifierResponse> CreateSubscriptionCertificate(SubscriptionCertificateCreate request, string xMarketId = null)
         {
             CheckRequestValid(request);
-            using var httpRequest = new HttpRequestMessage(HttpMethod.Post, "../v2/certificates")
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Post, "v2/certificates")
             {
                 Content = new StringContent(
                 JsonSerializer.Serialize(request, JsonSettings),
@@ -58,7 +58,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task ReissueActiveCertificateV2(string certificateId, CertificateReissueV2 request)
         {
-            var response = await httpClient.PostAsJsonAsync($"../v2/certificates/{certificateId}/reissue", request, JsonSettings);
+            var response = await httpClient.PostAsJsonAsync($"v2/certificates/{certificateId}/reissue", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
         }
 
@@ -70,7 +70,7 @@ namespace GodaddyWrapper
         public async Task<CertificateBundleResponse> DownloadCertificateByEntitlement(CertificateDownloadByEntitlementRetrieve request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.GetAsync($"../v2/certificates/download{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.GetAsync($"v2/certificates/download{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CertificateBundleResponse>(JsonSettings);
         }
@@ -83,7 +83,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<CertificateSummariesV2Response> GetCustomerCertificates(string customerId, CustomerCertificatesRetrieve request)
         {
-            var response = await httpClient.GetAsync($"../v2/customers/{customerId}/certificates{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.GetAsync($"v2/customers/{customerId}/certificates{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CertificateSummariesV2Response>(JsonSettings);
         }
@@ -96,7 +96,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<CertificateDetailV2Response> GetCustomerCertificateDetail(string customerId, string certificateId)
         {
-            var response = await httpClient.GetAsync($"../v2/customers/{customerId}/certificates/{certificateId}");
+            var response = await httpClient.GetAsync($"v2/customers/{customerId}/certificates/{certificateId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CertificateDetailV2Response>(JsonSettings);
         }
@@ -109,7 +109,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<List<DomainVerificationSummaryResponse>> GetCertificateDomainVerifications(string customerId, string certificateId)
         {
-            var response = await httpClient.GetAsync($"../v2/customers/{customerId}/certificates/{certificateId}/domainVerifications");
+            var response = await httpClient.GetAsync($"v2/customers/{customerId}/certificates/{certificateId}/domainVerifications");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<List<DomainVerificationSummaryResponse>>(JsonSettings);
         }
@@ -123,7 +123,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<DomainVerificationDetailResponse> GetCertificateDomainVerificationDetail(string customerId, string certificateId, string domain)
         {
-            var response = await httpClient.GetAsync($"../v2/customers/{customerId}/certificates/{certificateId}/domainVerifications/{domain}");
+            var response = await httpClient.GetAsync($"v2/customers/{customerId}/certificates/{certificateId}/domainVerifications/{domain}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<DomainVerificationDetailResponse>(JsonSettings);
         }
@@ -135,7 +135,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<ExternalAccountBindingResponse> GetAcmeExternalAccountBinding(string customerId)
         {
-            var response = await httpClient.GetAsync($"../v2/customers/{customerId}/certificates/acme/externalAccountBinding");
+            var response = await httpClient.GetAsync($"v2/customers/{customerId}/certificates/acme/externalAccountBinding");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<ExternalAccountBindingResponse>(JsonSettings);
         }
@@ -147,7 +147,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<CertificatesByDomainPageResponse> SearchCertificateSubscriptions(CertificateSubscriptionsSearch request)
         {
-            var response = await httpClient.GetAsync($"../v2/certificates/subscriptions/search{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.GetAsync($"v2/certificates/subscriptions/search{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CertificatesByDomainPageResponse>(JsonSettings);
         }
@@ -160,7 +160,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<CertificatesByDomainPagedResponse> GetCertificateSubscription(string guid, CertificateSubscriptionsSearch request)
         {
-            var response = await httpClient.GetAsync($"../v2/certificates/subscription/{guid}{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.GetAsync($"v2/certificates/subscription/{guid}{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<CertificatesByDomainPagedResponse>(JsonSettings);
         }
