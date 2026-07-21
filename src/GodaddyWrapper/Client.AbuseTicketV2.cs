@@ -16,7 +16,7 @@ namespace GodaddyWrapper
         public async Task<AbuseTicketIdResponse> CreateAbuseTicketV2(AbuseTicketCreateV2 request)
         {
             CheckRequestValid(request);
-            var response = await httpClient.PostAsJsonAsync($"../v2/abuse/tickets", request, JsonSettings);
+            var response = await httpClient.PostAsJsonAsync($"v2/abuse/tickets", request, JsonSettings);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AbuseTicketIdResponse>(JsonSettings);
         }
@@ -28,7 +28,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<AbuseTicketListResponse> RetrieveAbuseTicketsV2(AbuseTicketRetrieve request)
         {
-            var response = await httpClient.GetAsync($"../v2/abuse/tickets{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            var response = await httpClient.GetAsync($"v2/abuse/tickets{QueryStringBuilder.RequestObjectToQueryString(request)}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AbuseTicketListResponse>(JsonSettings);
         }
@@ -40,7 +40,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<AbuseTicketV2Response> RetrieveAbuseTicketDetailV2(string ticketId)
         {
-            var response = await httpClient.GetAsync($"../v2/abuse/tickets/{ticketId}");
+            var response = await httpClient.GetAsync($"v2/abuse/tickets/{ticketId}");
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<AbuseTicketV2Response>(JsonSettings);
         }

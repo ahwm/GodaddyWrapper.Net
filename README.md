@@ -9,24 +9,27 @@ GodaddyWrapper.NET is a .NET Wrapper for calling GoDaddy REST API.
 
 [Visit GoDaddy Rest API Docs](https://developer.godaddy.com/doc)
 
+## Authentication
+
+Authentication uses a GoDaddy [Personal Access Token (PAT)](https://developer.godaddy.com/personal-access-token), sent as an `Authorization: Bearer <token>` header. The legacy `sso-key` key/secret model is no longer supported. All calls target the production endpoint (`https://api.godaddy.com`). Documentation vaguely indicates that the ote test environment might be discontinued.
+
 ## Usage
 
-### .NET Framework
+### .NET Framework (non-DI)
 
 ```cs
 var options = new GoDaddyClientOptions 
 {
-    AccessKey = "{key}",
-    SecretKey = "{secret}",
-    IsTesting = true /* false to use production */
+    PersonalAccessToken = "{pat}"
 };
 var client = new GoDaddyClient(options);
+// or simply: var client = new GoDaddyClient("{pat}");
 
 try
 {
-    var response = await client.CheckDomainAvailable(new DomainAvailable
+    var response = await client.CheckDomainAvailableV3(new DomainAvailableV3
     {
-        domain = "google.com"
+        Domain = "google.com"
     });
 }
 catch (GodaddyException ex) 
@@ -38,27 +41,26 @@ catch (GodaddyException ex)
 }
 ```
 
-### .NET Core/.NET 5+
+### Dependency injection (.NET Framework 4.6.2+ and .NET Core/.NET 5+)
 
 Program.cs / Startup.cs
 
 ```cs
-builder.Services.AddGoDaddy(
-    configuration.GoDaddyAccessKey,
-    configuration.GoDaddySecretKey,
-    configuration.Sandbox);
+builder.Services.AddGoDaddy(configuration.GoDaddyPersonalAccessToken);
+// or configure via a delegate:
+// builder.Services.AddGoDaddy(o => o.PersonalAccessToken = configuration.GoDaddyPersonalAccessToken);
 ```
 
-Service Class (or controller)
+Service Class (or controller) — inject the `IGoDaddyClient` interface
 
 ```cs
-public class GoDaddyDomainService(GoDaddyClient goDaddyClient)
+public class GoDaddyDomainService(IGoDaddyClient goDaddyClient)
 
 try
 {
-    var response = await goDaddyClient.CheckDomainAvailable(new DomainAvailable
+    var response = await goDaddyClient.CheckDomainAvailableV3(new DomainAvailableV3
     {
-        domain = "google.com"
+        Domain = "google.com"
     });
 }
 catch (GodaddyException ex) 
@@ -70,7 +72,37 @@ catch (GodaddyException ex)
 }
 ```
 
+### Registering a domain (v3 quote → execute)
+
+v3 writes are asynchronous: registration returns an operation you can poll to completion.
+
+```cs
+var registration = await goDaddyClient.RegisterDomainWithQuoteAsync(
+    new RegistrationQuoteCreate { Domain = "example.com", Period = 1 });
+
+if (registration.OperationId is not null)
+{
+    var operation = await goDaddyClient.WaitForDomainOperation(registration.OperationId);
+    Console.WriteLine(operation.Status); // COMPLETED / FAILED
+}
+```
+
 ## Version History
+
+### 5.0.0
+
+- Switched to GoDaddy Personal Access Token (Bearer) authentication; removed the legacy `sso-key` key/secret model
+- Adopted the Domains **v3** API as the primary domains surface (availability, suggestions, quote → register, domain read, nameservers, zone-based DNS, async operation polling)
+- Unified dependency injection across .NET Framework 4.6.2 and .NET Standard 2.0
+- Added the `IGoDaddyClient` interface for injection/mocking
+- Production endpoint only (removed the OTE/`IsTesting` test endpoint)
+
+#### ⚠️Breaking Changes
+
+- `GoDaddyClientOptions` now exposes only `PersonalAccessToken` (removed `AccessKey`, `SecretKey`, `IsTesting`); `AddGoDaddy(...)` takes a PAT
+- v1 domain availability, suggestions, purchase, DNS-record, and domain-detail methods were replaced by their v3 equivalents (`CheckDomainAvailableV3`, `SuggestDomainsV3`, the v3 quote/register flow, zone-based DNS, `GetDomainV3`)
+- v2 registration methods (`RegisterDomainV2`, `GetRegisterDomainSchemaV2`, `ValidateRegisterDomainV2`) were removed in favor of v3 registration
+- Renamed `RetrieveDomainPurhcaseSchema` to `RetrieveDomainPurchaseSchema`
 
 ### 4.0.0
 

@@ -18,7 +18,7 @@ namespace GodaddyWrapper
         public async Task<OrderListResponse> RetrieveOrderList(OrderRetrieve request, string XShopperId, string XMarketId)
         {
             CheckRequestValid(request);
-            using var httpRequest = new HttpRequestMessage(HttpMethod.Get, $"orders{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Get, $"v1/orders{QueryStringBuilder.RequestObjectToQueryString(request)}");
             var response = await SendRequestAsync(httpRequest, xShopperId: XShopperId, xMarketId: XMarketId);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<OrderListResponse>(JsonSettings);
@@ -33,7 +33,7 @@ namespace GodaddyWrapper
         public async Task<OrderResponse> RetrieveSpecificOrder(OrderDetailRetrieve request, string XShopperId, string XMarketId)
         {
             CheckRequestValid(request);
-            using var httpRequest = new HttpRequestMessage(HttpMethod.Get, $"orders/{request.OrderId}");
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Get, $"v1/orders/{request.OrderId}");
             var response = await SendRequestAsync(httpRequest, xShopperId: XShopperId, xMarketId: XMarketId);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<OrderResponse>(JsonSettings);

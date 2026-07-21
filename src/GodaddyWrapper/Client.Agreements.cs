@@ -19,7 +19,7 @@ namespace GodaddyWrapper
         /// <returns></returns>
         public async Task<List<LegalAgreementResponse>> RetrieveAgreements(AgreementRetrieve request, string XPrivateLabelId = null, string XMarketId = null)
         {
-            using var httpRequest = new HttpRequestMessage(HttpMethod.Get, $"aggreements{QueryStringBuilder.RequestObjectToQueryString(request)}");
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Get, $"v1/agreements{QueryStringBuilder.RequestObjectToQueryString(request)}");
             var response = await SendRequestAsync(httpRequest, xMarketId: XMarketId, xPrivateLabelId: XPrivateLabelId);
             await CheckResponseMessageIsValid(response);
             return await response.Content.ReadAsAsync<List<LegalAgreementResponse>>(JsonSettings);
